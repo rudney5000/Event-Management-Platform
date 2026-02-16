@@ -7,19 +7,25 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "server": "npx json-server --watch db.json --port 8000"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.9",
+    "@heroicons/react": "^2.2.0",
     "@reduxjs/toolkit": "^2.11.2",
+    "antd": "^6.3.0",
     "autoprefixer": "^10.4.24",
     "axios": "^1.13.5",
+    "json-server": "^0.17.4",
     "postcss": "^8.5.6",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-redux": "^9.2.0",
     "react-router": "^7.13.0",
     "react-router-dom": "^7.13.0",
-    "tailwindcss": "^4.1.18"
+    "tailwindcss": "^4.1.18",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
