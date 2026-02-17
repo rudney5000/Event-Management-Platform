@@ -1,4 +1,35 @@
 {
-    "login": [],
-    "register": []
+  "login": [
+    {
+      "email": "user@example.com",
+      "password": "paasword",
+      "apiId": "auth",
+      "id": 1
+    },
+    {
+      "email": "user@example.com",
+      "password": "password",
+      "apiId": "auth",
+      "id": 2
+    },
+    {
+      "email": "user@example.com",
+      "password": "password",
+      "apiId": "auth",
+      "id": 3
+    },
+    {
+      "email": "user@example.com",
+      "password": "password",
+      "apiId": "auth",
+      "id": 4
+    },
+    {
+      "email": "user@example.com",
+      "password": "password",
+      "apiId": "auth",
+      "id": 5
+    }
+  ],
+  "register": []
 }

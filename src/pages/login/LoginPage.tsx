@@ -23,7 +23,5 @@ export function LoginPage() {
             </p>
         </div>
     </div>
-
-    
   )
 }

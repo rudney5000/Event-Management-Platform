@@ -1,23 +1,21 @@
 import { useNavigate } from "react-router"
 import { useLoginForm } from "../../hooks/useLoginForm"
 import { useLoginMutation } from "../../api/authApi"
+import { initialLoginForm } from "../../model/constants/loginConstants"
 
 export function LoginForm(){
     const navigate = useNavigate()
 
-    const { values, errors, validate, handleChange } = useLoginForm({
-      email: "",
-      password: ""
-    })
+    const { values, errors, validate, handleChange } = useLoginForm(initialLoginForm)
 
-    const [ login ] = useLoginMutation()
-
+    const [login] = useLoginMutation();
     const handleSubmit = async (event: React.FormEvent) => {
-      event.preventDefault
+      event.preventDefault()
       if(!validate()) return
       try{
         const response = await login(values).unwrap()
         console.log("token", response.token)
+        navigate("/admin")
       } catch(error) {
         console.error("Login Failed", error)
       }
@@ -80,7 +78,7 @@ export function LoginForm(){
             Sign in
           </button>
           <button
-            type="submit"
+            type="button"
             onClick={() => navigate('/register')}
             className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
