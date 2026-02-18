@@ -16,9 +16,7 @@ server.post("/auth/login", (req, res) => {
     return res.status(401).json({ message: "Invalid credentials" });
   }
 
-  const token = Buffer.from(`${user.id}:${user.email}`).toString("base64");
-
-  return res.json({ token });
+  return res.json({ id: user.id, email: user.email });
 });
 
 server.use("/api", router);

@@ -2,22 +2,31 @@ import { useNavigate } from "react-router"
 import { useLoginForm } from "../../hooks/useLoginForm"
 import { useLoginMutation } from "../../api/authApi"
 import { initialLoginForm } from "../../model/constants/loginConstants"
+import { useState } from "react"
 
 export function LoginForm(){
     const navigate = useNavigate()
+    const [login, { isLoading }] = useLoginMutation();
+    const [error, setError] = useState<boolean>(false);
+    const { 
+      values, 
+      errors, 
+      validate, 
+      handleChange 
+    } = useLoginForm(initialLoginForm)
 
-    const { values, errors, validate, handleChange } = useLoginForm(initialLoginForm)
-
-    const [login] = useLoginMutation();
     const handleSubmit = async (event: React.FormEvent) => {
       event.preventDefault()
+      
       if(!validate()) return
       try{
-        const response = await login(values).unwrap()
-        console.log("token", response.token)
+        setError(false)
+        const user = await login(values).unwrap()
+        console.log("token", user)
         navigate("/admin")
       } catch(error) {
         console.error("Login Failed", error)
+        setError(true)
       }
     }
 
@@ -73,6 +82,7 @@ export function LoginForm(){
         <div className="flex flex-col gap-2">
           <button
             type="submit"
+            disabled={isLoading}
             className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
             Sign in
