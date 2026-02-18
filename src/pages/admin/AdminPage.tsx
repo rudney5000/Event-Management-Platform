@@ -1,5 +1,7 @@
+import { AdminLayout } from '../../widgets/admin/index';
+
 export function AdminPage(){
     return(
-        <>Admin Page</>
+        <AdminLayout/>
     )
 }
