@@ -3,10 +3,10 @@ import App from "../App";
 import { HomePage } from "../../pages/home/HomePage";
 import { LoginPage } from "../../pages/login/LoginPage";
 import { RegisterPage } from "../../pages/register/RegisterPage";
-import { PrivateRoute } from "../../shared/components/PrivateRoute";
+import { PrivateRoute } from "../../shared/ui/PrivateRoute";
 import { EventsPage } from "../../pages/admin/EventsPage";
-import { AdminLayout } from "../../widgets/admin";
 import { DashboardPage } from "../../pages/admin/DashboardPage";
+import { AdminLayout } from "../../widgets/admin-layout";
 
 export const router = createBrowserRouter([
     {

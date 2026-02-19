@@ -1,5 +1,6 @@
 import { Layout, Menu } from "antd";
 import { menuItems } from "../model/menuItems";
+import { useLocation, useNavigate } from "react-router";
 
 const { Sider } = Layout;
 
@@ -9,13 +10,17 @@ interface Props {
 }
 
 export function AdminSidebar({ collapsed, onCollapse }: Props) {
+
+  const location = useLocation();
+  const navigate = useNavigate();
   return (
     <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
       <Menu
         theme="dark"
         mode="inline"
-        defaultSelectedKeys={["1"]}
+        selectedKeys={[location.pathname]}
         items={menuItems}
+        onClick={({ key }) => navigate(key)}
       />
     </Sider>
   );
