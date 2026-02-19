@@ -3,8 +3,10 @@ import App from "../App";
 import { HomePage } from "../../pages/home/HomePage";
 import { LoginPage } from "../../pages/login/LoginPage";
 import { RegisterPage } from "../../pages/register/RegisterPage";
-import { AdminPage } from "../../pages/admin/AdminPage";
 import { PrivateRoute } from "../../shared/components/PrivateRoute";
+import { EventsPage } from "../../pages/admin/EventsPage";
+import { AdminLayout } from "../../widgets/admin";
+import { DashboardPage } from "../../pages/admin/DashboardPage";
 
 export const router = createBrowserRouter([
     {
@@ -27,9 +29,19 @@ export const router = createBrowserRouter([
                 path: "admin",
                 element: (
                     <PrivateRoute>
-                      <AdminPage />
+                      <AdminLayout />
                     </PrivateRoute>
                 ),
+                children: [
+                    {
+                        path: "dashboard",
+                        element: <DashboardPage/>
+                    },
+                    {
+                        path: "events",
+                        element: <EventsPage/>
+                    }
+                ]
             },
         ]
     }

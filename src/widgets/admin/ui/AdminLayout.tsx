@@ -2,7 +2,7 @@ import { Layout, theme } from "antd";
 import { useState } from "react";
 import { AdminSidebar } from "./AdminSidebar";
 import { AdminHeader } from "./AdminHeader";
-import { AdminContent } from "./AdminContent";
+import { Outlet } from "react-router";
 
 const { Content, Footer } = Layout;
 
@@ -20,7 +20,7 @@ export function AdminLayout() {
         <AdminHeader background={colorBgContainer} />
 
         <Content style={{ margin: "0 16px" }}>
-          <AdminContent />
+          <Outlet/>
         </Content>
 
         <Footer style={{ textAlign: "center" }}>

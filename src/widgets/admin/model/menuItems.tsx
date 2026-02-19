@@ -6,6 +6,7 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import type { MenuProps } from "antd";
+import { Link } from "react-router";
 
 type MenuItem = Required<MenuProps>["items"][number];
 
@@ -22,8 +23,8 @@ const item = (
 });
 
 export const menuItems: MenuItem[] = [
-  item("Dashboard", "1", <PieChartOutlined />),
-  item("Reports", "2", <DesktopOutlined />),
+  item(<Link to="/admin/dashboard">Dashboard</Link>, "dashboard", <PieChartOutlined />),
+  item(<Link to="/admin/events">Events</Link>, "events", <DesktopOutlined />),
   item("Users", "sub1", <UserOutlined />, [
     item("Tom", "3"),
     item("Bill", "4"),
