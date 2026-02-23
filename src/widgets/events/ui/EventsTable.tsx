@@ -18,7 +18,7 @@ const mockData: EventFormValues[] = [
     price: 50,
     status: "published",
     speakers: ["Joe"],
-    priority: ["1"]
+    priority: "1"
   },
   {
     id: "2",
@@ -29,7 +29,7 @@ const mockData: EventFormValues[] = [
     priceType: "free",
     status: "draft",
     speakers: ["Joe"],
-    priority: ["2"]
+    priority: "2"
   },
 ];
 
@@ -55,13 +55,11 @@ export function EventsTable() {
 
   const handleFinish = (values: EventFormValues) => {
     if (editingEvent) {
-      // Edit existing event
       setData((prev) =>
         prev.map((e) => (e.id === editingEvent.id ? { ...editingEvent, ...values } : e))
       );
       message.success("Event updated");
     } else {
-      // Add new event
       const newEvent = { ...values, id: Date.now().toString() };
       setData((prev) => [...prev, newEvent]);
       message.success("Event added");

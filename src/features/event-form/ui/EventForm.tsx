@@ -2,7 +2,7 @@ import { Form, Input, Button, DatePicker, Radio, InputNumber } from "antd";
 import { useState } from "react";
 import { SelectOrCreate } from "./SelectOrCreate";
 import { MultiSelectOrCreate } from "./MultiSelectOrCreate";
-import { MultiSelectSort } from "./MultiSelectSort";
+import { SelectPriority } from "./SelectPriority";
 
 export interface EventFormValues {
   id?: string;
@@ -15,7 +15,7 @@ export interface EventFormValues {
   price?: number;
   tags?: string[];
   speakers: string[];
-  priority: string[];
+  priority: string;
 }
 
 interface EventFormProps {
@@ -27,7 +27,7 @@ export function EventForm({ initialValues, onSubmit }: EventFormProps) {
   const [form] = Form.useForm<EventFormValues>();
   const [tags, setTags] = useState<string[]>(initialValues?.tags || []);
   const [speakers, setSpeakers] = useState<string[]>(initialValues?.speakers || []);
-  const [priority, setPriority] = useState<string[]>(initialValues?.priority || []);
+  const [priority, setPriority] = useState<string>(initialValues?.priority || "1");
 
   const handleFinish = (values: EventFormValues) => {
     onSubmit({ ...values, tags, speakers, priority });
@@ -86,7 +86,7 @@ export function EventForm({ initialValues, onSubmit }: EventFormProps) {
         onChange={setSpeakers}
       />
 
-      <MultiSelectSort label="Priority" items={priority} onChange={setPriority} />
+      <SelectPriority label="Priority" items={["1", "2", "3"]} value={priority} onChange={setPriority} />
 
       <Button type="primary" htmlType="submit" className="mt-4">
         Save Event
