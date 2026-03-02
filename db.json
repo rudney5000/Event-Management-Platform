@@ -9,25 +9,77 @@
   "login": [],
   "register": [],
   "events": [
-    {
+{
       "id": "1",
       "title": "Conference",
       "date": "2026-09-12",
+      "endDate": "2026-09-13",
+      "startTime": "09:00",
+      "endTime": "18:00",
       "city": "Paris",
       "address": "10 Avenue des Champs",
       "priceType": "paid",
       "price": 50,
       "status": "published",
-      "speakers": [
-        "Joe"
-      ],
+      "speakers": ["Joe"],
       "tags": [],
-      "priority": "1"
+      "priority": "1",
+
+      "imageUrl": "https://example.com/image.jpg",
+      "shortDescription": "Une conférence passionnante sur...",
+      "description": "Description complète de l'événement avec tous les détails...",
+      "category": "conférence",
+      "capacity": 100,
+      "availableSeats": 45,
+
+      "organizer": {
+        "name": "Company Name",
+        "logo": "https://example.com/logo.png",
+        "contactEmail": "contact@example.com"
+      },
+
+      "coordinates": {
+        "lat": 48.8566,
+        "lng": 2.3522
+      },
+
+      "bookingUrl": "https://example.com/book",
+
+      "schedule": [
+        {
+          "time": "09:00",
+          "title": "Accueil",
+          "description": "Accueil des participants et remise des badges"
+        },
+        {
+          "time": "10:00",
+          "title": "Présentation",
+          "description": "Présentation du programme et des intervenants"
+        }
+      ],
+
+      "level": "intermediate",
+      "language": "fr",
+      "sponsors": ["Sponsor 1", "Sponsor 2"],
+
+      "media": [
+        {
+          "type": "video",
+          "url": "https://youtube.com/example"
+        },
+        {
+          "type": "photo",
+          "url": "https://example.com/photo1.jpg"
+        }
+      ]
     },
     {
       "id": "2",
       "title": "Meetup",
       "date": "2026-10-01",
+      "endDate": "2026-09-13",
+      "startTime": "09:00",
+      "endTime": "18:00",
       "city": "Lyon",
       "address": "5 Rue Victor Hugo",
       "priceType": "free",
@@ -36,11 +88,61 @@
         "Joe"
       ],
       "tags": [],
-      "priority": "2"
+      "priority": "2",
+      "imageUrl": "https://example.com/image.jpg",
+      "shortDescription": "Une conférence passionnante sur...",
+      "description": "Description complète de l'événement avec tous les détails...",
+      "category": "conférence",
+      "capacity": 100,
+      "availableSeats": 45,
+
+      "organizer": {
+        "name": "Company Name",
+        "logo": "https://example.com/logo.png",
+        "contactEmail": "contact@example.com"
+      },
+
+      "coordinates": {
+        "lat": 48.8566,
+        "lng": 2.3522
+      },
+
+      "bookingUrl": "https://example.com/book",
+
+      "schedule": [
+        {
+          "time": "09:00",
+          "title": "Accueil",
+          "description": "Accueil des participants et remise des badges"
+        },
+        {
+          "time": "10:00",
+          "title": "Présentation",
+          "description": "Présentation du programme et des intervenants"
+        }
+      ],
+
+      "level": "intermediate",
+      "language": "fr",
+      "sponsors": ["Sponsor 1", "Sponsor 2"],
+
+      "media": [
+        {
+          "type": "video",
+          "url": "https://youtube.com/example"
+        },
+        {
+          "type": "photo",
+          "url": "https://example.com/photo1.jpg"
+        }
+      ]
     },
     {
       "title": "dsdsd",
       "date": "2026-03-01",
+      "endDate": "2026-09-13",
+      "startTime": "09:00",
+      "endTime": "18:00",
       "address": "dsdsds",
       "priceType": "paid",
       "city": [
@@ -57,11 +159,61 @@
         "Bob"
       ],
       "priority": "1",
-      "id": "wRbQPjF"
+      "id": "wRbQPjF",
+      "imageUrl": "https://example.com/image.jpg",
+      "shortDescription": "Une conférence passionnante sur...",
+      "description": "Description complète de l'événement avec tous les détails...",
+      "category": "conférence",
+      "capacity": 100,
+      "availableSeats": 45,
+
+      "organizer": {
+        "name": "Company Name",
+        "logo": "https://example.com/logo.png",
+        "contactEmail": "contact@example.com"
+      },
+
+      "coordinates": {
+        "lat": 48.8566,
+        "lng": 2.3522
+      },
+
+      "bookingUrl": "https://example.com/book",
+
+      "schedule": [
+        {
+          "time": "09:00",
+          "title": "Accueil",
+          "description": "Accueil des participants et remise des badges"
+        },
+        {
+          "time": "10:00",
+          "title": "Présentation",
+          "description": "Présentation du programme et des intervenants"
+        }
+      ],
+
+      "level": "intermediate",
+      "language": "fr",
+      "sponsors": ["Sponsor 1", "Sponsor 2"],
+
+      "media": [
+        {
+          "type": "video",
+          "url": "https://youtube.com/example"
+        },
+        {
+          "type": "photo",
+          "url": "https://example.com/photo1.jpg"
+        }
+      ]
     },
     {
       "title": "sasasas",
       "date": "2026-03-01",
+      "endDate": "2026-09-13",
+      "startTime": "09:00",
+      "endTime": "18:00",
       "address": "asasas",
       "priceType": "paid",
       "city": [
@@ -78,7 +230,54 @@
         "Bob"
       ],
       "priority": "1",
-      "id": "QgCX3mX"
+      "id": "QgCX3mX",
+      "imageUrl": "https://example.com/image.jpg",
+      "shortDescription": "Une conférence passionnante sur...",
+      "description": "Description complète de l'événement avec tous les détails...",
+      "category": "conférence",
+      "capacity": 100,
+      "availableSeats": 45,
+
+      "organizer": {
+        "name": "Company Name",
+        "logo": "https://example.com/logo.png",
+        "contactEmail": "contact@example.com"
+      },
+
+      "coordinates": {
+        "lat": 48.8566,
+        "lng": 2.3522
+      },
+
+      "bookingUrl": "https://example.com/book",
+
+      "schedule": [
+        {
+          "time": "09:00",
+          "title": "Accueil",
+          "description": "Accueil des participants et remise des badges"
+        },
+        {
+          "time": "10:00",
+          "title": "Présentation",
+          "description": "Présentation du programme et des intervenants"
+        }
+      ],
+
+      "level": "intermediate",
+      "language": "fr",
+      "sponsors": ["Sponsor 1", "Sponsor 2"],
+
+      "media": [
+        {
+          "type": "video",
+          "url": "https://youtube.com/example"
+        },
+        {
+          "type": "photo",
+          "url": "https://example.com/photo1.jpg"
+        }
+      ]
     }
   ]
 }

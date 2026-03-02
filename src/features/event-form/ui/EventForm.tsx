@@ -6,7 +6,7 @@ import { SelectPriority } from "./SelectPriority";
 import dayjs, { Dayjs } from "dayjs";
 
 export interface EventFormValues {
-  id?: string;
+  id: string;
   title: string;
   date: string;
   city: string;
