@@ -1,7 +1,9 @@
 import type { ColumnsType } from "antd/es/table";
-import { Tag } from "antd";
+import { Space, Tag } from "antd";
 import { ColumnActions } from "../../../shared/ui/column-actions/ColumnActions";
 import type { EventFormValues } from "../../../features/event-form/ui/EventForm";
+import { Link } from "react-router";
+import { EyeIcon, PencilIcon, TrashIcon } from "lucide-react";
 
 interface EventColumnsProps {
   onEdit: (event: EventFormValues) => void;
@@ -77,14 +79,35 @@ export function getEventColumns({
           items={(row) => [
             {
               key: "edit",
-              label: "Edit",
+              label: (
+                <Space>
+                  <PencilIcon className="w-4 h-4" />
+                  Edit
+                </Space>
+              ),
               onClick: () => onEdit(row),
             },
             {
               key: "delete",
-              label: "Delete",
+              label: (
+                <Space>
+                  <TrashIcon className="w-4 h-4 text-red-500" />
+                  Delete
+                </Space>
+              ),
               danger: true,
               onClick: () => onDelete(String(row.id)),
+            },
+            {
+              key: "preview",
+              label: (
+                <Link to={`/events/preview/${row.id}`}>
+                  <Space>
+                    <EyeIcon className="w-4 h-4 text-blue-500" />
+                    Preview
+                  </Space>
+                </Link>
+              ),
             },
           ]}
         />
