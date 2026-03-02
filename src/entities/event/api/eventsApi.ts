@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import type { EventFormValues } from "../../../features/event-form/ui/EventForm";
 import type { GetEventsParams, PaginatedEvents } from "../model/types";
+import type { EventFull } from "../../../pages/admin/AdminEventPreviewPage";
 
 export const eventsApi = createApi({
     reducerPath: "eventsApi",
@@ -37,6 +38,11 @@ export const eventsApi = createApi({
                 method: "DELETE"                
             }),
             invalidatesTags: ["Events"]
+        }),
+        getEventById: builder.query<EventFull, string>({
+            query: (id) => `/api/events/${id}`,
+            providesTags: (result, error, id) =>
+                result ? [{ type: 'Events', id }] : [],
         })
     })
 })
@@ -46,4 +52,5 @@ export const {
   useCreateEventMutation,
   useUpdateEventMutation,
   useDeleteEventMutation,
+  useGetEventByIdQuery,
 } = eventsApi;

@@ -17,10 +17,17 @@ import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { useUserMenu } from '../../shared/hooks/useUserMenu'
 import { callsToAction, mainNavLinks, products } from './constants';
 import { Link, NavLink } from 'react-router';
+import { useEffect, useState } from 'react';
 
 
 export default function Header() {
   const { open: mobileMenuOpen, toggle: toggleMobileMenu, close: CloseMobileMenu } = useUserMenu();
+
+    const [user, setUser] = useState<{ email: string } | null>(null);
+    useEffect(() => {
+        const stored = localStorage.getItem("user");
+        if (stored) setUser(JSON.parse(stored));
+      }, []);
 
   return (
     <header className="bg-gray-900">
@@ -100,9 +107,15 @@ export default function Header() {
           ))}
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link to="/login" className="text-sm/6 font-semibold text-white">
-            Log in <span aria-hidden="true">&rarr;</span>
-          </Link>
+          {user ? (
+            <span className="text-sm/6 font-semibold text-white">
+              {user.email}
+            </span>
+          ) : (
+            <Link to="/login" className="text-sm/6 font-semibold text-white">
+              Log in <span aria-hidden="true">&rarr;</span>
+            </Link>
+          )}
         </div>
       </nav>
       <Dialog open={mobileMenuOpen} onClose={CloseMobileMenu} className="lg:hidden">
@@ -158,12 +171,18 @@ export default function Header() {
                 ))}
               </div>
               <div className="py-6">
-                <Link
-                  to="/login"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-white hover:bg-white/5"
-                >
-                  Log in
-                </Link>
+                {user ? (
+                  <span className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-white">
+                    {user.email}
+                  </span>
+                ) : (
+                  <Link
+                    to="/login"
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-white hover:bg-white/5"
+                  >
+                    Log in
+                  </Link>
+                )}
               </div>
             </div>
           </div>
