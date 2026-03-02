@@ -1,12 +1,13 @@
 import { createBrowserRouter } from "react-router";
 import App from "../App";
-import { HomePage } from "../../pages/home/HomePage";
-import { LoginPage } from "../../pages/login/LoginPage";
-import { RegisterPage } from "../../pages/register/RegisterPage";
 import { PrivateRoute } from "../../shared/ui/PrivateRoute";
-import { EventsPage } from "../../pages/admin/EventsPage";
+import { EventsPage } from "../../pages/admin/AdminEventsPage";
 import { DashboardPage } from "../../pages/admin/DashboardPage";
 import { AdminLayout } from "../../widgets/admin-layout";
+import { EventPageDetails } from "../../pages/customer/EventPageDetails";
+import { EventPage } from "../../pages/customer/EventPage";
+import { LoginPage } from "../../pages/account/login/LoginPage";
+import { RegisterPage } from "../../pages/account/register/RegisterPage";
 
 export const router = createBrowserRouter([
     {
@@ -15,7 +16,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <HomePage/>
+                element: <EventPage/>
             },
             {
                 path: "login",
@@ -43,6 +44,10 @@ export const router = createBrowserRouter([
                     }
                 ]
             },
+            { 
+                path: "event/:id", 
+                element: <EventPageDetails/> 
+            }
         ]
     }
 ])

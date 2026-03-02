@@ -120,7 +120,10 @@ export function EventsTable() {
         title={editingEvent ? "Edit Event" : "Add Event"}
         open={isModalVisible}
         onCancel={() => setIsModalVisible(false)}
-        onOk={() => document.getElementById("event-form")?.dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }))}
+        onOk={() => document
+          .getElementById("event-form")
+          ?.dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }))
+        }
         okText={editingEvent ? "Save" : "Add"}
       >
         <EventForm
