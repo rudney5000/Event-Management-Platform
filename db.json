@@ -39,10 +39,15 @@
       "priority": "2"
     },
     {
-      "title": "dsdd",
-      "date": "2026-02-04T21:00:00.000Z",
-      "address": "wqwqwq",
-      "priceType": "free",
+      "title": "dsdsd",
+      "date": "2026-03-01",
+      "address": "dsdsds",
+      "priceType": "paid",
+      "city": [
+        "Lyon"
+      ],
+      "status": "draft",
+      "price": 21,
       "tags": [
         "Business",
         "Tech"
@@ -52,28 +57,11 @@
         "Bob"
       ],
       "priority": "1",
-      "id": "RNAgVQC"
-    },
-    {
-      "title": "dsdsd",
-      "date": "2026-02-28T21:00:00.000Z",
-      "address": "dsdsds",
-      "priceType": "paid",
-      "city": [
-        "Lyon"
-      ],
-      "status": "draft",
-      "tags": [
-        "Tech",
-        "Business"
-      ],
-      "speakers": [],
-      "priority": "1",
       "id": "wRbQPjF"
     },
     {
       "title": "sasasas",
-      "date": "2026-02-28T21:00:00.000Z",
+      "date": "2026-03-01",
       "address": "asasas",
       "priceType": "paid",
       "city": [
@@ -82,12 +70,14 @@
       "status": "published",
       "price": 23,
       "tags": [
-        "Business"
+        "Business",
+        "Tech"
       ],
       "speakers": [
-        "Charlie"
+        "Alice",
+        "Bob"
       ],
-      "priority": "2",
+      "priority": "1",
       "id": "QgCX3mX"
     }
   ]

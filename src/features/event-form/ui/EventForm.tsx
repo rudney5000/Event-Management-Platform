@@ -1,8 +1,9 @@
 import { Form, Input, Button, DatePicker, Radio, InputNumber } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SelectOrCreate } from "./SelectOrCreate";
 import { MultiSelectOrCreate } from "./MultiSelectOrCreate";
 import { SelectPriority } from "./SelectPriority";
+import dayjs, { Dayjs } from "dayjs";
 
 export interface EventFormValues {
   id?: string;
@@ -23,21 +24,40 @@ interface EventFormProps {
   onSubmit: (values: EventFormValues) => void;
 }
 
+interface EventFormInternalValues extends Omit<EventFormValues, 'date'> {
+  date?: Dayjs;
+}
 export function EventForm({ initialValues, onSubmit }: EventFormProps) {
-  const [form] = Form.useForm<EventFormValues>();
+  const [form] = Form.useForm<EventFormInternalValues>();
   const [tags, setTags] = useState<string[]>(initialValues?.tags || []);
   const [speakers, setSpeakers] = useState<string[]>(initialValues?.speakers || []);
   const [priority, setPriority] = useState<string>(initialValues?.priority || "1");
 
-  const handleFinish = (values: EventFormValues) => {
-    onSubmit({ ...values, tags, speakers, priority });
-  };
+  const handleFinish = (values: EventFormInternalValues) => {
+  onSubmit({
+    ...values,
+    date: values.date ? values.date.format("YYYY-MM-DD") : "",
+    tags,
+    speakers,
+    priority,
+  });
+};
+
+  useEffect(() => {
+    if (initialValues) {
+      form.setFieldsValue({
+        ...initialValues,
+        date: initialValues.date ? dayjs(initialValues.date as unknown as string) : undefined,
+      });
+    } else {
+      form.resetFields();
+    }
+  }, [initialValues, form]);
 
   return (
     <Form
       form={form}
       layout="vertical"
-      initialValues={initialValues}
       onFinish={handleFinish}
     >
       <Form.Item name="title" label="Title" rules={[{ required: true }]}>
@@ -45,7 +65,10 @@ export function EventForm({ initialValues, onSubmit }: EventFormProps) {
       </Form.Item>
 
       <Form.Item name="date" label="Date" rules={[{ required: true }]}>
-        <DatePicker style={{ width: "100%" }} />
+        <DatePicker
+          style={{ width: "100%" }}
+          value={initialValues?.date ? dayjs(initialValues.date) : undefined}
+          />
       </Form.Item>
 
       <Form.Item name="address" label="Address" rules={[{ required: true }]}>
