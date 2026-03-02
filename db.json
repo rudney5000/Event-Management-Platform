@@ -7,5 +7,88 @@
     }
   ],
   "login": [],
-  "register": []
+  "register": [],
+  "events": [
+    {
+      "id": "1",
+      "title": "Conference",
+      "date": "2026-09-12",
+      "city": "Paris",
+      "address": "10 Avenue des Champs",
+      "priceType": "paid",
+      "price": 50,
+      "status": "published",
+      "speakers": [
+        "Joe"
+      ],
+      "tags": [],
+      "priority": "1"
+    },
+    {
+      "id": "2",
+      "title": "Meetup",
+      "date": "2026-10-01",
+      "city": "Lyon",
+      "address": "5 Rue Victor Hugo",
+      "priceType": "free",
+      "status": "draft",
+      "speakers": [
+        "Joe"
+      ],
+      "tags": [],
+      "priority": "2"
+    },
+    {
+      "title": "dsdd",
+      "date": "2026-02-04T21:00:00.000Z",
+      "address": "wqwqwq",
+      "priceType": "free",
+      "tags": [
+        "Business",
+        "Tech"
+      ],
+      "speakers": [
+        "Alice",
+        "Bob"
+      ],
+      "priority": "1",
+      "id": "RNAgVQC"
+    },
+    {
+      "title": "dsdsd",
+      "date": "2026-02-28T21:00:00.000Z",
+      "address": "dsdsds",
+      "priceType": "paid",
+      "city": [
+        "Lyon"
+      ],
+      "status": "draft",
+      "tags": [
+        "Tech",
+        "Business"
+      ],
+      "speakers": [],
+      "priority": "1",
+      "id": "wRbQPjF"
+    },
+    {
+      "title": "sasasas",
+      "date": "2026-02-28T21:00:00.000Z",
+      "address": "asasas",
+      "priceType": "paid",
+      "city": [
+        "Marseille"
+      ],
+      "status": "published",
+      "price": 23,
+      "tags": [
+        "Business"
+      ],
+      "speakers": [
+        "Charlie"
+      ],
+      "priority": "2",
+      "id": "QgCX3mX"
+    }
+  ]
 }

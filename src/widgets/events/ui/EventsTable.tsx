@@ -1,51 +1,51 @@
-import { useState } from "react";
-import { Button, message, Modal, Space, Typography } from "antd";
+import { useEffect, useState } from "react";
+import { 
+  Button, 
+  message, 
+  Modal, 
+  Space, 
+  Typography 
+} from "antd";
 import { CustomTable } from "../../../shared/ui/custom-table/CustomTable";
 import { getEventColumns } from "../../../entities/event/ui/EventColumns";
 import type { TableRowSelection } from "antd/es/table/interface";
 import { EventForm, type EventFormValues } from "../../../features/event-form/ui/EventForm";
+import { 
+  useCreateEventMutation, 
+  useDeleteEventMutation, 
+  useGetEventsQuery, 
+  useUpdateEventMutation 
+} from "../../../entities/event/api/eventsApi";
 
 const { Title } = Typography;
 
-const mockData: EventFormValues[] = [
-  {
-    id: "1",
-    title: "Conference",
-    date: "2026-09-12",
-    city: "Paris",
-    address: "10 Avenue des Champs",
-    priceType: "paid",
-    price: 50,
-    status: "published",
-    speakers: ["Joe"],
-    priority: "1"
-  },
-  {
-    id: "2",
-    title: "Meetup",
-    date: "2026-10-01",
-    city: "Lyon",
-    address: "5 Rue Victor Hugo",
-    priceType: "free",
-    status: "draft",
-    speakers: ["Joe"],
-    priority: "2"
-  },
-];
 
 export function EventsTable() {
-  const [data, setData] = useState<EventFormValues[]>(mockData);
+  const [localData, setLocalData] = useState<EventFormValues[]>([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [editingEvent, setEditingEvent] = useState<EventFormValues | null>(null);
+
+  const { data: eventsFromServer = [], isLoading: _isLoading } = useGetEventsQuery();
+  const [createEvent] = useCreateEventMutation();
+  const [updateEvent] = useUpdateEventMutation();
+  const [deleteEvent] = useDeleteEventMutation();
+
+  useEffect(() => {
+    setLocalData(eventsFromServer);
+  }, [eventsFromServer]);
 
   const handleEdit = (event: EventFormValues) => {
     setEditingEvent(event);
     setIsModalVisible(true);
   };
 
-  const handleDelete = (id: string) => {
-    setData((prev) => prev.filter((e) => e.id !== id));
-    message.success("Event deleted");
+  const handleDelete = async (id: string) => {
+    try {
+      await deleteEvent(id).unwrap();
+      message.success("Event Delete")
+    } catch {
+      message.error("Failed to delete event")
+    }
   };
 
   const handleAdd = () => {
@@ -53,18 +53,19 @@ export function EventsTable() {
     setIsModalVisible(true);
   };
 
-  const handleFinish = (values: EventFormValues) => {
-    if (editingEvent) {
-      setData((prev) =>
-        prev.map((e) => (e.id === editingEvent.id ? { ...editingEvent, ...values } : e))
-      );
-      message.success("Event updated");
-    } else {
-      const newEvent = { ...values, id: Date.now().toString() };
-      setData((prev) => [...prev, newEvent]);
-      message.success("Event added");
+  const handleFinish = async (values: EventFormValues) => {
+    try{
+      if (editingEvent) {
+        await updateEvent({ id: editingEvent.id!, event: values }).unwrap();
+        message.success("Event updated");
+      } else {
+        await createEvent( values ).unwrap()
+        message.success("Event added");
+      }
+      setIsModalVisible(false);
+    } catch{
+      message.error("Failed to save event")
     }
-    setIsModalVisible(false);
   };
 
   const columns = getEventColumns({
@@ -93,11 +94,11 @@ export function EventsTable() {
 
       <CustomTable<EventFormValues>
         columns={columns}
-        dataSource={data}
+        dataSource={localData}
         rowKey="id"
         rowSelection={rowSelection}
         draggable
-        onReorder={(newData) => setData(newData)}
+        onReorder={(newData) => setLocalData(newData)}
       />
 
       <Modal

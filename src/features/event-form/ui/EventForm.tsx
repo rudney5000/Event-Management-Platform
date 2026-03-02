@@ -48,13 +48,6 @@ export function EventForm({ initialValues, onSubmit }: EventFormProps) {
         <DatePicker style={{ width: "100%" }} />
       </Form.Item>
 
-      <SelectOrCreate
-        label="City"
-        value={initialValues?.city}
-        options={["Paris", "Lyon", "Marseille"]}
-        onChange={(v) => form.setFieldsValue({ city: v })}
-      />
-
       <Form.Item name="address" label="Address" rules={[{ required: true }]}>
         <Input placeholder="Street and number" />
       </Form.Item>
@@ -66,11 +59,42 @@ export function EventForm({ initialValues, onSubmit }: EventFormProps) {
         </Radio.Group>
       </Form.Item>
 
-      {form.getFieldValue("priceType") === "paid" && (
-        <Form.Item name="price" label="Price" rules={[{ required: true }]}>
-          <InputNumber style={{ width: "100%" }} min={0} />
-        </Form.Item>
-      )}
+      <Form.Item dependencies={["priceType"]} noStyle>
+        {({ getFieldValue }) =>
+          getFieldValue("priceType") === "paid" ? (
+            <Form.Item
+              name="price"
+              label="Price"
+              rules={[{ required: true }]}
+            >
+              <InputNumber style={{ width: "100%" }} min={0} />
+            </Form.Item>
+          ) : null
+        }
+      </Form.Item>
+
+      <Form.Item
+        name="city"
+        label="City"
+        rules={[{ required: true }]}
+      >
+        <SelectOrCreate
+          label="City"
+          value={form.getFieldValue("city")}
+          options={["Paris", "Lyon", "Marseille"]}
+          onChange={(v) => form.setFieldsValue({ city: v })}
+        />
+      </Form.Item>
+      <Form.Item name="status" label="Status">
+        <Radio.Group>
+          <Radio value="draft">
+            Draft
+          </Radio>
+          <Radio value="published">
+            Published
+          </Radio>
+        </Radio.Group>
+      </Form.Item>
 
       <MultiSelectOrCreate
         label="Tags"
