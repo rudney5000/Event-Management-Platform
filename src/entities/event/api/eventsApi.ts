@@ -1,13 +1,18 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import type { EventFormValues } from "../../../features/event-form/ui/EventForm";
+import type { GetEventsParams, PaginatedEvents } from "../model/types";
 
 export const eventsApi = createApi({
     reducerPath: "eventsApi",
     baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_API_URL }),
     tagTypes: ["Events"],
     endpoints: (builder) => ({
-        getEvents: builder.query<EventFormValues[], void>({
-            query: () => "/api/events",
+        getEvents: builder.query<PaginatedEvents, GetEventsParams>({
+            query: ({ page, limit }) => `/api/events?_page=${page}&_limit=${limit}`,
+            transformResponse: (response: EventFormValues[], meta) => ({
+                events: response,
+                total: Number(meta?.response?.headers.get("X-Total-Count") || 0),
+            }),
             providesTags: ["Events"],
         }),
         createEvent: builder.mutation<EventFormValues, Partial<EventFormValues>>({

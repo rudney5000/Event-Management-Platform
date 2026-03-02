@@ -24,15 +24,24 @@ export function EventsTable() {
   const [localData, setLocalData] = useState<EventFormValues[]>([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [editingEvent, setEditingEvent] = useState<EventFormValues | null>(null);
+  const [page, setPage] = useState(1);
+  const [limit] = useState(10);
 
-  const { data: eventsFromServer = [], isLoading: _isLoading } = useGetEventsQuery();
+  const { 
+    data, 
+    isLoading: _isLoading 
+  } = useGetEventsQuery({ page, limit });
+  
+  const total = data?.total || 0;
+  const events = data?.events || [];
+
   const [createEvent] = useCreateEventMutation();
   const [updateEvent] = useUpdateEventMutation();
   const [deleteEvent] = useDeleteEventMutation();
 
   useEffect(() => {
-    setLocalData(eventsFromServer);
-  }, [eventsFromServer]);
+    setLocalData(events);
+  }, [data]);
 
   const handleEdit = (event: EventFormValues) => {
     setEditingEvent(event);
@@ -98,6 +107,12 @@ export function EventsTable() {
         rowKey="id"
         rowSelection={rowSelection}
         draggable
+        pagination={{
+          current: page,
+          pageSize: limit,
+          total,
+          onChange: (newPage) => setPage(newPage),
+        }}
         onReorder={(newData) => setLocalData(newData)}
       />
 

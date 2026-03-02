@@ -27,6 +27,7 @@ interface EventFormProps {
 interface EventFormInternalValues extends Omit<EventFormValues, 'date'> {
   date?: Dayjs;
 }
+
 export function EventForm({ initialValues, onSubmit }: EventFormProps) {
   const [form] = Form.useForm<EventFormInternalValues>();
   const [tags, setTags] = useState<string[]>(initialValues?.tags || []);
