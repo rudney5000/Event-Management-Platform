@@ -9,13 +9,13 @@ import {
 import { CustomTable } from "../../../shared/ui/custom-table/CustomTable";
 import { getEventColumns } from "../../../entities/event/ui/EventColumns";
 import type { TableRowSelection } from "antd/es/table/interface";
-import { EventForm, type EventFormValues } from "../../../features/event-form/ui/EventForm";
 import { 
   useCreateEventMutation, 
   useDeleteEventMutation, 
   useGetEventsQuery, 
   useUpdateEventMutation 
 } from "../../../entities/event/api/eventsApi";
+import { EventForm, type EventFormValues } from "../../../features/event-form";
 
 const { Title } = Typography;
 
