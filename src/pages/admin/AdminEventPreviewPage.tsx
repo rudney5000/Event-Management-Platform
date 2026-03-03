@@ -6,7 +6,7 @@ import type { EventFormValues } from "../../features/event-form/ui/EventForm";
 const { Title, Paragraph, Text, Link } = Typography;
 
 export interface EventFull extends EventFormValues {
-  imageUrl?: string;
+  imageUrl?: string[];
   shortDescription?: string;
   description?: string;
   category?: string;
@@ -48,7 +48,22 @@ export function AdminEventPreviewPage() {
       </Button>
 
       <Card>
-        {event.imageUrl && <Image src={event.imageUrl} alt={event.title} width={400} />}
+        {event.imageUrl && event.imageUrl.length > 0 && (
+          <Image.PreviewGroup>
+            <div className="flex gap-4 overflow-x-auto">
+              {event.imageUrl.map((url, index) => (
+                <Image
+                  key={index}
+                  src={url}
+                  alt={`${event.title} - image ${index + 1}`}
+                  width={200}
+                  height={150}
+                  className="rounded-lg flex-shrink-0"
+                />
+              ))}
+            </div>
+          </Image.PreviewGroup>
+        )}
         <Title level={2}>{event.title}</Title>
         <Space size="middle" wrap>
           <Tag color="blue">{event.category}</Tag>

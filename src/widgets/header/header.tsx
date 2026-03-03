@@ -14,10 +14,10 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
-import { useUserMenu } from '../../shared/hooks/useUserMenu'
 import { callsToAction, mainNavLinks, products } from './constants';
 import { Link, NavLink } from 'react-router';
 import { useEffect, useState } from 'react';
+import { useUserMenu } from '../../shared/hooks';
 
 
 export default function Header() {

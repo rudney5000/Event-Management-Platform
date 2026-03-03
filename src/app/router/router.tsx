@@ -4,7 +4,7 @@ import { PrivateRoute } from "../../shared/ui/PrivateRoute";
 import { EventsPage } from "../../pages/admin/AdminEventsPage";
 import { DashboardPage } from "../../pages/admin/DashboardPage";
 import { AdminLayout } from "../../widgets/admin-layout";
-import { EventPageDetails } from "../../pages/customer/EventPageDetails";
+import { EventDetailsPage } from "../../pages/customer/EventPageDetails";
 import { EventPage } from "../../pages/customer/EventPage";
 import { LoginPage } from "../../pages/account/login/LoginPage";
 import { RegisterPage } from "../../pages/account/register/RegisterPage";
@@ -51,7 +51,7 @@ export const router = createBrowserRouter([
             },
             { 
                 path: "event/:id", 
-                element: <EventPageDetails/> 
+                element: <EventDetailsPage/> 
             }
         ]
     }
