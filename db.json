@@ -279,5 +279,14 @@
         }
       ]
     }
+  ],
+  "category": [
+    {
+      "id": "123",
+      "name": "Atelier",
+      "color": "#10B981",
+      "icon": "🔧",
+      "description": "Catégorie pour les ateliers pratiques"
+    }
   ]
 }
