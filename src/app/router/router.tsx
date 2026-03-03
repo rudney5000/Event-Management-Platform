@@ -9,6 +9,7 @@ import { EventPage } from "../../pages/customer/EventPage";
 import { LoginPage } from "../../pages/account/login/LoginPage";
 import { RegisterPage } from "../../pages/account/register/RegisterPage";
 import { AdminEventPreviewPage } from "../../pages/admin/AdminEventPreviewPage";
+import { AdminCategoryPage } from "../../pages/admin/AdminCategoryPage";
 
 export const router = createBrowserRouter([
     {
@@ -46,6 +47,10 @@ export const router = createBrowserRouter([
                     {
                         path: "events/preview/:id",
                         element: <AdminEventPreviewPage/>
+                    },
+                    {
+                        path: "category",
+                        element: <AdminCategoryPage/>
                     }
                 ]
             },
