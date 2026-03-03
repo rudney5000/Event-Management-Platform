@@ -1,26 +1,53 @@
 import { useEffect, useState } from "react";
 import type { Category } from "../model/types";
-import { useGetCategoriesQuery } from "../api/categoryApi";
+import { 
+    useCreateCategoryMutation, 
+    useDeleteCategoryMutation, 
+    useGetCategoriesQuery, 
+    useUpdateCategoryMutation 
+} from "../api/categoryApi";
 import { getCategoryColumns } from "./CategoryColumns";
 import type { TableRowSelection } from "antd/es/table/interface";
-import { Button, Space, Typography } from "antd";
+import { Button, message, Modal, Space, Typography } from "antd";
 import { CustomTable } from "../../../shared/ui/custom-table/CustomTable";
+import { CategoryForm } from "../../../features/category-form/CategoryForm";
 
 const { Title } = Typography;
 
 export function CategoryTable() {
     const [localData, setLocalData] = useState<Category[]>([])
+    const [editingCategory, setEditingCategory] = useState<Category | null>(null)
+    const [isModalVisible, setIsModalVisible] = useState(false);
     
     const { data, isLoading: _isLoading } = useGetCategoriesQuery()
     
+    // const categories = data?.category || []
+
+    const [createCategory] = useCreateCategoryMutation()
+    const [updateCategory] = useUpdateCategoryMutation()
+    const [deleteCategory] = useDeleteCategoryMutation()
+
     useEffect(()=> {
-        setLocalData(data)
+        setLocalData(data || [])
     }, [data])
 
-    const handleEdit = () => {}
+    const handleEdit = (category: Category) => {
+        setEditingCategory(category)
+        setIsModalVisible(true)
+    }
 
-    const handleDelete= () => {}
-    const handleAdd = () => {}
+    const handleDelete= async (id: string) => {
+        try {
+            await deleteCategory(id).unwrap()
+            message.success("Category Delete")
+        } catch {
+            message.error("Failed to delete category")
+        }
+    }
+    const handleAdd = () => {
+        setEditingCategory(null)
+        setIsModalVisible(true)
+    }
 
     const columns = getCategoryColumns({
         onEdit: handleEdit,
@@ -32,6 +59,22 @@ export function CategoryTable() {
             console.log("Selected:", selectedRowKeys, selectRows)
         }
     }
+
+    const handleFinish = async (values: Category) => {
+        try{
+          if (editingCategory) {
+            await updateCategory({ id: editingCategory.id!, category: values }).unwrap();
+            message.success("Category updated");
+          } else {
+            await createCategory( values ).unwrap()
+            message.success("Category added");
+          }
+          setIsModalVisible(false);
+        } catch{
+          message.error("Failed to save category")
+        }
+      };
+    
 
     return (
         <>
@@ -60,22 +103,22 @@ export function CategoryTable() {
             // }}
             // onReorder={(newData) => setLocalData(newData)}
           />
-{/*     
+    
           <Modal
-            title={editingEvent ? "Edit Event" : "Add Event"}
+            title={editingCategory ? "Edit Category" : "Add Category"}
             open={isModalVisible}
             onCancel={() => setIsModalVisible(false)}
             onOk={() => document
-              .getElementById("event-form")
+              .getElementById("category-form")
               ?.dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }))
             }
-            okText={editingEvent ? "Save" : "Add"}
+            okText={editingCategory ? "Save" : "Add"}
           >
-            <EventForm
-              initialValues={editingEvent || undefined}
+            <CategoryForm
+              initialValues={editingCategory || undefined}
               onSubmit={handleFinish}
             />
-          </Modal> */}
+          </Modal>
         </>
       );
 }
