@@ -1,5 +1,11 @@
+import { DndProvider } from "react-dnd";
+import { CurrencyTable } from "../../entities/currency/ui/CurrencyTable";
+import { HTML5Backend } from "react-dnd-html5-backend";
+
 export function AdminCurrencyPage() {
-    return(
-        <>Admin Currency Page</>
-    )
+    return (
+        <DndProvider backend={HTML5Backend}>
+            <CurrencyTable/>
+        </DndProvider>
+    );
 }

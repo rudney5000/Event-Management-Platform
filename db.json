@@ -21,30 +21,27 @@
       "priceType": "paid",
       "price": 50,
       "status": "published",
-      "speakers": ["Joe"],
+      "speakers": [
+        "Joe"
+      ],
       "tags": [],
       "priority": "1",
-
       "imageUrl": "https://example.com/image.jpg",
       "shortDescription": "Une conférence passionnante sur...",
       "description": "Description complète de l'événement avec tous les détails...",
       "category": "conférence",
       "capacity": 100,
       "availableSeats": 45,
-
       "organizer": {
         "name": "Company Name",
         "logo": "https://example.com/logo.png",
         "contactEmail": "contact@example.com"
       },
-
       "coordinates": {
         "lat": 48.8566,
         "lng": 2.3522
       },
-
       "bookingUrl": "https://example.com/book",
-
       "schedule": [
         {
           "time": "09:00",
@@ -57,11 +54,12 @@
           "description": "Présentation du programme et des intervenants"
         }
       ],
-
       "level": "intermediate",
       "language": "fr",
-      "sponsors": ["Sponsor 1", "Sponsor 2"],
-
+      "sponsors": [
+        "Sponsor 1",
+        "Sponsor 2"
+      ],
       "media": [
         {
           "type": "video",
@@ -95,20 +93,16 @@
       "category": "conférence",
       "capacity": 100,
       "availableSeats": 45,
-
       "organizer": {
         "name": "Company Name",
         "logo": "https://example.com/logo.png",
         "contactEmail": "contact@example.com"
       },
-
       "coordinates": {
         "lat": 48.8566,
         "lng": 2.3522
       },
-
       "bookingUrl": "https://example.com/book",
-
       "schedule": [
         {
           "time": "09:00",
@@ -121,11 +115,12 @@
           "description": "Présentation du programme et des intervenants"
         }
       ],
-
       "level": "intermediate",
       "language": "fr",
-      "sponsors": ["Sponsor 1", "Sponsor 2"],
-
+      "sponsors": [
+        "Sponsor 1",
+        "Sponsor 2"
+      ],
       "media": [
         {
           "type": "video",
@@ -166,20 +161,16 @@
       "category": "conférence",
       "capacity": 100,
       "availableSeats": 45,
-
       "organizer": {
         "name": "Company Name",
         "logo": "https://example.com/logo.png",
         "contactEmail": "contact@example.com"
       },
-
       "coordinates": {
         "lat": 48.8566,
         "lng": 2.3522
       },
-
       "bookingUrl": "https://example.com/book",
-
       "schedule": [
         {
           "time": "09:00",
@@ -192,11 +183,12 @@
           "description": "Présentation du programme et des intervenants"
         }
       ],
-
       "level": "intermediate",
       "language": "fr",
-      "sponsors": ["Sponsor 1", "Sponsor 2"],
-
+      "sponsors": [
+        "Sponsor 1",
+        "Sponsor 2"
+      ],
       "media": [
         {
           "type": "video",
@@ -237,20 +229,16 @@
       "category": "conférence",
       "capacity": 100,
       "availableSeats": 45,
-
       "organizer": {
         "name": "Company Name",
         "logo": "https://example.com/logo.png",
         "contactEmail": "contact@example.com"
       },
-
       "coordinates": {
         "lat": 48.8566,
         "lng": 2.3522
       },
-
       "bookingUrl": "https://example.com/book",
-
       "schedule": [
         {
           "time": "09:00",
@@ -263,11 +251,12 @@
           "description": "Présentation du programme et des intervenants"
         }
       ],
-
       "level": "intermediate",
       "language": "fr",
-      "sponsors": ["Sponsor 1", "Sponsor 2"],
-
+      "sponsors": [
+        "Sponsor 1",
+        "Sponsor 2"
+      ],
       "media": [
         {
           "type": "video",
@@ -301,6 +290,12 @@
       "code": "EUR",
       "name": "Euro",
       "symbol": "€"
+    },
+    {
+      "code": "FCFA",
+      "name": "Franc CFA",
+      "symbol": "F",
+      "id": "6nYpLUF"
     }
   ]
 }
