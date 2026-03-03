@@ -10,6 +10,7 @@ import { LoginPage } from "../../pages/account/login/LoginPage";
 import { RegisterPage } from "../../pages/account/register/RegisterPage";
 import { AdminEventPreviewPage } from "../../pages/admin/AdminEventPreviewPage";
 import { AdminCategoryPage } from "../../pages/admin/AdminCategoryPage";
+import { AdminCurrencyPage } from "../../pages/admin/AdminCurrencyPage";
 
 export const router = createBrowserRouter([
     {
@@ -51,6 +52,10 @@ export const router = createBrowserRouter([
                     {
                         path: "category",
                         element: <AdminCategoryPage/>
+                    },
+                    {
+                        path: "currency",
+                        element: <AdminCurrencyPage/>
                     }
                 ]
             },

@@ -1,6 +1,7 @@
 import {
   AppstoreOutlined,
   DesktopOutlined,
+  DollarOutlined,
   FileOutlined,
   PieChartOutlined,
   TeamOutlined,
@@ -27,6 +28,7 @@ export const menuItems: MenuItem[] = [
   item(<Link to="/admin/dashboard">Dashboard</Link>, "dashboard", <PieChartOutlined />),
   item(<Link to="/admin/events">Events</Link>, "events", <DesktopOutlined />),
   item(<Link to="/admin/category">Category</Link>, "category", <AppstoreOutlined />),
+  item(<Link to="/admin/currency">Currency</Link>, "Currency", <DollarOutlined />),
   item("Users", "sub1", <UserOutlined />, [
     item("Tom", "3"),
     item("Bill", "4"),
