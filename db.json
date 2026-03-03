@@ -288,5 +288,19 @@
       "icon": "🔧",
       "description": "Catégorie pour les ateliers pratiques"
     }
+  ],
+  "currency": [
+    {
+      "id": "1",
+      "code": "USD",
+      "name": "Dollar américain",
+      "symbol": "$"
+    },
+    {
+      "id": "2",
+      "code": "EUR",
+      "name": "Euro",
+      "symbol": "€"
+    }
   ]
 }
