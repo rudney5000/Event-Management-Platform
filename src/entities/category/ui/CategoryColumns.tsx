@@ -5,7 +5,7 @@ import { PencilIcon, TrashIcon } from "lucide-react";
 import type { Category } from "../model";
 
 interface CategoryColumnsProps {
-  onEdit: (event: Category) => void;
+  onEdit: (category: Category) => void;
   onDelete: (id: string) => void;
 }
 
