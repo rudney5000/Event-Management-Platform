@@ -3,7 +3,7 @@ import { authApi } from "../features/auth/api/authApi";
 import { authSlice } from "../features/auth/model/authSlice";
 import { eventsApi } from "../entities/event/api/eventsApi";
 import { likeSLice } from "../features/like-event/model/likeSlice";
-import { categoryApi } from "../entities/category/api/categoryApi";
+import { categoryApi } from "../entities/category/api";
 
 export const store = configureStore({
     reducer: {

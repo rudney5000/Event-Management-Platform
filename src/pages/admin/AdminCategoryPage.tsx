@@ -1,6 +1,6 @@
 import { DndProvider } from "react-dnd";
-import { CategoryTable } from "../../entities/category/ui/CategoryTable";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import { CategoryTable } from "../../entities/category/ui";
 
 export function AdminCategoryPage() {
 

@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import type { Category } from "../model/types";
+import { getCategoryColumns } from "./CategoryColumns";
+import type { TableRowSelection } from "antd/es/table/interface";
+import { Button, message, Modal, Space, Typography } from "antd";
+import type { Category } from "../model";
 import { 
     useCreateCategoryMutation, 
     useDeleteCategoryMutation, 
     useGetCategoriesQuery, 
     useUpdateCategoryMutation 
-} from "../api/categoryApi";
-import { getCategoryColumns } from "./CategoryColumns";
-import type { TableRowSelection } from "antd/es/table/interface";
-import { Button, message, Modal, Space, Typography } from "antd";
+} from "../api";
 import { CustomTable } from "../../../shared/ui/custom-table/CustomTable";
 import { CategoryForm } from "../../../features/category-form/CategoryForm";
 

@@ -2,7 +2,7 @@ import type { ColumnsType } from "antd/es/table";
 import { Space } from "antd";
 import { ColumnActions } from "../../../shared/ui/column-actions/ColumnActions";
 import { PencilIcon, TrashIcon } from "lucide-react";
-import type { Category } from "../model/types";
+import type { Category } from "../model";
 
 interface CategoryColumnsProps {
   onEdit: (event: Category) => void;
