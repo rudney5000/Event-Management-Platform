@@ -301,5 +301,12 @@
       "symbol": "F",
       "id": "6nYpLUF"
     }
+  ],
+  "organizer": [
+    {
+      "name": "Company Name",
+      "logo": "https://example.com/logo.png",
+      "contactEmail": "contact@example.com"
+    }
   ]
 }

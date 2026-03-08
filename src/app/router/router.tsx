@@ -11,6 +11,7 @@ import { RegisterPage } from "../../pages/account/register/RegisterPage";
 import { AdminEventPreviewPage } from "../../pages/admin/AdminEventPreviewPage";
 import { AdminCategoryPage } from "../../pages/admin/AdminCategoryPage";
 import { AdminCurrencyPage } from "../../pages/admin/AdminCurrencyPage";
+import { AdminOrganizerPage } from "../../pages/admin/AdminOrganizerPage";
 
 export const router = createBrowserRouter([
     {
@@ -56,6 +57,10 @@ export const router = createBrowserRouter([
                     {
                         path: "currency",
                         element: <AdminCurrencyPage/>
+                    },
+                    {
+                        path: "organizer",
+                        element: <AdminOrganizerPage/>
                     }
                 ]
             },
