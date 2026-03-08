@@ -1,9 +1,11 @@
-import { Form, Input, Button, DatePicker, Radio, InputNumber } from "antd";
+import { Form, Input, Button, DatePicker, Radio, InputNumber, Select } from "antd";
 import { useEffect, useState } from "react";
 import { SelectOrCreate } from "./SelectOrCreate";
 import { MultiSelectOrCreate } from "./MultiSelectOrCreate";
 import { SelectPriority } from "./SelectPriority";
 import dayjs, { Dayjs } from "dayjs";
+import { useGetCategoriesQuery } from "../../../entities/category/api";
+import { useGetCurrenciesQuery } from "../../../entities/currency/api/currencyApi";
 
 export interface EventFormValues {
   id: string;
@@ -13,6 +15,8 @@ export interface EventFormValues {
   address: string;
   priceType: "free" | "paid";
   status: "draft" | "published";
+  categoryId?: string;
+  currencyId?: string;
   price?: number;
   tags?: string[];
   speakers: string[];
@@ -33,6 +37,9 @@ export function EventForm({ initialValues, onSubmit }: EventFormProps) {
   const [tags, setTags] = useState<string[]>(initialValues?.tags || []);
   const [speakers, setSpeakers] = useState<string[]>(initialValues?.speakers || []);
   const [priority, setPriority] = useState<string>(initialValues?.priority || "1");
+
+  const { data: categories } = useGetCategoriesQuery()
+  const { data: currencies } = useGetCurrenciesQuery()
 
   const handleFinish = (values: EventFormInternalValues) => {
   onSubmit({
@@ -86,17 +93,32 @@ export function EventForm({ initialValues, onSubmit }: EventFormProps) {
       <Form.Item dependencies={["priceType"]} noStyle>
         {({ getFieldValue }) =>
           getFieldValue("priceType") === "paid" ? (
-            <Form.Item
-              name="price"
-              label="Price"
-              rules={[{ required: true }]}
-            >
-              <InputNumber style={{ width: "100%" }} min={0} />
-            </Form.Item>
+            <>
+              <Form.Item
+                name="price"
+                label="Price"
+                rules={[{ required: true }]}
+              >
+                <InputNumber style={{ width: "100%" }} min={0} />
+              </Form.Item>
+
+              <Form.Item
+                name="currencyId"
+                label="Currency"
+                rules={[{ required: true }]}
+              >
+                <Select placeholder="Select currency">
+                  {currencies?.map((currency) => (
+                    <Select.Option key={currency.id} value={currency.id}>
+                      {currency.symbol} {currency.code}
+                    </Select.Option>
+                  ))}
+                </Select>
+              </Form.Item>
+            </>
           ) : null
         }
       </Form.Item>
-
       <Form.Item
         name="city"
         label="City"
@@ -119,7 +141,19 @@ export function EventForm({ initialValues, onSubmit }: EventFormProps) {
           </Radio>
         </Radio.Group>
       </Form.Item>
-
+      <Form.Item
+        name="categoryId"
+        label="Category"
+        rules={[{ required: true }]}
+      >
+        <Select placeholder="Select category">
+          {categories?.map((cat) => (
+            <Select.Option key={cat.id} value={cat.id}>
+              {cat.name}
+            </Select.Option>
+          ))}
+        </Select>
+      </Form.Item>
       <MultiSelectOrCreate
         label="Tags"
         value={tags}

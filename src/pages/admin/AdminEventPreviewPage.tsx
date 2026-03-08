@@ -9,7 +9,10 @@ export interface EventFull extends EventFormValues {
   imageUrl?: string[];
   shortDescription?: string;
   description?: string;
-  category?: string;
+
+  categoryId?: string;
+  currencyId?: string;
+
   capacity?: number;
   availableSeats?: number;
   endDate?: string;
@@ -66,7 +69,7 @@ export function AdminEventPreviewPage() {
         )}
         <Title level={2}>{event.title}</Title>
         <Space size="middle" wrap>
-          <Tag color="blue">{event.category}</Tag>
+          <Tag color="blue">{event.categoryId}</Tag>
           <Tag color={event.status === "published" ? "green" : "orange"}>{event.status}</Tag>
           <Tag color="purple">Priority: {event.priority}</Tag>
           <Tag color={event.priceType === "free" ? "green" : "blue"}>
