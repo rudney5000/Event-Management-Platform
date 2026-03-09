@@ -8,6 +8,7 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import type { MenuProps } from "antd";
+import { Users } from "lucide-react";
 import { Link } from "react-router";
 
 type MenuItem = Required<MenuProps>["items"][number];
@@ -29,7 +30,7 @@ export const menuItems: MenuItem[] = [
   item(<Link to="/admin/events">Events</Link>, "events", <DesktopOutlined />),
   item(<Link to="/admin/category">Category</Link>, "category", <AppstoreOutlined />),
   item(<Link to="/admin/currency">Currency</Link>, "Currency", <DollarOutlined />),
-  item(<Link to="/admin/organizer">Organizer</Link>, "Organizer", <DollarOutlined />),
+  item(<Link to="/admin/organizer">Organizer</Link>, "Organizer", <Users size={18}/>),
   item("Users", "sub1", <UserOutlined />, [
     item("Tom", "3"),
     item("Bill", "4"),
