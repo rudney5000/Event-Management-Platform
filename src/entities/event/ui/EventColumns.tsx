@@ -1,20 +1,41 @@
 import type { ColumnsType } from "antd/es/table";
-import { Space, Tag } from "antd";
+import { Avatar, Space, Tag } from "antd";
 import { ColumnActions } from "../../../shared/ui/column-actions/ColumnActions";
 import type { EventFormValues } from "../../../features/event-form/ui/EventForm";
 import { Link } from "react-router";
 import { EyeIcon, PencilIcon, TrashIcon } from "lucide-react";
+import { useGetCategoriesQuery } from "../../category/api";
+import { useGetCurrenciesQuery } from "../../currency/api/currencyApi";
 
 interface EventColumnsProps {
   onEdit: (event: EventFormValues) => void;
   onDelete: (id: string) => void;
 }
 
-export function getEventColumns({
+export function useEventColumns({
   onEdit,
   onDelete,
 }: EventColumnsProps): ColumnsType<EventFormValues> {
+
+  const { data: categories } = useGetCategoriesQuery();
+  const { data: currencies } = useGetCurrenciesQuery();
+
   return [
+    {
+      title: "Image",
+      dataIndex: "imageUrl",
+      key: "imageUrl",
+      render: (imageUrl: string | string[]) => {
+        const url = Array.isArray(imageUrl) ? imageUrl[0] : imageUrl;
+        return url ? (
+          <Avatar shape="square" size={48} src={url} style={{ borderRadius: 6 }} />
+        ) : (
+          <Avatar shape="square" size={48} style={{ background: "#f0f0f0", color: "#aaa" }}>
+            —
+          </Avatar>
+        );
+      },
+    },
     {
       title: "Title",
       dataIndex: "title",
@@ -31,13 +52,35 @@ export function getEventColumns({
       key: "city",
     },
     {
+      title: "Category",
+      dataIndex: "categoryId",
+      key: "category",
+      render: (categoryId: string) => {
+        const category = categories?.find((c) => c.id === categoryId);
+        return category
+          ? <Tag color="cyan">{category.name}</Tag>
+          : <Tag>{categoryId ?? "—"}</Tag>;
+      },
+    },
+    {
+      title: "Currency",
+      dataIndex: "currencyId",
+      key: "currency",
+      render: (currencyId: string) => {
+        const currency = currencies?.find((c) => c.id === currencyId);
+        return currency
+          ? <Tag>{currency.symbol} {currency.code}</Tag>
+          : <span style={{ color: "#aaa" }}>—</span>;
+      },
+    },
+    {
       title: "Price",
       key: "price",
       render: (_, record) =>
         record.priceType === "free" ? (
           <Tag color="green">Free</Tag>
         ) : (
-          <Tag color="blue">{record.price} €</Tag>
+          <Tag color="blue">{record.price}</Tag>
         ),
     },
     {

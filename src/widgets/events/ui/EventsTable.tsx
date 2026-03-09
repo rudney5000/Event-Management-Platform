@@ -7,7 +7,6 @@ import {
   Typography 
 } from "antd";
 import { CustomTable } from "../../../shared/ui/custom-table/CustomTable";
-import { getEventColumns } from "../../../entities/event/ui/EventColumns";
 import type { TableRowSelection } from "antd/es/table/interface";
 import { 
   useCreateEventMutation, 
@@ -16,12 +15,14 @@ import {
   useUpdateEventMutation 
 } from "../../../entities/event/api/eventsApi";
 import { EventForm, type EventFormValues } from "../../../features/event-form";
+import type { EventFull } from "../../../pages/admin/AdminEventPreviewPage";
+import { useEventColumns } from "../../../entities/event/ui/EventColumns";
 
 const { Title } = Typography;
 
 
 export function EventsTable() {
-  const [localData, setLocalData] = useState<EventFormValues[]>([]);
+  const [localData, setLocalData] = useState<EventFull[]>([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [editingEvent, setEditingEvent] = useState<EventFormValues | null>(null);
   const [page, setPage] = useState(1);
@@ -77,7 +78,7 @@ export function EventsTable() {
     }
   };
 
-  const columns = getEventColumns({
+  const columns = useEventColumns({
     onEdit: handleEdit,
     onDelete: handleDelete,
   });

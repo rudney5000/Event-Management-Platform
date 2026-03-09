@@ -5,6 +5,7 @@ import { eventsApi } from "../entities/event/api/eventsApi";
 import { likeSLice } from "../features/like-event/model/likeSlice";
 import { categoryApi } from "../entities/category/api";
 import { currencyApi } from "../entities/currency/api/currencyApi";
+import { organizerApi } from "../entities/organizer/api/OrganizerApi";
 
 export const store = configureStore({
     reducer: {
@@ -13,7 +14,8 @@ export const store = configureStore({
         [eventsApi.reducerPath]: eventsApi.reducer,
         likes: likeSLice.reducer,
         [categoryApi.reducerPath]: categoryApi.reducer,
-        [currencyApi.reducerPath]: currencyApi.reducer
+        [currencyApi.reducerPath]: currencyApi.reducer,
+        [organizerApi.reducerPath]: organizerApi.reducer
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware()
@@ -21,6 +23,7 @@ export const store = configureStore({
             .concat(eventsApi.middleware)
             .concat(categoryApi.middleware)
             .concat(currencyApi.middleware)
+            .concat(organizerApi.middleware)
 })
 
 export type RootState = ReturnType<typeof store.getState>
