@@ -21,8 +21,6 @@ export function CategoryTable() {
     
     const { data, isLoading: _isLoading } = useGetCategoriesQuery()
     
-    // const categories = data?.category || []
-
     const [createCategory] = useCreateCategoryMutation()
     const [updateCategory] = useUpdateCategoryMutation()
     const [deleteCategory] = useDeleteCategoryMutation()
@@ -85,8 +83,8 @@ export function CategoryTable() {
               marginBottom: 16,
             }}
           >
-            <Title level={3}>Events List</Title>
-            <Button type="primary" onClick={handleAdd}>Add Event</Button>
+            <Title level={3}>Categories List</Title>
+            <Button type="primary" onClick={handleAdd}>Add Category</Button>
           </Space>
     
           <CustomTable<Category>
@@ -95,13 +93,6 @@ export function CategoryTable() {
             rowKey="id"
             rowSelection={rowSelection}
             draggable
-            // pagination={{
-            //   current: page,
-            //   pageSize: limit,
-            //   total,
-            //   onChange: (newPage) => setPage(newPage),
-            // }}
-            // onReorder={(newData) => setLocalData(newData)}
           />
     
           <Modal
