@@ -540,6 +540,7 @@
   ],
   "organizer": [
     {
+      "id": "1",
       "name": "Company Name",
       "logo": "https://example.com/logo.png",
       "contactEmail": "contact@example.com"
