@@ -1,17 +1,17 @@
 import { createBrowserRouter } from "react-router";
 import App from "../App";
 import { PrivateRoute } from "../../shared/ui/PrivateRoute";
-import { EventsPage } from "../../segments/admin";
-import { DashboardPage } from "../../segments/admin";
-import { AdminLayout } from "../../segments/admin/ui/ui/AdminLayout";
-import { EventDetailsPage } from "../../segments/customer";
-import { EventPage } from "../../segments/customer";
-import { LoginPage } from "../../segments/auth";
-import { RegisterPage } from "../../segments/auth";
-import { AdminEventPreviewPage } from "../../segments/admin";
-import { AdminCategoryPage } from "../../segments/admin";
-import { AdminCurrencyPage } from "../../segments/admin";
-import { AdminOrganizerPage } from "../../segments/admin";
+import { EventsPage } from "../../pages/admin";
+import { DashboardPage } from "../../pages/admin";
+import { AdminLayout } from "../../pages/admin/ui/ui/AdminLayout";
+import { EventDetailsPage } from "../../pages/customer";
+import { EventPage } from "../../pages/customer";
+import { LoginPage } from "../../pages/auth";
+import { RegisterPage } from "../../pages/auth";
+import { AdminEventPreviewPage } from "../../pages/admin";
+import { AdminCategoryPage } from "../../pages/admin";
+import { AdminCurrencyPage } from "../../pages/admin";
+import { AdminOrganizerPage } from "../../pages/admin";
 
 export const router = createBrowserRouter([
     {

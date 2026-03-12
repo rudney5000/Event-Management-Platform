@@ -16,7 +16,7 @@ import {
   useUpdateEventMutation 
 } from "../../../../entities/event/api/eventsApi";
 import { useEventColumns } from "../../../../entities/event";
-import type { EventFull } from "../../../../segments/admin/AdminEventPreviewPage";
+import type { EventFull } from "../../../../pages/admin/AdminEventPreviewPage";
 
 const { Title } = Typography;
 
