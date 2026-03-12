@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { LikeButton } from "../../features/like-event";
 import type { EventFull } from "../../pages/admin/AdminEventPreviewPage";
 import { EventGallery } from "../event-details-gallery";
 import { EventTabs, type TabId } from "../event-details-tabs";
+import { LikeButton } from "../../../like-event";
 
 interface EventDetailsLayoutProps {
   event: EventFull;

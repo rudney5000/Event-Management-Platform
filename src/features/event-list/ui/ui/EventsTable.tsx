@@ -6,17 +6,17 @@ import {
   Space, 
   Typography 
 } from "antd";
-import { CustomTable } from "../../../shared/ui/custom-table/CustomTable";
 import type { TableRowSelection } from "antd/es/table/interface";
+import { CustomTable } from "../../../../shared/ui/custom-table/CustomTable";
+import { EventForm, type EventFormValues } from "../../../event-form";
 import { 
   useCreateEventMutation, 
   useDeleteEventMutation, 
   useGetEventsQuery, 
   useUpdateEventMutation 
-} from "../../../entities/event/api/eventsApi";
-import { EventForm, type EventFormValues } from "../../../features/event-form";
-import type { EventFull } from "../../../pages/admin/AdminEventPreviewPage";
-import { useEventColumns } from "../../../entities/event/ui/EventColumns";
+} from "../../../../entities/event/api/eventsApi";
+import { useEventColumns } from "../../../../entities/event";
+import type { EventFull } from "../../../../segments/admin/AdminEventPreviewPage";
 
 const { Title } = Typography;
 

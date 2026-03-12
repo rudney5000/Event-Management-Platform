@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { authApi } from "../features/auth/api/authApi";
-import { authSlice } from "../features/auth/model/authSlice";
-import { eventsApi } from "../entities/event/api/eventsApi";
-import { likeSLice } from "../features/like-event/model/likeSlice";
-import { categoryApi } from "../entities/category/api";
-import { currencyApi } from "../entities/currency/api/currencyApi";
-import { organizerApi } from "../entities/organizer/api/OrganizerApi";
+import { authSlice } from "../features/auth";
+import { eventsApi } from "../entities/event";
+import { likeSLice } from "../features/like-event";
+import { categoryApi } from "../entities/category";
+import { currencyApi } from "../entities/currency";
+import { organizerApi } from "../entities/organizer";
 
 export const store = configureStore({
     reducer: {

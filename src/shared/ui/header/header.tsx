@@ -17,7 +17,7 @@ import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { callsToAction, mainNavLinks, products } from './constants';
 import { Link, NavLink } from 'react-router';
 import { useEffect, useState } from 'react';
-import { useUserMenu } from '../../shared/hooks';
+import { useUserMenu } from '../../hooks';
 
 
 export default function Header() {

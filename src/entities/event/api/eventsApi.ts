@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import type { EventFormValues } from "../../../features/event-form/ui/EventForm";
 import type { GetEventsParams, PaginatedEvents } from "../model/types";
-import type { EventFull } from "../../../pages/admin/AdminEventPreviewPage";
+import type { EventFull } from "../../../segments/admin/AdminEventPreviewPage";
+import type { EventFormValues } from "../../../features/event-form";
 
 export const eventsApi = createApi({
     reducerPath: "eventsApi",
