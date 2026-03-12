@@ -1,6 +1,0 @@
-export * from './event-details-gallery'
-export * from './event-details-tabs'
-export * from './admin-layout'
-export * from './events'
-export * from './footer'
-export * from './header'

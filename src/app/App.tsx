@@ -1,5 +1,5 @@
 import { Outlet } from "react-router"
-import Header from "../widgets/header/header"
+import Header from "../shared/ui/header/header"
 
 function App() {
 
