@@ -1,7 +1,7 @@
 import type { ColumnsType } from "antd/es/table";
 import type { Organizer } from "../model/type";
 import { ColumnActions } from "../../../shared/ui/column-actions/ColumnActions";
-import { Space } from "antd";
+import { Avatar, Space } from 'antd';
 import { PencilIcon, TrashIcon } from "lucide-react";
 
 interface OrganizerColumnsProps {
@@ -11,7 +11,21 @@ interface OrganizerColumnsProps {
 
 export function getOrganizerColumns({onEdit, onDelete}: OrganizerColumnsProps): ColumnsType<Organizer> {
     return [
-        { title: "Logo", dataIndex: "logo", key: "logo" },
+      {
+        title: "Logo",
+        dataIndex: "logo",
+        key: "logo",
+        render: (logo: string | string[]) => {
+          const url = Array.isArray(logo) ? logo[0] : logo;
+          return url ? (
+            <Avatar shape="square" size={48} src={url} style={{ borderRadius: 6 }} />
+          ) : (
+            <Avatar shape="square" size={48} style={{ background: "#f0f0f0", color: "#aaa" }}>
+              —
+            </Avatar>
+          );
+        },
+      },
         { title: "Name", dataIndex: "name", key: "name" },
         { title: "ContactEmail", dataIndex: "contactEmail", key: "contactEmail" },
         {
