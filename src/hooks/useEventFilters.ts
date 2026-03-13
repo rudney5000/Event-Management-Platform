@@ -1,9 +1,9 @@
 import { useState, useMemo } from 'react';
-import { useAppDispatch, useAppSelector } from '../app/store';
-import { toggleLike } from '../like-event';
+import { toggleLike } from '../features/like-event'
 import { useGetEventsQuery } from '../entities/event/api/eventsApi';
 import { inferCategoryFromTitle } from '../entities/event/constants';
 import type { EventFormValues } from '../features/event-form/ui/EventForm';
+import { useAppDispatch, useAppSelector } from '../shared/hooks';
 
 interface UseEventFiltersProps {
   page?: number;
