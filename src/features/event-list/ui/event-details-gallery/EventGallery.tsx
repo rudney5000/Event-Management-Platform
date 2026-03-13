@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface EventGalleryProps {
   images: string;
@@ -19,15 +20,15 @@ export function EventGallery({ images }: EventGalleryProps) {
         <>
           <button
             onClick={() => setIndex(i => (i - 1 + images.length) % images.length)}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 p-2 bg-black/50 text-white rounded-full"
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 p-2 bg-black/50 text-white rounded-full hover:bg-black/70 transition-colors"
           >
-            ◀
+            <ChevronLeft className="w-5 h-5" />
           </button>
           <button
             onClick={() => setIndex(i => (i + 1) % images.length)}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 p-2 bg-black/50 text-white rounded-full"
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 p-2 bg-black/50 text-white rounded-full hover:bg-black/70 transition-colors"
           >
-            ▶
+            <ChevronRight className="w-5 h-5" />
           </button>
         </>
       )}
