@@ -26,7 +26,7 @@ export function EventDetailsLayout({ event, isLoading, error }: EventDetailsLayo
         <LikeButton eventId={event.id} />
       </div>
 
-      <EventGallery images={event.imageUrl || []} />
+      <EventGallery images={event.imageUrl || ''} />
       <EventTabs activeTab={activeTab} setActiveTab={setActiveTab} event={event} />
     </div>
   );

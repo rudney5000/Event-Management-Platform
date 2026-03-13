@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 interface EventGalleryProps {
-  images: string[];
+  images: string;
 }
 
 export function EventGallery({ images }: EventGalleryProps) {
@@ -15,7 +15,7 @@ export function EventGallery({ images }: EventGalleryProps) {
         alt={`Image ${index + 1}`}
         className="w-full h-full object-cover"
       />
-      {images.length > 1 && (
+      {images.length && (
         <>
           <button
             onClick={() => setIndex(i => (i - 1 + images.length) % images.length)}
