@@ -33,11 +33,7 @@
       "currencyId": "2",
       "capacity": 100,
       "availableSeats": 45,
-      "organizer": {
-        "name": "Company Name",
-        "logo": "https://example.com/logo.png",
-        "contactEmail": "contact@example.com"
-      },
+      "organizerId": "1",
       "coordinates": {
         "lat": 48.8566,
         "lng": 2.3522
@@ -95,11 +91,7 @@
       "currencyId": "1",
       "capacity": 100,
       "availableSeats": 45,
-      "organizer": {
-        "name": "Company Name",
-        "logo": "https://example.com/logo.png",
-        "contactEmail": "contact@example.com"
-      },
+      "organizerId": "3",
       "coordinates": {
         "lat": 48.8566,
         "lng": 2.3522
@@ -164,11 +156,7 @@
       "currencyId": "2",
       "capacity": 100,
       "availableSeats": 45,
-      "organizer": {
-        "name": "Company Name",
-        "logo": "https://example.com/logo.png",
-        "contactEmail": "contact@example.com"
-      },
+      "organizerId": "4",
       "coordinates": {
         "lat": 48.8566,
         "lng": 2.3522
@@ -225,11 +213,7 @@
       "currencyId": "2",
       "capacity": 100,
       "availableSeats": 45,
-      "organizer": {
-        "name": "TechCorp",
-        "logo": "https://picsum.photos/seed/logo1/100/100",
-        "contactEmail": "contact@techcorp.com"
-      },
+      "organizerId": "1",
       "coordinates": { "lat": 48.8566, "lng": 2.3522 },
       "bookingUrl": "https://example.com/book/1",
       "schedule": [
@@ -265,11 +249,7 @@
       "currencyId": null,
       "capacity": 200,
       "availableSeats": 120,
-      "organizer": {
-        "name": "HealthOrg",
-        "logo": "https://picsum.photos/seed/logo2/100/100",
-        "contactEmail": "info@healthorg.com"
-      },
+      "organizerId": "5",
       "coordinates": { "lat": 45.7640, "lng": 4.8357 },
       "bookingUrl": "https://example.com/book/2",
       "schedule": [
@@ -305,11 +285,7 @@
       "currencyId": "1",
       "capacity": 80,
       "availableSeats": 30,
-      "organizer": {
-        "name": "StartupHub",
-        "logo": "https://picsum.photos/seed/logo3/100/100",
-        "contactEmail": "hello@startuphub.com"
-      },
+      "organizerId": "2",
       "coordinates": { "lat": 43.2965, "lng": 5.3698 },
       "bookingUrl": "https://example.com/book/3",
       "schedule": [
@@ -345,11 +321,7 @@
       "currencyId": "2",
       "capacity": 30,
       "availableSeats": 10,
-      "organizer": {
-        "name": "DesignStudio",
-        "logo": "https://picsum.photos/seed/logo4/100/100",
-        "contactEmail": "studio@design.com"
-      },
+      "organizerId": "3",
       "coordinates": { "lat": 48.8534, "lng": 2.3708 },
       "bookingUrl": "https://example.com/book/4",
       "schedule": [
@@ -385,11 +357,7 @@
       "currencyId": "2",
       "capacity": 500,
       "availableSeats": 200,
-      "organizer": {
-        "name": "AI Institute",
-        "logo": "https://picsum.photos/seed/logo5/100/100",
-        "contactEmail": "contact@aiinstitute.com"
-      },
+      "organizerId": "4",
       "coordinates": { "lat": 48.8924, "lng": 2.2360 },
       "bookingUrl": "https://example.com/book/5",
       "schedule": [
@@ -434,11 +402,7 @@
       "currencyId": "6nYpLUF",
       "capacity": 100,
       "availableSeats": 45,
-      "organizer": {
-        "name": "Company Name",
-        "logo": "https://example.com/logo.png",
-        "contactEmail": "contact@example.com"
-      },
+      "organizerId": "5",
       "coordinates": {
         "lat": 48.8566,
         "lng": 2.3522
@@ -541,9 +505,33 @@
   "organizer": [
     {
       "id": "1",
-      "name": "Company Name",
-      "logo": "https://example.com/logo.png",
+      "name": "DesignStudio",
+      "logo": "https://picsum.photos/seed/logo4/100/100",
       "contactEmail": "contact@example.com"
+    },
+    {
+      "id": "2",
+      "name": "TechCorp",
+      "logo": "https://picsum.photos/seed/logo1/100/100",
+      "contactEmail": "contact@techcorp.com"
+    },
+    {
+      "id": "3",
+      "name": "HealthOrg",
+      "logo": "https://picsum.photos/seed/logo2/100/100",
+      "contactEmail": "info@healthorg.com"
+    },
+    {
+      "id": "4",
+      "name": "StartupHub",
+      "logo": "https://picsum.photos/seed/logo3/100/100",
+      "contactEmail": "hello@startuphub.com"
+    },
+    {
+      "id": "5",
+      "name": "AI Institute",
+      "logo": "https://picsum.photos/seed/logo5/100/100",
+      "contactEmail": "contact@aiinstitute.com"
     }
   ]
 }

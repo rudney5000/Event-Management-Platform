@@ -6,6 +6,7 @@ import { SelectPriority } from "./SelectPriority";
 import dayjs, { Dayjs } from "dayjs";
 import { useGetCategoriesQuery } from "../../../entities/category/api";
 import { useGetCurrenciesQuery } from "../../../entities/currency/api/currencyApi";
+import { useGetOrganizersQuery } from "../../../entities/organizer/api/OrganizerApi";
 
 export interface EventFormValues {
   id: string;
@@ -21,6 +22,7 @@ export interface EventFormValues {
   tags?: string[];
   speakers: string[];
   priority: string;
+  organizerId?: string;
 }
 
 interface EventFormProps {
@@ -40,6 +42,7 @@ export function EventForm({ initialValues, onSubmit }: EventFormProps) {
 
   const { data: categories } = useGetCategoriesQuery()
   const { data: currencies } = useGetCurrenciesQuery()
+  const { data: organizers } = useGetOrganizersQuery()
 
   const handleFinish = (values: EventFormInternalValues) => {
   onSubmit({
@@ -130,6 +133,18 @@ export function EventForm({ initialValues, onSubmit }: EventFormProps) {
           options={["Paris", "Lyon", "Marseille"]}
           onChange={(v) => form.setFieldsValue({ city: v })}
         />
+      </Form.Item>
+      <Form.Item
+        name="organizerId"
+        label="Organizer"
+      >
+        <Select placeholder="Select organizer" allowClear>
+          {organizers?.map((organizer) => (
+            <Select.Option key={organizer.id} value={organizer.id}>
+              {organizer.name}
+            </Select.Option>
+          ))}
+        </Select>
       </Form.Item>
       <Form.Item name="status" label="Status">
         <Radio.Group>

@@ -1,4 +1,4 @@
-import type { EventFull } from "../../pages/admin/AdminEventPreviewPage";
+import type { EventFull } from '../../../../pages/admin/AdminEventPreviewPage';
 
 export type TabId = 'details' | 'speakers' | 'location' | 'reviews'
 
