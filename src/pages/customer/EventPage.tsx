@@ -1,71 +1,29 @@
-import { useState, useMemo } from "react";
-import { useGetEventsQuery } from "../../entities/event/api/eventsApi";
+import { useAppSelector } from "../../shared/hooks";
 import { EventFilters } from "../../features/event-filters/EventFilters";
-import { inferCategoryFromTitle } from "../../entities/event/constants";
 import { EventCard } from "../../features/event-list";
-import { useAppDispatch, useAppSelector } from "../../shared/hooks";
-import { toggleLike } from "../../features/like-event";
+import { useEventFilters } from "../../hooks/useEventFilters";
 
 export function EventPage() {
-    const { data, isLoading, error } = useGetEventsQuery({ page: 1, limit: 10 });
-    const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-    const [priceFilter, setPriceFilter] = useState<'all' | 'free' | 'paid'>('all');
-    const [cityFilter, setCityFilter] = useState<string>('');
-    const [searchQuery, setSearchQuery] = useState('');
-    const [showFilters, setShowFilters] = useState(false);
-    const [sortBy, setSortBy] = useState<'date' | 'price' | 'title'>('date');
+    const {
+        isLoading,
+        error,
+        selectedCategories,
+        priceFilter,
+        cityFilter,
+        showFilters,
+        sortBy,
+        uniqueCities,
+        filteredEvents,
+        setPriceFilter,
+        setCityFilter,
+        setShowFilters,
+        setSortBy,
+        handleLike,
+        toggleCategory,
+        resetFilters,
+    } = useEventFilters({ page: 1, limit: 10 });
 
-    const dispatch = useAppDispatch()
-    const likeIds = useAppSelector(state => state.likes.likedIds)
-
-    const uniqueCities = useMemo(() => {
-        if (!data?.events) return [];
-        return Array.from(new Set(data.events.map(e => e.city))).sort();
-    }, [data?.events]);
-
-    const filteredEvents = useMemo(() => {
-        if (!data?.events) return [];
-
-        return data.events
-            .filter(event => {
-                const category = inferCategoryFromTitle(event.title);
-                if (selectedCategories.length && !selectedCategories.includes(category.id)) return false;
-                if (priceFilter === 'free' && event.priceType !== 'free') return false;
-                if (priceFilter === 'paid' && event.priceType !== 'paid') return false;
-                if (cityFilter && event.city !== cityFilter) return false;
-                if (searchQuery) {
-                    const q = searchQuery.toLowerCase();
-                    return event.title.toLowerCase().includes(q)
-                        || event.city.toLowerCase().includes(q)
-                        || (event.speakers?.some(s => s.toLowerCase().includes(q)));
-                }
-                return true;
-            })
-            .sort((a, b) => {
-                switch(sortBy) {
-                    case 'date': return new Date(a.date).getTime() - new Date(b.date).getTime();
-                    case 'price': return (a.price || 0) - (b.price || 0);
-                    case 'title': return a.title.localeCompare(b.title);
-                    default: return 0;
-                }
-            });
-    }, [data?.events, selectedCategories, priceFilter, cityFilter, searchQuery, sortBy]);
-
-    const handleLike = (eventId: string) => {
-        dispatch(toggleLike(eventId))
-    }
-
-    const toggleCategory = (id: string) => setSelectedCategories(prev =>
-        prev.includes(id) ? prev.filter(c => c !== id) : [...prev, id]
-    );
-
-    const resetFilters = () => {
-        setSelectedCategories([]);
-        setPriceFilter('all');
-        setCityFilter('');
-        setSearchQuery('');
-        setSortBy('date');
-    };
+    const likeIds = useAppSelector(state => state.likes.likedIds);
 
     if (isLoading) return <div className="min-h-screen flex items-center justify-center">Chargement...</div>;
     if (error) return <div className="min-h-screen flex items-center justify-center">Erreur de chargement</div>;
