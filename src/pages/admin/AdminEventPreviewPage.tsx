@@ -1,12 +1,35 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { Card, Typography, Tag, Image, Space, Button } from "antd";
+import {
+  Card,
+  Typography,
+  Tag,
+  Image,
+  Button,
+  Badge,
+  Avatar,
+  Divider
+} from "antd";
+import {
+  CalendarOutlined,
+  UserOutlined,
+  ClockCircleOutlined,
+  DollarOutlined,
+  TagOutlined,
+  TeamOutlined,
+  VideoCameraOutlined,
+  PictureOutlined,
+  LinkOutlined,
+  StarOutlined
+} from "@ant-design/icons";
 import { useGetEventByIdQuery } from "../../entities/event/api/eventsApi";
+import { useGetOrganizersQuery } from "../../entities/organizer/api/OrganizerApi";
 import type { EventFormValues } from "../../features/event-form/ui/EventForm";
+import { MapPinned } from 'lucide-react';
 
 const { Title, Paragraph, Text, Link } = Typography;
 
 export interface EventFull extends EventFormValues {
-  imageUrl?: string[];
+  imageUrl?: string;
   shortDescription?: string;
   description?: string;
 
@@ -18,11 +41,7 @@ export interface EventFull extends EventFormValues {
   endDate?: string;
   startTime?: string;
   endTime?: string;
-  organizer?: {
-    name: string;
-    logo?: string;
-    contactEmail?: string;
-  };
+  organizerId?: string;
   coordinates?: {
     lat: number;
     lng: number;
@@ -40,132 +59,308 @@ export function AdminEventPreviewPage() {
   const navigate = useNavigate();
 
   const { data: event, isLoading } = useGetEventByIdQuery(id!);
+  const { data: organizers } = useGetOrganizersQuery();
 
   if (isLoading) return <p>Loading...</p>;
   if (!event) return <p>Event not found</p>;
 
   return (
-    <div className="p-6 max-w-4xl mx-auto">
-      <Button onClick={() => navigate(-1)} style={{ marginBottom: 16 }}>
-        ← Back
-      </Button>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-6">
+      <div className="max-w-6xl mx-auto">
+        <Button 
+          onClick={() => navigate(-1)} 
+          type="text"
+          icon={<span>←</span>}
+          className="mb-6 text-gray-600 hover:text-gray-800"
+        >
+          Back to Events
+        </Button>
 
-      <Card>
-        {event.imageUrl && event.imageUrl.length > 0 && (
-          <Image.PreviewGroup>
-            <div className="flex gap-4 overflow-x-auto">
-              {event.imageUrl.map((url, index) => (
-                <Image
-                  key={index}
-                  src={url}
-                  alt={`${event.title} - image ${index + 1}`}
-                  width={200}
-                  height={150}
-                  className="rounded-lg flex-shrink-0"
-                />
-              ))}
+        <div className="bg-white rounded-2xl shadow-xl overflow-hidden mb-6">
+          {event.imageUrl && (
+            <div className="relative h-64 bg-gradient-to-r from-blue-400 to-purple-500">
+              <Image
+                src={event.imageUrl}
+                alt={event.title}
+                className="w-full h-full object-cover"
+                preview={false}
+              />
+              <div className="absolute inset-0 bg-black bg-opacity-30 flex items-end">
+                <div className="p-8 text-white">
+                  <Title level={1} className="text-white mb-2">{event.title}</Title>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge 
+                      color={event.status === "published" ? "green" : "orange"}
+                      text={event.status.toUpperCase()}
+                      className="bg-white bg-opacity-20 text-white"
+                    />
+                    <Badge 
+                      color="blue"
+                      text={`Priority ${event.priority}`}
+                      className="bg-white bg-opacity-20 text-white"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
-          </Image.PreviewGroup>
-        )}
-        <Title level={2}>{event.title}</Title>
-        <Space size="middle" wrap>
-          <Tag color="blue">{event.categoryId}</Tag>
-          <Tag color={event.status === "published" ? "green" : "orange"}>{event.status}</Tag>
-          <Tag color="purple">Priority: {event.priority}</Tag>
-          <Tag color={event.priceType === "free" ? "green" : "blue"}>
-            {event.priceType === "free" ? "Free" : `${event.price} €`}
-          </Tag>
-        </Space>
+          )}
 
-        <Paragraph>
-          <Text strong>Date:</Text> {event.date}
-          {event.endDate && ` → ${event.endDate}`}
-        </Paragraph>
-        {event.startTime && event.endTime && (
-          <Paragraph>
-            <Text strong>Time:</Text> {event.startTime} - {event.endTime}
-          </Paragraph>
-        )}
+          {!event.imageUrl && (
+            <div className="relative h-64 bg-gradient-to-r from-blue-400 to-purple-500 flex items-center justify-center">
+              <div className="text-center text-white p-8">
+                <Title level={1} className="text-white mb-4">{event.title}</Title>
+                <div className="flex flex-wrap gap-2 justify-center">
+                  <Badge 
+                    color={event.status === "published" ? "green" : "orange"}
+                    text={event.status.toUpperCase()}
+                    className="bg-white bg-opacity-20 text-white"
+                  />
+                  <Badge 
+                    color="blue"
+                    text={`Priority ${event.priority}`}
+                    className="bg-white bg-opacity-20 text-white"
+                  />
+                </div>
+              </div>
+            </div>
+          )}
 
-        <Paragraph>
-          <Text strong>Location:</Text> {event.address}, {event.city}
-        </Paragraph>
+          <Card className="mx-6 -mt-8 relative z-10 shadow-lg">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                <div className="flex items-center gap-3">
+                  <CalendarOutlined className="text-blue-600 text-xl" />
+                  <div>
+                    <Text type="secondary" className="text-xs">Date</Text>
+                    <div className="font-semibold">{event.date}</div>
+                    {event.endDate && <Text type="secondary">→ {event.endDate}</Text>}
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                <div className="flex items-center gap-3">
+                  <MapPinned className="text-green-600 text-xl" />
+                  <div>
+                    <Text type="secondary" className="text-xs">Location</Text>
+                    <div className="font-semibold">{event.city}</div>
+                    <Text type="secondary" className="text-sm">{event.address}</Text>
+                  </div>
+                </div>
+              </div>
 
-        {event.organizer && (
-          <Paragraph>
-            <Text strong>Organizer:</Text> {event.organizer.name}{" "}
-            {event.organizer.logo && <Image src={event.organizer.logo} alt="logo" width={50} />}
-            {event.organizer.contactEmail && <Text> ({event.organizer.contactEmail})</Text>}
-          </Paragraph>
-        )}
+              <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+                <div className="flex items-center gap-3">
+                  <DollarOutlined className="text-purple-600 text-xl" />
+                  <div>
+                    <Text type="secondary" className="text-xs">Price</Text>
+                    <div className="font-semibold">
+                      {event.priceType === "free" ? "Free" : `${event.price} €`}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-        {event.tags && event.tags.length > 0 && (
-          <Paragraph>
-            <Text strong>Tags:</Text>{" "}
-            {event.tags.map((tag) => (
-              <Tag key={tag}>{tag}</Tag>
-            ))}
-          </Paragraph>
-        )}
-
-        {event.speakers && event.speakers.length > 0 && (
-          <Paragraph>
-            <Text strong>Speakers:</Text> {event.speakers.join(", ")}
-          </Paragraph>
-        )}
-
-        {event.shortDescription && (
-          <Paragraph>
-            <Text strong>Short Description:</Text> {event.shortDescription}
-          </Paragraph>
-        )}
-
-        {event.description && (
-          <Paragraph>
-            <Text strong>Description:</Text> {event.description}
-          </Paragraph>
-        )}
-
-        {event.coordinates && (
-          <Paragraph>
-            <Text strong>Coordinates:</Text> {event.coordinates.lat}, {event.coordinates.lng}
-          </Paragraph>
-        )}
-
-        {event.bookingUrl && (
-          <Paragraph>
-            <Link href={event.bookingUrl} target="_blank">
-              Booking Link
-            </Link>
-          </Paragraph>
-        )}
-
-        {event.sponsors && event.sponsors.length > 0 && (
-          <Paragraph>
-            <Text strong>Sponsors:</Text> {event.sponsors.join(", ")}
-          </Paragraph>
-        )}
-
-        {event.media && event.media.length > 0 && (
-          <Paragraph>
-            <Text strong>Media:</Text>
-            <Space direction="vertical">
-              {event.media.map((m, i) =>
-                m.type === "video" ? (
-                  <Link key={i} href={m.url} target="_blank">
-                    Video {i + 1}
-                  </Link>
-                ) : (
-                  <Image key={i} src={m.url} alt={`Media ${i + 1}`} width={200} />
-                )
+            <div className="flex flex-wrap gap-4 mb-6">
+              {event.startTime && event.endTime && (
+                <div className="flex items-center gap-2 bg-gray-50 px-3 py-2 rounded-lg">
+                  <ClockCircleOutlined className="text-gray-600" />
+                  <Text>{event.startTime} - {event.endTime}</Text>
+                </div>
               )}
-            </Space>
-          </Paragraph>
-        )}
+              
+              {event.capacity && (
+                <div className="flex items-center gap-2 bg-gray-50 px-3 py-2 rounded-lg">
+                  <TeamOutlined className="text-gray-600" />
+                  <Text>{event.availableSeats || 0} / {event.capacity} seats</Text>
+                </div>
+              )}
 
-        {event.level && <Paragraph><Text strong>Level:</Text> {event.level}</Paragraph>}
-        {event.language && <Paragraph><Text strong>Language:</Text> {event.language}</Paragraph>}
-      </Card>
+              {event.level && (
+                <Tag color="cyan" className="px-3 py-1">
+                  <StarOutlined /> {event.level}
+                </Tag>
+              )}
+
+              {event.language && (
+                <Tag color="geekblue" className="px-3 py-1">
+                  {event.language.toUpperCase()}
+                </Tag>
+              )}
+            </div>
+
+            {event.organizerId && organizers && (
+              <div className="bg-gray-50 rounded-lg p-4 mb-6">
+                <div className="flex items-center gap-4">
+                  {organizers.find(o => o.id === event.organizerId)?.logo && (
+                    <Avatar 
+                      src={organizers.find(o => o.id === event.organizerId)!.logo} 
+                      size={64}
+                      className="border-2 border-white shadow-md"
+                    />
+                  )}
+                  <div className="flex-1">
+                    <Text strong className="text-lg">Organizer</Text>
+                    <div className="text-gray-700 font-medium">
+                      {organizers.find(o => o.id === event.organizerId)?.name}
+                    </div>
+                    {organizers.find(o => o.id === event.organizerId)?.contactEmail && (
+                      <Text type="secondary" className="text-sm">
+                        {organizers.find(o => o.id === event.organizerId)?.contactEmail}
+                      </Text>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {event.tags && event.tags.length > 0 && (
+              <div className="mb-6">
+                <Text strong className="block mb-2">Tags</Text>
+                <div className="flex flex-wrap gap-2">
+                  {event.tags.map((tag) => (
+                    <Tag key={tag} color="default" className="px-3 py-1">
+                      <TagOutlined /> {tag}
+                    </Tag>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {event.speakers && event.speakers.length > 0 && (
+              <div className="mb-6">
+                <Text strong className="block mb-2 flex items-center gap-2">
+                  <UserOutlined /> Speakers
+                </Text>
+                <div className="flex flex-wrap gap-2">
+                  {event.speakers.map((speaker, index) => (
+                    <div key={index} className="bg-blue-50 px-3 py-2 rounded-lg border border-blue-200">
+                      <Text className="font-medium">{speaker}</Text>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <Divider />
+
+            {event.shortDescription && (
+              <div className="mb-6">
+                <Text strong className="block mb-2">Summary</Text>
+                <Paragraph className="text-gray-700 bg-gray-50 p-4 rounded-lg">
+                  {event.shortDescription}
+                </Paragraph>
+              </div>
+            )}
+
+            {event.description && (
+              <div className="mb-6">
+                <Text strong className="block mb-2">Full Description</Text>
+                <Paragraph className="text-gray-700 bg-gray-50 p-4 rounded-lg">
+                  {event.description}
+                </Paragraph>
+              </div>
+            )}
+
+        <Divider />
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              {event.coordinates && (
+                <div className="bg-gray-50 rounded-lg p-4">
+                  <Text strong className="block mb-2 flex items-center gap-2">
+                    <MapPinned /> Location Details
+                  </Text>
+                  <Text className="text-gray-700">
+                    Coordinates: {event.coordinates.lat}, {event.coordinates.lng}
+                  </Text>
+                </div>
+              )}
+
+              {event.bookingUrl && (
+                <div className="bg-gray-50 rounded-lg p-4">
+                  <Text strong className="block mb-2 flex items-center gap-2">
+                    <LinkOutlined /> Booking
+                  </Text>
+                  <Link href={event.bookingUrl} target="_blank" className="text-blue-600 hover:text-blue-800">
+                    Open Booking Page →
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            {event.sponsors && event.sponsors.length > 0 && (
+              <div className="mb-6">
+                <Text strong className="block mb-2">Sponsors</Text>
+                <div className="flex flex-wrap gap-2">
+                  {event.sponsors.map((sponsor, index) => (
+                    <div key={index} className="bg-yellow-50 px-3 py-2 rounded-lg border border-yellow-200">
+                      <Text className="font-medium">🏆 {sponsor}</Text>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {event.media && event.media.length > 0 && (
+              <div className="mb-6">
+                <Text strong className="block mb-2">Media Gallery</Text>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {event.media.map((m, i) =>
+                    m.type === "video" ? (
+                      <div key={i} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                        <div className="flex items-center gap-3">
+                          <VideoCameraOutlined className="text-red-500 text-xl" />
+                          <div>
+                            <Text strong>Video {i + 1}</Text>
+                            <div>
+                              <Link href={m.url} target="_blank" className="text-blue-600 hover:text-blue-800">
+                                Watch Video →
+                              </Link>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      <div key={i} className="bg-gray-50 rounded-lg p-2 border border-gray-200">
+                        <div className="flex items-center gap-3">
+                          <PictureOutlined className="text-green-500 text-xl" />
+                          <Image src={m.url} alt={`Media ${i + 1}`} width={120} className="rounded" />
+                        </div>
+                      </div>
+                    )
+                  )}
+                </div>
+              </div>
+            )}
+
+            {event.schedule && event.schedule.length > 0 && (
+              <div className="mb-6">
+                <Text strong className="block mb-2 flex items-center gap-2">
+                  <ClockCircleOutlined /> Event Schedule
+                </Text>
+                <div className="space-y-2">
+                  {event.schedule.map((item, index) => (
+                    <div key={index} className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+                      <div className="flex justify-between items-start">
+                        <Text strong className="text-blue-600">{item.time}</Text>
+                        <div className="flex-1 ml-4">
+                          <Text className="font-medium">{item.title}</Text>
+                          {item.description && (
+                            <Text type="secondary" className="block text-sm mt-1">
+                              {item.description}
+                            </Text>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </Card>
+        </div>
+      </div>
     </div>
   );
 }
