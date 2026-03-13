@@ -1,6 +1,14 @@
 import { Link } from "react-router";
-import { inferCategoryFromTitle } from "../../entities/event/constants";
-import { Calendar, MapPin, Users, Heart, Info, ExternalLink } from "lucide-react";
+import {
+  Calendar,
+  MapPin,
+  Users,
+  Heart,
+  Info,
+  ExternalLink
+} from "lucide-react";
+import { useGetCategoriesQuery } from "../../entities/category/api";
+import { useGetOrganizersQuery } from "../../entities/organizer/api/OrganizerApi";
 import type { EventFull } from "../../pages/admin/AdminEventPreviewPage";
 
 interface Props {
@@ -10,17 +18,23 @@ interface Props {
 }
 
 export function EventCard({ event, isLiked, onLike }: Props) {
-    const category = inferCategoryFromTitle(event.title);
+    const { data: categories } = useGetCategoriesQuery();
+    const { data: organizers } = useGetOrganizersQuery();
+    
+    const category = categories?.find(cat => cat.id === event.categoryId);
+    const organizer = organizers?.find(org => org.id === event.organizerId);
 
     return (
         <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative">
             <div className="h-40 bg-gradient-to-r from-indigo-500 to-purple-600 relative">
                 <div className="absolute inset-0 bg-black opacity-20"></div>
-                <div className="absolute top-4 left-4">
-                    <span className={`${category.color} text-white px-3 py-1 rounded-full text-xs font-semibold flex items-center shadow-lg`}>
-                        <span className="mr-1">{category.icon}</span>{category.name}
-                    </span>
-                </div>
+                {category && (
+                    <div className="absolute top-4 left-4">
+                        <span className={`${category.color} text-white px-3 py-1 rounded-full text-xs font-semibold flex items-center shadow-lg`}>
+                            <span className="mr-1">{category.icon}</span>{category.name}
+                        </span>
+                    </div>
+                )}
                 {isLiked && (
                     <div className="absolute top-4 right-4">
                         <span className="bg-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">❤️ Favori</span>
@@ -56,6 +70,19 @@ export function EventCard({ event, isLiked, onLike }: Props) {
                         <div className="flex items-center text-gray-600">
                             <Users className="w-4 h-4 mr-2 flex-shrink-0" />
                             <span className="text-sm">{event.speakers.join(', ')}</span>
+                        </div>
+                    )}
+                    {organizer && (
+                        <div className="flex items-center text-gray-600">
+                            <Users className="w-4 h-4 mr-2 flex-shrink-0" />
+                            <span className="text-sm font-medium">{organizer.name}</span>
+                            {organizer.logo && (
+                                <img 
+                                    src={organizer.logo} 
+                                    alt={organizer.name}
+                                    className="w-4 h-4 ml-2 rounded-full"
+                                />
+                            )}
                         </div>
                     )}
                 </div>
