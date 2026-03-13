@@ -3,9 +3,12 @@ import { useLoginForm } from "../../hooks/useLoginForm"
 import { useLoginMutation } from "../../api/authApi"
 import { initialLoginForm } from "../../model/constants/loginConstants"
 import { useState } from "react"
+import { useAppDispatch } from '../../../../shared/hooks/useAppDispatch';
+import { setUser } from '../../model/authSlice.ts';
 
 export function LoginForm(){
     const navigate = useNavigate()
+    const dispatch = useAppDispatch();
     const [login, { isLoading }] = useLoginMutation();
     const [error, setError] = useState<boolean>(false);
     const { 
@@ -22,7 +25,7 @@ export function LoginForm(){
       try{
         setError(false)
         const user = await login(values).unwrap()
-        console.log("token", user)
+        dispatch(setUser({ id: user.id, email: user.email }));
         navigate("/admin")
       } catch(error) {
         console.error("Login Failed", error)

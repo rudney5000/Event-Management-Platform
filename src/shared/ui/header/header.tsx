@@ -16,18 +16,14 @@ import {
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { callsToAction, mainNavLinks, products } from './constants';
 import { Link, NavLink } from 'react-router';
-import { useEffect, useState } from 'react';
 import { useUserMenu } from '../../hooks';
+import {useCurrentUser} from "../../../hooks/useCurrentUser.ts";
 
 
 export default function Header() {
   const { open: mobileMenuOpen, toggle: toggleMobileMenu, close: CloseMobileMenu } = useUserMenu();
 
-    const [user, setUser] = useState<{ email: string } | null>(null);
-    useEffect(() => {
-        const stored = localStorage.getItem("user");
-        if (stored) setUser(JSON.parse(stored));
-      }, []);
+    const { user } = useCurrentUser();
 
   return (
     <header className="bg-gray-900">
@@ -108,9 +104,11 @@ export default function Header() {
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           {user ? (
-            <span className="text-sm/6 font-semibold text-white">
-              {user.email}
-            </span>
+            <div className="flex items-center gap-2">
+              <span className="text-sm/6 font-semibold text-white">
+                {user.email}
+              </span>
+            </div>
           ) : (
             <Link to="/login" className="text-sm/6 font-semibold text-white">
               Log in <span aria-hidden="true">&rarr;</span>
