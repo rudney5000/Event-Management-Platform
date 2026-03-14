@@ -2,6 +2,7 @@ import { useAppSelector } from "../../shared/hooks";
 import { EventFilters } from "../../features/event-filters/EventFilters";
 import { EventCard } from "../../features/event-list";
 import { useEventFilters } from "../../hooks/useEventFilters";
+import Footer from "../../shared/ui/footer/Footer";
 
 export function EventPage() {
     const {
@@ -57,6 +58,7 @@ export function EventPage() {
                     ))}
                 </div>
                 {filteredEvents.length === 0 && <p className="text-center mt-8">Aucun événement trouvé.</p>}
+                <Footer/>
             </div>
         </div>
     );
