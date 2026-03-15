@@ -1,15 +1,18 @@
-import i18n from "../../../shared/config/i18n/i18n";
+import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
+import { Languages } from 'lucide-react';
 
 const languages = [
-  { code: 'fr', label: 'FR', name: 'Français' },
-  { code: 'en', label: 'EN', name: 'English' },
-  { code: 'ru', label: 'RU', name: 'Russian' }
+  { code: 'fr', label: 'FR', name: 'Français', flag: '🇫🇷' },
+  { code: 'en', label: 'EN', name: 'English', flag: '🇬🇧' },
+  { code: 'ru', label: 'RU', name: 'Русский', flag: '🇷🇺' }
 ];
 
 export function LanguageSwitcher() {
+  const { t, i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
+  
   const currentLanguage = languages.find(lang => lang.code === i18n.language) || languages[1];
 
   const handleLanguageChange = (langCode: string) => {
@@ -22,7 +25,9 @@ export function LanguageSwitcher() {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center gap-x-1 text-sm/6 font-semibold text-white hover:text-gray-300 transition-colors"
+        aria-label={t('header.language')}
       >
+        <Languages className="w-4 h-4 mr-1" />
         <span className="uppercase">{currentLanguage.code}</span>
         <ChevronDownIcon 
           aria-hidden="true" 
@@ -39,21 +44,24 @@ export function LanguageSwitcher() {
             onClick={() => setIsOpen(false)}
           />
           
-          <div className="absolute right-0 mt-2 z-50 w-32 rounded-lg bg-gray-800 shadow-lg ring-1 ring-black/5 overflow-hidden">
+          <div className="absolute right-0 mt-2 z-50 w-40 rounded-lg bg-gray-800 shadow-lg ring-1 ring-black/5 overflow-hidden">
             {languages.map((lang) => (
               <button
                 key={lang.code}
                 onClick={() => handleLanguageChange(lang.code)}
                 className={`
-                  w-full px-4 py-2 text-left text-sm transition-colors
+                  w-full px-4 py-2.5 text-left text-sm transition-colors flex items-center gap-2
                   ${currentLanguage.code === lang.code 
-                    ? 'bg-indigo-600 text-white font-semibold' 
+                    ? 'bg-indigo-600 text-white' 
                     : 'text-gray-300 hover:bg-white/5 hover:text-white'
                   }
                 `}
               >
-                <span className="uppercase mr-2">{lang.label}</span>
-                <span className="text-xs text-gray-500">{lang.name}</span>
+                <span>{lang.flag}</span>
+                <span className="flex-1">{lang.name}</span>
+                {currentLanguage.code === lang.code && (
+                  <span className="text-xs">✓</span>
+                )}
               </button>
             ))}
           </div>
