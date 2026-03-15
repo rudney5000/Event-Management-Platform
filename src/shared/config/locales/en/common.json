@@ -1,0 +1,97 @@
+{
+  "header": {
+    "companyName": "EventPlatform",
+    "product": "Product",
+    "products": {
+      "events": {
+        "name": "Events",
+        "description": "Discover all our events"
+      },
+      "categories": {
+        "name": "Categories",
+        "description": "Browse by category"
+      },
+      "calendar": {
+        "name": "Calendar",
+        "description": "View events calendar"
+      },
+      "organizers": {
+        "name": "Organizers",
+        "description": "Meet our organizers"
+      }
+    },
+    "callsToAction": {
+      "createEvent": "Create an event",
+      "becomeOrganizer": "Become an organizer"
+    },
+    "navigation": {
+      "home": "Home",
+      "events": "Events",
+      "about": "About",
+      "contact": "Contact",
+      "blog": "Blog",
+      "faq": "FAQ"
+    },
+    "userMenu": {
+      "profile": "My profile",
+      "myEvents": "My events",
+      "myTickets": "My tickets",
+      "favorites": "Favorites",
+      "settings": "Settings",
+      "logout": "Logout"
+    },
+    "logIn": "Log in",
+    "logOut": "Log out",
+    "signUp": "Sign up",
+    "openMenu": "Open main menu",
+    "closeMenu": "Close menu",
+    "welcome": "Welcome",
+    "notifications": "Notifications",
+    "noNotifications": "No notifications",
+    "search": "Search",
+    "searchPlaceholder": "Search for an event...",
+    "language": "Language"
+  },
+  "eventPage": {
+    "loading": "Loading...",
+    "error": "Error loading",
+    "noEvents": "No events found."
+  },
+  "filters": {
+    "title": "Filters",
+    "filters": "Filters",
+    "reset": "Reset",
+    "categories": "Categories",
+    "price": "Price",
+    "allPrices": "All prices",
+    "free": "Free",
+    "paid": "Paid",
+    "city": "City",
+    "allCities": "All cities",
+    "sortBy": "Sort by",
+    "sortDate": "Date",
+    "sortPrice": "Price",
+    "sortTitle": "Title"
+  },
+  "eventCard": {
+    "free": "Free",
+    "price": "Price",
+    "favorite": "Favorite",
+    "priority": "Priority",
+    "view": "View",
+    "speakers": "Speakers"
+  },
+  "pagination": {
+    "previous": "Previous page",
+    "next": "Next page",
+    "page": "Page"
+  },
+  "footer": {
+    "rights": "All rights reserved"
+  },
+  "languages": {
+    "fr": "French",
+    "en": "English",
+    "ru": "Russian"
+  }
+}

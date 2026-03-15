@@ -1,0 +1,97 @@
+{
+  "header": {
+    "companyName": "EventPlatform",
+    "product": "Produit",
+    "products": {
+      "events": {
+        "name": "Événements",
+        "description": "Découvrez tous nos événements"
+      },
+      "categories": {
+        "name": "Catégories",
+        "description": "Parcourir par catégorie"
+      },
+      "calendar": {
+        "name": "Calendrier",
+        "description": "Voir le calendrier des événements"
+      },
+      "organizers": {
+        "name": "Organisateurs",
+        "description": "Rencontrez nos organisateurs"
+      }
+    },
+    "callsToAction": {
+      "createEvent": "Créer un événement",
+      "becomeOrganizer": "Devenir organisateur"
+    },
+    "navigation": {
+      "home": "Accueil",
+      "events": "Événements",
+      "about": "À propos",
+      "contact": "Contact",
+      "blog": "Blog",
+      "faq": "FAQ"
+    },
+    "userMenu": {
+      "profile": "Mon profil",
+      "myEvents": "Mes événements",
+      "myTickets": "Mes billets",
+      "favorites": "Favoris",
+      "settings": "Paramètres",
+      "logout": "Déconnexion"
+    },
+    "logIn": "Connexion",
+    "logOut": "Déconnexion",
+    "signUp": "S'inscrire",
+    "openMenu": "Ouvrir le menu principal",
+    "closeMenu": "Fermer le menu",
+    "welcome": "Bienvenue",
+    "notifications": "Notifications",
+    "noNotifications": "Aucune notification",
+    "search": "Rechercher",
+    "searchPlaceholder": "Rechercher un événement...",
+    "language": "Langue"
+  },
+  "eventPage": {
+    "loading": "Chargement...",
+    "error": "Erreur de chargement",
+    "noEvents": "Aucun événement trouvé."
+  },
+  "filters": {
+    "title": "Filtres",
+    "filters": "Filtres",
+    "reset": "Réinitialiser",
+    "categories": "Catégories",
+    "price": "Prix",
+    "allPrices": "Tous les prix",
+    "free": "Gratuit",
+    "paid": "Payant",
+    "city": "Ville",
+    "allCities": "Toutes les villes",
+    "sortBy": "Trier par",
+    "sortDate": "Date",
+    "sortPrice": "Prix",
+    "sortTitle": "Titre"
+  },
+  "eventCard": {
+    "free": "Gratuit",
+    "price": "Prix",
+    "favorite": "Favori",
+    "priority": "Prioritaire",
+    "view": "Voir",
+    "speakers": "Intervenants"
+  },
+  "pagination": {
+    "previous": "Page précédente",
+    "next": "Page suivante",
+    "page": "Page"
+  },
+  "footer": {
+    "rights": "Tous droits réservés"
+  },
+  "languages": {
+    "fr": "Français",
+    "en": "Anglais",
+    "ru": "Russe"
+  }
+}

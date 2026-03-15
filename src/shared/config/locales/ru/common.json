@@ -1,0 +1,97 @@
+{
+  "header": {
+    "companyName": "EventPlatform",
+    "product": "Продукт",
+    "products": {
+      "events": {
+        "name": "События",
+        "description": "Откройте для себя все события"
+      },
+      "categories": {
+        "name": "Категории",
+        "description": "Просмотр по категориям"
+      },
+      "calendar": {
+        "name": "Календарь",
+        "description": "Просмотр календаря событий"
+      },
+      "organizers": {
+        "name": "Организаторы",
+        "description": "Познакомьтесь с организаторами"
+      }
+    },
+    "callsToAction": {
+      "createEvent": "Создать событие",
+      "becomeOrganizer": "Стать организатором"
+    },
+    "navigation": {
+      "home": "Главная",
+      "events": "События",
+      "about": "О нас",
+      "contact": "Контакты",
+      "blog": "Блог",
+      "faq": "FAQ"
+    },
+    "userMenu": {
+      "profile": "Мой профиль",
+      "myEvents": "Мои события",
+      "myTickets": "Мои билеты",
+      "favorites": "Избранное",
+      "settings": "Настройки",
+      "logout": "Выйти"
+    },
+    "logIn": "Войти",
+    "logOut": "Выйти",
+    "signUp": "Регистрация",
+    "openMenu": "Открыть главное меню",
+    "closeMenu": "Закрыть меню",
+    "welcome": "Добро пожаловать",
+    "notifications": "Уведомления",
+    "noNotifications": "Нет уведомлений",
+    "search": "Поиск",
+    "searchPlaceholder": "Поиск событий...",
+    "language": "Язык"
+  },
+  "eventPage": {
+    "loading": "Загрузка...",
+    "error": "Ошибка загрузки",
+    "noEvents": "События не найдены."
+  },
+  "filters": {
+    "title": "Фильтры",
+    "filters": "Фильтры",
+    "reset": "Сбросить",
+    "categories": "Категории",
+    "price": "Цена",
+    "allPrices": "Все цены",
+    "free": "Бесплатно",
+    "paid": "Платно",
+    "city": "Город",
+    "allCities": "Все города",
+    "sortBy": "Сортировать по",
+    "sortDate": "Дате",
+    "sortPrice": "Цене",
+    "sortTitle": "Названию"
+  },
+  "eventCard": {
+    "free": "Бесплатно",
+    "price": "Цена",
+    "favorite": "Избранное",
+    "priority": "Приоритетное",
+    "view": "Смотреть",
+    "speakers": "Спикеры"
+  },
+  "pagination": {
+    "previous": "Предыдущая",
+    "next": "Следующая",
+    "page": "Страница"
+  },
+  "footer": {
+    "rights": "Все права защищены"
+  },
+  "languages": {
+    "fr": "Французский",
+    "en": "Английский",
+    "ru": "Русский"
+  }
+}
