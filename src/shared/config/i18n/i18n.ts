@@ -4,6 +4,7 @@ import { initReactI18next } from 'react-i18next'
 
 import frCommon from '../locales/fr/common.json'
 import enCommon from '../locales/en/common.json'
+import ruCommon from '../locales/ru/common.json'
 
 i18n
     .use(LanguageDetector)
@@ -18,6 +19,7 @@ i18n
         resources: {
             fr: { common: frCommon },
             en: { common: enCommon },
+            ru: { common: ruCommon },
         }
     })
 
