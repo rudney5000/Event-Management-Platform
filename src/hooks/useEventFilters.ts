@@ -31,7 +31,12 @@ interface UseEventFiltersReturn {
   handleLike: (eventId: string) => void;
   toggleCategory: (id: string) => void;
   resetFilters: () => void;
+  totalPages: number;
+  currentPage: number;
+  setCurrentPage: (page: number) => void;
 }
+
+const ITEMS_PER_PAGE = 8
 
 export function useEventFilters({ page = 1, limit = 10 }: UseEventFiltersProps = {}): UseEventFiltersReturn {
   const { data, isLoading, error } = useGetEventsQuery({ page, limit });
@@ -42,6 +47,8 @@ export function useEventFilters({ page = 1, limit = 10 }: UseEventFiltersProps =
   const [searchQuery, setSearchQuery] = useState('');
   const [showFilters, setShowFilters] = useState(false);
   const [sortBy, setSortBy] = useState<'date' | 'price' | 'title'>('date');
+  const [currentPage, setCurrentPage] = useState(1)
+
 
   const dispatch = useAppDispatch();
   const likeIds = useAppSelector(state => state.likes.likedIds);
@@ -87,6 +94,11 @@ export function useEventFilters({ page = 1, limit = 10 }: UseEventFiltersProps =
     prev.includes(id) ? prev.filter(c => c !== id) : [...prev, id]
   );
 
+  const totalPages = Math.max(1, Math.ceil((filteredEvents.length ?? 0) / ITEMS_PER_PAGE))
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE
+  const paginatedEvents = filteredEvents.slice(startIndex, startIndex + ITEMS_PER_PAGE)
+
+
   const resetFilters = () => {
     setSelectedCategories([]);
     setPriceFilter('all');
@@ -116,5 +128,8 @@ export function useEventFilters({ page = 1, limit = 10 }: UseEventFiltersProps =
     handleLike,
     toggleCategory,
     resetFilters,
+    currentPage,
+    totalPages,
+    setCurrentPage,
   };
 }

@@ -3,6 +3,7 @@ import { EventFilters } from "../../features/event-filters/EventFilters";
 import { EventCard } from "../../features/event-list";
 import { useEventFilters } from "../../hooks/useEventFilters";
 import Footer from "../../shared/ui/footer/Footer";
+import Pagination from "../../shared/ui/pagination/Pagination";
 
 export function EventPage() {
     const {
@@ -22,6 +23,9 @@ export function EventPage() {
         handleLike,
         toggleCategory,
         resetFilters,
+        currentPage,
+        totalPages,
+        setCurrentPage,
     } = useEventFilters({ page: 1, limit: 10 });
 
     const likeIds = useAppSelector(state => state.likes.likedIds);
@@ -58,7 +62,16 @@ export function EventPage() {
                     ))}
                 </div>
                 {filteredEvents.length === 0 && <p className="text-center mt-8">Aucun événement trouvé.</p>}
-                <Footer/>
+                <div className="mt-8">
+                    <Pagination
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        onPageChange={setCurrentPage}
+                    />
+                </div>
+                <div className="mt-8">
+                    <Footer/>
+                </div>
             </div>
         </div>
     );
