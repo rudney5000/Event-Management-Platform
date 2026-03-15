@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { EventFilters } from "../../features/event-filters/EventFilters";
 import { EventCard } from "../../features/event-list";
 import { useEventFilters } from "../../hooks/useEventFilters";
@@ -5,6 +6,7 @@ import Footer from "../../shared/ui/footer/Footer";
 import Pagination from "../../shared/ui/pagination/Pagination";
 
 export function EventPage() {
+    const { t } = useTranslation()
     const {
         isLoading,
         error,
@@ -28,8 +30,17 @@ export function EventPage() {
         likeIds
     } = useEventFilters({ page: 1, limit: 10 });
 
-    if (isLoading) return <div className="min-h-screen flex items-center justify-center">Chargement...</div>;
-    if (error) return <div className="min-h-screen flex items-center justify-center">Erreur de chargement</div>;
+     if (isLoading) return (
+        <div className="min-h-screen flex items-center justify-center">
+            {t('eventPage.loading')}
+        </div>
+    );
+    
+    if (error) return (
+        <div className="min-h-screen flex items-center justify-center">
+            {t('eventPage.error')}
+        </div>
+    );
 
     return (
         <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
@@ -52,14 +63,18 @@ export function EventPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {filteredEvents.map(event => (
                         <EventCard
-                            key={event.id}
-                            event={event}
-                            isLiked={likeIds.includes(event.id)}
-                            onLike={handleLike}
+                        key={event.id}
+                        event={event}
+                        isLiked={likeIds.includes(event.id)}
+                        onLike={handleLike}
                         />
                     ))}
                 </div>
-                {filteredEvents.length === 0 && <p className="text-center mt-8">Aucun événement trouvé.</p>}
+                
+                {filteredEvents.length === 0 && (
+                    <p className="text-center mt-8">{t('eventPage.noEvents')}</p>
+                )}
+                
                 <div className="mt-8">
                     <Pagination
                         currentPage={currentPage}
@@ -67,6 +82,7 @@ export function EventPage() {
                         onPageChange={setCurrentPage}
                     />
                 </div>
+                
                 <div className="mt-8">
                     <Footer/>
                 </div>
