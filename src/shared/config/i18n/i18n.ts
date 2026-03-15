@@ -12,6 +12,9 @@ i18n
         supportedLngs: ["fr", "en", "ru"],
         ns: ["common", "dashboard"],
         defaultNS: "common",
+        interpolation: {
+            escapeValue: false
+        },
         backend: {
             loadPath: "/locales/{{lng}}/{{ns}}.json"
         }
