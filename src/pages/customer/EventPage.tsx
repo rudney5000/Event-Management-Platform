@@ -1,4 +1,3 @@
-import { useAppSelector } from "../../shared/hooks";
 import { EventFilters } from "../../features/event-filters/EventFilters";
 import { EventCard } from "../../features/event-list";
 import { useEventFilters } from "../../hooks/useEventFilters";
@@ -26,9 +25,8 @@ export function EventPage() {
         currentPage,
         totalPages,
         setCurrentPage,
+        likeIds
     } = useEventFilters({ page: 1, limit: 10 });
-
-    const likeIds = useAppSelector(state => state.likes.likedIds);
 
     if (isLoading) return <div className="min-h-screen flex items-center justify-center">Chargement...</div>;
     if (error) return <div className="min-h-screen flex items-center justify-center">Erreur de chargement</div>;

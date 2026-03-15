@@ -34,6 +34,7 @@ interface UseEventFiltersReturn {
   totalPages: number;
   currentPage: number;
   setCurrentPage: (page: number) => void;
+  likeIds: string[];
 }
 
 const ITEMS_PER_PAGE = 8
@@ -131,5 +132,6 @@ export function useEventFilters({ page = 1, limit = 10 }: UseEventFiltersProps =
     currentPage,
     totalPages,
     setCurrentPage,
+    likeIds
   };
 }
