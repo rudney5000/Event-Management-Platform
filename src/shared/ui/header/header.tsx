@@ -18,6 +18,7 @@ import { callsToAction, mainNavLinks, products } from './constants';
 import { Link, NavLink } from 'react-router';
 import { useUserMenu } from '../../hooks';
 import {useCurrentUser} from "../../../hooks/useCurrentUser.ts";
+import { LanguageSwitcher } from '../../../features/change-language/index.ts';
 
 
 export default function Header() {
@@ -102,7 +103,9 @@ export default function Header() {
             </NavLink>
           ))}
         </PopoverGroup>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+        <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-4                                                                                                                                                                                        ">
+
+          <LanguageSwitcher />
           {user ? (
             <div className="flex items-center gap-2">
               <span className="text-sm/6 font-semibold text-white">
