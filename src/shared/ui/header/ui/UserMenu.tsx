@@ -41,7 +41,7 @@ export function UserMenu({ user, onLogout }: UserMenuProps) {
         <div className="py-1">
           {userMenuItems.map((item) => (
             <MenuItem key={item.name}>
-              {({ focus }): JSX.Element => (
+              {({ focus }) => (
                 <NavLink
                   to={item.to}
                   className={`flex items-center gap-2 px-4 py-2 text-sm ${focus ? 'bg-white/5 text-white' : 'text-gray-300'}`}
@@ -54,7 +54,7 @@ export function UserMenu({ user, onLogout }: UserMenuProps) {
           ))}
           <div className="border-t border-white/10 my-1" />
           <MenuItem>
-            {({ focus }): JSX.Element => (
+            {({ focus }) => (
               <button
                 onClick={onLogout}
                 className={`flex items-center gap-2 px-4 py-2 text-sm w-full text-left ${focus ? 'bg-white/5 text-white' : 'text-gray-300'}`}

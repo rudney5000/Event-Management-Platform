@@ -2,10 +2,7 @@ import {
   AppstoreOutlined,
   DesktopOutlined,
   DollarOutlined,
-  FileOutlined,
   PieChartOutlined,
-  TeamOutlined,
-  UserOutlined,
 } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Users } from "lucide-react";

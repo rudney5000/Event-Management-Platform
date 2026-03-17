@@ -1,6 +1,6 @@
 import type { ChangeEvent } from 'react';
 import { CATEGORIES } from '../../entities/event/constants';
-import { X, Filter, ChevronDown } from 'lucide-react';
+import { Filter, ChevronDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 interface Props {

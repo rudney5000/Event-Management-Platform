@@ -41,7 +41,7 @@ export const eventsApi = createApi({
         }),
         getEventById: builder.query<EventFull, string>({
             query: (id) => `/api/events/${id}`,
-            providesTags: (result, error, id) =>
+            providesTags: (result, _error, id) =>
                 result ? [{ type: 'Events', id }] : [],
         })
     })

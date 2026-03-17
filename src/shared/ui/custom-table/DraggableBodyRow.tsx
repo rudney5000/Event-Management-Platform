@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { useDrag, useDrop } from "react-dnd"
 const type = "DraggableRow";
 
-export const DraggableBodyRow = <T extends { [key: string]: any }>({
+export const DraggableBodyRow = ({
   index,
   moveRow,
   className,

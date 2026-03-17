@@ -96,9 +96,6 @@ export function useEventFilters({ page = 1, limit = 10 }: UseEventFiltersProps =
   );
 
   const totalPages = Math.max(1, Math.ceil((filteredEvents.length ?? 0) / ITEMS_PER_PAGE))
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE
-  const paginatedEvents = filteredEvents.slice(startIndex, startIndex + ITEMS_PER_PAGE)
-
 
   const resetFilters = () => {
     setSelectedCategories([]);
