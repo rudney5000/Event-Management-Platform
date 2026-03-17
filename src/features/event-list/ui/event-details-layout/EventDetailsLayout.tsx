@@ -3,6 +3,7 @@ import { EventGallery } from "../event-details-gallery";
 import { EventTabs, type TabId } from "../event-details-tabs";
 import { LikeButton } from "../../../like-event";
 import type { EventFull } from '../../../../pages/admin/AdminEventPreviewPage.tsx';
+import { useTranslation } from "react-i18next";
 
 interface EventDetailsLayoutProps {
   event: EventFull;
@@ -11,10 +12,11 @@ interface EventDetailsLayoutProps {
 }
 
 export function EventDetailsLayout({ event, isLoading, error }: EventDetailsLayoutProps) {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState<TabId>('details');
 
-  if (isLoading) return <div>Chargement...</div>;
-  if (error) return <div>Erreur lors du chargement</div>;
+  if (isLoading) return <div>{t('eventPage.loading')}</div>;
+  if (error) return <div>{t('eventPage.error')}</div>;
 
   return (
     <div className="max-w-6xl mx-auto p-6 space-y-8">

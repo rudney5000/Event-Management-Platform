@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import type { EventFull } from '../../../../pages/admin/AdminEventPreviewPage';
 
 export type TabId = 'details' | 'speakers' | 'location' | 'reviews'
@@ -9,11 +10,12 @@ interface EventTabsProps {
 }
 
 export function EventTabs({ event, activeTab, setActiveTab }: EventTabsProps) {
-  const tabs: { id: TabId; label: string}[] = [
-    { id: 'details', label: 'Détails' },
-    { id: 'speakers', label: 'Intervenants' },
-    { id: 'location', label: 'Localisation' },
-    { id: 'reviews', label: 'Avis' }
+  const { t } = useTranslation();
+  const tabs: { id: TabId; label: string }[] = [
+    { id: 'details',  label: t('eventTabs.details')  },
+    { id: 'speakers', label: t('eventTabs.speakers') },
+    { id: 'location', label: t('eventTabs.location') },
+    { id: 'reviews',  label: t('eventTabs.reviews')  },
   ];
 
   return (
@@ -23,6 +25,7 @@ export function EventTabs({ event, activeTab, setActiveTab }: EventTabsProps) {
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
+            aria-current={activeTab === tab.id ? 'page' : undefined}
             className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
               activeTab === tab.id
                 ? 'border-indigo-600 text-indigo-600'
@@ -37,31 +40,40 @@ export function EventTabs({ event, activeTab, setActiveTab }: EventTabsProps) {
       <div className="bg-white rounded-xl shadow-md p-6">
         {activeTab === 'details' && (
           <div>
-            <h3 className="text-lg font-semibold mb-3">À propos de l'événement</h3>
+            <h3 className="text-lg font-semibold mb-3">
+              {t('eventTabs.aboutEvent')}
+            </h3>
             <p>{event.description}</p>
           </div>
         )}
 
         {activeTab === 'speakers' && (
           <div>
-            <h3 className="text-lg font-semibold mb-3">Intervenants</h3>
-            {event.speakers?.map((s, i) => (
-              <p key={i}>{s}</p>
-            ))}
+            <h3 className="text-lg font-semibold mb-3">
+              {t('eventTabs.speakers')}
+            </h3>
+            {event.speakers && event.speakers.length > 0
+              ? event.speakers.map((s, i) => <p key={i}>{s}</p>)
+              : <p className="text-gray-400">{t('eventTabs.noSpeakers')}</p>
+            }
           </div>
         )}
 
         {activeTab === 'location' && (
           <div>
-            <h3 className="text-lg font-semibold mb-3">Localisation</h3>
+            <h3 className="text-lg font-semibold mb-3">
+              {t('eventTabs.location')}
+            </h3>
             <p>{event.address}, {event.city}</p>
           </div>
         )}
 
         {activeTab === 'reviews' && (
           <div>
-            <h3 className="text-lg font-semibold mb-3">Avis</h3>
-            {/* Tu pourrais mettre ici des reviews simulés ou réels */}
+            <h3 className="text-lg font-semibold mb-3">
+              {t('eventTabs.reviews')}
+            </h3>
+            <p className="text-gray-400">{t('eventTabs.noReviews')}</p>
           </div>
         )}
       </div>
