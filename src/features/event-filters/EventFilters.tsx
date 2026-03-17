@@ -1,6 +1,7 @@
 import type { ChangeEvent } from 'react';
 import { CATEGORIES } from '../../entities/event/constants';
 import { X, Filter, ChevronDown } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface Props {
     selectedCategories: string[];
@@ -18,6 +19,7 @@ interface Props {
 }
 
 export function EventFilters(props: Props) {
+    const { t } = useTranslation();
     const {
         selectedCategories, toggleCategory, priceFilter, setPriceFilter,
         cityFilter, setCityFilter, uniqueCities, sortBy, setSortBy,
@@ -31,20 +33,27 @@ export function EventFilters(props: Props) {
                 className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 mb-4"
             >
                 <Filter className="w-4 h-4" />
-                Filtres
+                {t('filters.filters')}
                 <ChevronDown className={`w-4 h-4 transition-transform ${showFilters ? 'rotate-180' : ''}`} />
             </button>
 
             {showFilters && (
                 <div className="bg-white p-6 rounded-lg shadow-md mb-6">
                     <div className="flex justify-between items-center mb-4">
-                        <h2 className="font-semibold text-lg">Filtres</h2>
-                        <button onClick={resetFilters} className="text-sm text-indigo-600 hover:text-indigo-800">Réinitialiser</button>
+                        <h2 className="font-semibold text-lg">{t('filters.title')}</h2>
+                        <button
+                            onClick={resetFilters}
+                            className="text-sm text-indigo-600 hover:text-indigo-800"
+                        >
+                            {t('filters.reset')}
+                        </button>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">Catégories</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                {t('filters.categories')}
+                            </label>
                             <div className="space-y-2 max-h-48 overflow-y-auto">
                                 {CATEGORIES.map(cat => (
                                     <label key={cat.id} className="flex items-center">
@@ -64,40 +73,50 @@ export function EventFilters(props: Props) {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">Prix</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                {t('filters.price')}
+                            </label>
                             <select
                                 value={priceFilter}
-                                onChange={(e: ChangeEvent<HTMLSelectElement>) => setPriceFilter(e.target.value as any)}
+                                onChange={(e: ChangeEvent<HTMLSelectElement>) =>
+                                    setPriceFilter(e.target.value as 'all' | 'free' | 'paid')
+                                }
                                 className="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                             >
-                                <option value="all">Tous les prix</option>
-                                <option value="free">Gratuit</option>
-                                <option value="paid">Payant</option>
+                                <option value="all">{t('filters.allPrices')}</option>
+                                <option value="free">{t('filters.free')}</option>
+                                <option value="paid">{t('filters.paid')}</option>
                             </select>
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">Ville</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                {t('filters.city')}
+                            </label>
                             <select
                                 value={cityFilter}
                                 onChange={(e) => setCityFilter(e.target.value)}
                                 className="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                             >
-                                <option value="">Toutes les villes</option>
-                                {uniqueCities.map(city => <option key={city} value={city}>{city}</option>)}
+                                <option value="">{t('filters.allCities')}</option>
+                                {uniqueCities.map(city => (
+                                    <option key={city} value={city}>{city}</option>
+                                ))}
                             </select>
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-2">Trier par</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                {t('filters.sortBy')}
+                            </label>
                             <select
                                 value={sortBy}
-                                onChange={(e) => setSortBy(e.target.value as any)}
+                                onChange={(e) => setSortBy(e.target.value as 'date' | 'price' | 'title')}
                                 className="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                             >
-                                <option value="date">Date</option>
-                                <option value="price">Prix</option>
-                                <option value="title">Titre</option>
+                                <option value="date">{t('filters.sortDate')}</option>
+                                <option value="price">{t('filters.sortPrice')}</option>
+                                <option value="title">{t('filters.sortTitle')}</option>
                             </select>
                         </div>
                     </div>
