@@ -93,5 +93,14 @@
     "fr": "Français",
     "en": "Anglais",
     "ru": "Russe"
+  },
+  "eventTabs": {
+    "details": "Détails",
+    "speakers": "Intervenants",
+    "location": "Localisation",
+    "reviews": "Avis",
+    "aboutEvent": "À propos de l'événement",
+    "noSpeakers": "Aucun intervenant renseigné.",
+    "noReviews": "Aucun avis pour le moment."
   }
 }
