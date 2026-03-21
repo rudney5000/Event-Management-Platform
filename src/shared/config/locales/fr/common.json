@@ -87,7 +87,8 @@
     "page": "Page"
   },
   "footer": {
-    "rights": "Tous droits réservés"
+    "rights": "Tous droits réservés",
+    "poweredBy": ""
   },
   "languages": {
     "fr": "Français",
