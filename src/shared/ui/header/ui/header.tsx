@@ -79,14 +79,14 @@ export function Header() {
         <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-4">
           <LanguageSwitcher />
           <NotificationsMenu notifications={MOCK_NOTIFICATIONS} />
-          <UserMenu user={user} onLogout={handleLogout} />
+          <UserMenu user={user || null} onLogout={handleLogout} />
         </div>
       </nav>
 
       <MobileMenu
         open={mobileMenuOpen}
         onClose={closeMobileMenu}
-        user={user}
+        user={user || null}
         notifications={MOCK_NOTIFICATIONS}
         searchQuery={searchQuery}
         onSearchChange={(e) => setSearchQuery(e.target.value)}
