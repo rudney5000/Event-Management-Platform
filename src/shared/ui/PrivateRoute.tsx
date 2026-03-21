@@ -1,6 +1,6 @@
 import type { JSX } from "react";
 import { useSelector } from "react-redux";
-import type { RootState } from "../../app/store";
+import type { RootState } from "../../app/store/store.ts";
 import { Navigate } from "react-router";
 
 interface PrivateRouteProps {
@@ -8,9 +8,9 @@ interface PrivateRouteProps {
 }
 
 export function PrivateRoute({ children }: PrivateRouteProps) {
-  const isAuth = useSelector((state: RootState) => state.auth.token);
+  const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
 
-  if (!isAuth) {
+  if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
   }
 
