@@ -4,16 +4,19 @@ import { useLoginMutation } from "../../api/authApi"
 import { initialLoginForm } from "../../model/constants/loginConstants"
 import { useState } from "react"
 import { useAppDispatch } from '../../../../shared/hooks/useAppDispatch';
-import { setUser } from '../../model/authSlice.ts';
+import {tokenService} from "../../../../shared/lib/token.ts";
+import {loginSuccess} from "../../slice/authSlice.ts";
+import { setUserProfile } from '../../slice/userSlice.ts';
+import { errors } from "../../../../shared/config/i18n/errors.ts"
 
 export function LoginForm(){
     const navigate = useNavigate()
     const dispatch = useAppDispatch();
     const [login, { isLoading }] = useLoginMutation();
-    const [_error, setError] = useState<boolean>(false);
+    const [errorMsg, setErrorMsg] = useState<string | null>(null);
     const { 
       values, 
-      errors, 
+      errors: formErrors,
       validate, 
       handleChange 
     } = useLoginForm(initialLoginForm)
@@ -23,16 +26,32 @@ export function LoginForm(){
       
       if(!validate()) return
       try{
-        setError(false)
-        const user = await login(values).unwrap()
-        dispatch(setUser({ 
-          id: user.id?.toString(), 
-          email: user.email.toString() 
-        }));
+        setErrorMsg(null)
+          
+        const data = await login(values).unwrap()
+        tokenService.setAccess(data.accessToken)
+        tokenService.setRefresh(data.refreshToken)
+        
+        dispatch(loginSuccess({ accessToken: data.accessToken, refreshToken: data.refreshToken }));
+        dispatch(setUserProfile(data.user))
+          
         navigate("/admin")
       } catch(error) {
-        console.error("Login Failed", error)
-        setError(true)
+        console.error(errors.login.failed, error)
+        let msg = errors.login.invalidCredentials.en;
+
+          if (
+              typeof error === "object" &&
+              error !== null &&
+              "data" in error &&
+              typeof (error as { data: unknown }).data === "object" &&
+              (error as { data: Record<string, unknown> }).data !== null &&
+              "message" in (error as { data: Record<string, unknown> }).data
+          ) {
+              msg = String((error as { data: { message: unknown } }).data.message);
+          }
+
+        setErrorMsg(msg)
       }
     }
 
@@ -54,7 +73,7 @@ export function LoginForm(){
               autoComplete="email"
               className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
             />
-            {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
+            {formErrors.email && <p className="text-red-500 text-sm">{formErrors.email}</p>}
           </div>
         </div>
 
@@ -81,7 +100,8 @@ export function LoginForm(){
               autoComplete="current-password"
               className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
             />
-            {errors.password && <p className="text-red-500 text-sm">{errors.password}</p>}
+            {formErrors.password && <p className="text-red-500 text-sm">{formErrors.password}</p>}
+            {errorMsg && <p className="error">{errorMsg}</p>}
           </div>
         </div>
 

@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, Navigate } from "react-router";
 import App from "../App";
 import { PrivateRoute } from "../../shared/ui/PrivateRoute";
 import { EventsPage } from "../../pages/admin";
@@ -38,6 +38,10 @@ export const router = createBrowserRouter([
                     </PrivateRoute>
                 ),
                 children: [
+                    {
+                        index: true,
+                        element: <Navigate to="/admin/dashboard" replace />
+                    },
                     {
                         path: "dashboard",
                         element: <DashboardPage/>
