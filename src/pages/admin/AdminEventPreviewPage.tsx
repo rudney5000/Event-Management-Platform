@@ -58,6 +58,7 @@ export interface EventFull extends EventFormValues {
 export function AdminEventPreviewPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const { data: event, isLoading } = useGetEventByIdQuery(id!);
   const { data: organizers } = useGetOrganizersQuery();
@@ -273,7 +274,7 @@ export function AdminEventPreviewPage() {
                     <MapPinned /> {t("preview.locationDetails")}
                   </Text>
                   <Text className="text-gray-700">
-                    {t("preview.coordinates", { lat: event.coordinates.lat, lng: event.coordinates.lng })}
+                    {t("preview.coordinates", { lat: event.coordinates.lat.toString(), lng: event.coordinates.lng.toString() })}
                   </Text>
                 </div>
               )}

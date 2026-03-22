@@ -9,6 +9,13 @@ interface CustomTableProps<T> extends TableProps<T> {
   onReorder?: (newData: T[]) => void;
 }
 
+interface CustomRowProps<T> {
+  record: T;
+  index: number;
+  className?: string;
+  style?: React.CSSProperties;
+}
+
 export function CustomTable<T extends object>({
   rowKey,
   draggable = false,
@@ -20,7 +27,7 @@ export function CustomTable<T extends object>({
     const components = draggable
     ? {
         body: {
-          row: (rowProps: any) => (
+          row: (rowProps: CustomRowProps<T>) => (
             <DraggableBodyRow
               {...rowProps}
               moveRow={(fromIndex: number, toIndex: number) => {

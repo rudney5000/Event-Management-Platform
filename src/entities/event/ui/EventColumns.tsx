@@ -22,6 +22,7 @@ export function useEventColumns({
   const { t } = useTranslation("dashboard");
   const { data: categories } = useGetCategoriesQuery();
   const { data: currencies } = useGetCurrenciesQuery();
+  const path = useLocalizedPath();
 
   return [
     {
