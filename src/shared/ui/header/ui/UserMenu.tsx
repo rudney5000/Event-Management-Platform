@@ -3,6 +3,7 @@ import { NavLink, Link } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { UserCircleIcon } from 'lucide-react';
 import { getUserMenuItems } from '../model/constants';
+import { useLocalizedPath } from '../../../hooks/useLocalizedPath';
 
 interface User {
   email: string;
@@ -15,15 +16,19 @@ interface UserMenuProps {
 
 export function UserMenu({ user, onLogout }: UserMenuProps) {
   const { t } = useTranslation();
-  const userMenuItems = getUserMenuItems(t);
+  const localizedPath = useLocalizedPath();
+  const userMenuItems = getUserMenuItems(t).map((item) => ({
+    ...item,
+    to: localizedPath(item.to),
+  }));
 
   if (!user) {
     return (
       <div className="flex items-center gap-2">
-        <Link to="/login" className="text-sm/6 w-full font-semibold text-white hover:text-gray-300 transition-colors px-3 py-2">
+        <Link to={localizedPath('/login')} className="text-sm/6 w-full font-semibold text-white hover:text-gray-300 transition-colors px-3 py-2">
           {t('header.logIn')}
         </Link>
-        <Link to="/signup" className="text-sm/6 w-full font-semibold bg-indigo-600 text-white px-3 py-2 rounded-lg hover:bg-indigo-700 transition-colors">
+        <Link to={localizedPath('/register')} className="text-sm/6 w-full font-semibold bg-indigo-600 text-white px-3 py-2 rounded-lg hover:bg-indigo-700 transition-colors">
           {t('header.signUp')}
         </Link>
       </div>

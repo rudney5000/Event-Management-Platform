@@ -9,6 +9,7 @@ import { Users } from "lucide-react";
 import { Link } from "react-router";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import { useLocalizedPath } from "../../../../shared/hooks/useLocalizedPath";
 
 type MenuItem = Required<MenuProps>["items"][number];
 
@@ -26,35 +27,36 @@ const item = (
 
 export function useAdminMenuItems(): MenuItem[] {
   const { t } = useTranslation("dashboard");
+  const path = useLocalizedPath();
 
   return useMemo(
     () => [
       item(
-        <Link to="/admin/dashboard">{t("nav.dashboard")}</Link>,
-        "dashboard",
+        <Link to={path("/admin/dashboard")}>{t("nav.dashboard")}</Link>,
+        path("/admin/dashboard"),
         <PieChartOutlined />
       ),
       item(
-        <Link to="/admin/events">{t("nav.events")}</Link>,
-        "events",
+        <Link to={path("/admin/events")}>{t("nav.events")}</Link>,
+        path("/admin/events"),
         <DesktopOutlined />
       ),
       item(
-        <Link to="/admin/category">{t("nav.category")}</Link>,
-        "category",
+        <Link to={path("/admin/category")}>{t("nav.category")}</Link>,
+        path("/admin/category"),
         <AppstoreOutlined />
       ),
       item(
-        <Link to="/admin/currency">{t("nav.currency")}</Link>,
-        "Currency",
+        <Link to={path("/admin/currency")}>{t("nav.currency")}</Link>,
+        path("/admin/currency"),
         <DollarOutlined />
       ),
       item(
-        <Link to="/admin/organizer">{t("nav.organizer")}</Link>,
-        "Organizer",
+        <Link to={path("/admin/organizer")}>{t("nav.organizer")}</Link>,
+        path("/admin/organizer"),
         <Users size={18} />
       ),
     ],
-    [t]
+    [t, path]
   );
 }

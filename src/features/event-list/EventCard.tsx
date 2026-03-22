@@ -11,6 +11,7 @@ import { useGetCategoriesQuery } from "../../entities/category/api";
 import { useGetOrganizersQuery } from "../../entities/organizer/api/OrganizerApi";
 import type { EventFull } from "../../pages/admin/AdminEventPreviewPage";
 import { useTranslation } from "react-i18next";
+import { useLocalizedPath } from "../../shared/hooks/useLocalizedPath";
 
 interface Props {
     event: EventFull;
@@ -22,6 +23,7 @@ export function EventCard({ event, isLiked, onLike }: Props) {
     const { t } = useTranslation();
     const { data: categories } = useGetCategoriesQuery();
     const { data: organizers } = useGetOrganizersQuery();
+    const path = useLocalizedPath();
     
     const category = categories?.find(cat => cat.id === event.categoryId);
     const organizer = organizers?.find(org => org.id === event.organizerId);
@@ -130,7 +132,7 @@ export function EventCard({ event, isLiked, onLike }: Props) {
                         </button>
 
                         <Link
-                            to={`/event/${event.id}/details`}
+                            to={path(`/event/${event.id}`)}
                             className="p-2 text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-full transition-all"
                         >
                             <Info className="w-5 h-5" />
@@ -138,7 +140,7 @@ export function EventCard({ event, isLiked, onLike }: Props) {
                     </div>
 
                     <Link
-                        to={`/event/${event.id}`}
+                        to={path(`/event/${event.id}`)}
                         className="inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition-colors"
                     >
                         {t('eventCard.view')}

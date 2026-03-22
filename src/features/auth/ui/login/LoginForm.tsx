@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router"
+import { useLocalizedPath } from "../../../../shared/hooks/useLocalizedPath"
 import { useLoginForm } from "../../hooks/useLoginForm"
 import { useLoginMutation } from "../../api/authApi"
 import { initialLoginForm } from "../../model/constants/loginConstants"
@@ -11,6 +12,7 @@ import { errors } from "../../../../shared/config/i18n/errors.ts"
 
 export function LoginForm(){
     const navigate = useNavigate()
+    const localizedPath = useLocalizedPath()
     const dispatch = useAppDispatch();
     const [login, { isLoading }] = useLoginMutation();
     const [errorMsg, setErrorMsg] = useState<string | null>(null);
@@ -35,7 +37,7 @@ export function LoginForm(){
         dispatch(loginSuccess({ accessToken: data.accessToken, refreshToken: data.refreshToken }));
         dispatch(setUserProfile(data.user))
           
-        navigate("/admin")
+        navigate(localizedPath("/admin"))
       } catch(error) {
         console.error(errors.login.failed, error)
         let msg = errors.login.invalidCredentials.en;
@@ -115,7 +117,7 @@ export function LoginForm(){
           </button>
           <button
             type="button"
-            onClick={() => navigate('/register')}
+            onClick={() => navigate(localizedPath('/register'))}
             className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
             Register

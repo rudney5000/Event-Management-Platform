@@ -3,9 +3,11 @@ import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import { NavLink } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { getCallsToAction, getProducts } from '../model/constants';
+import { useLocalizedPath } from '../../../hooks/useLocalizedPath';
 
 export function ProductsPopover() {
   const { t } = useTranslation();
+  const localizedPath = useLocalizedPath();
   const products = getProducts(t);
   const callsToAction = getCallsToAction(t);
 
@@ -27,7 +29,7 @@ export function ProductsPopover() {
                 <item.icon aria-hidden="true" className="size-6 text-gray-400 group-hover:text-white" />
               </div>
               <div className="flex-auto">
-                <NavLink to={item.href} className="block font-semibold text-white">
+                <NavLink to={localizedPath(item.href)} className="block font-semibold text-white">
                   {item.name}
                   <span className="absolute inset-0" />
                 </NavLink>
@@ -40,7 +42,7 @@ export function ProductsPopover() {
           {callsToAction.map((item) => (
             <NavLink
               key={item.name}
-              to={item.href}
+              to={localizedPath(item.href)}
               className="flex items-center justify-center gap-x-2.5 p-3 text-sm/6 font-semibold text-white hover:bg-gray-700/50"
             >
               <item.icon aria-hidden="true" className="size-5 flex-none text-gray-500" />

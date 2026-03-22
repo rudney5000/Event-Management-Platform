@@ -2,6 +2,8 @@ import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import { Languages } from 'lucide-react';
+import { useLocation, useNavigate } from 'react-router';
+import { stripLocalePrefix } from '../../../shared/config/i18n/locale-config';
 
 const languages = [
   { code: 'fr', label: 'FR', name: 'Français', flag: '🇫🇷' },
@@ -12,11 +14,16 @@ const languages = [
 export function LanguageSwitcher() {
   const { t, i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
   
   const currentLanguage = languages.find(lang => lang.code === i18n.language) || languages[1];
 
   const handleLanguageChange = (langCode: string) => {
-    i18n.changeLanguage(langCode);
+    const pathWithoutLocale = stripLocalePrefix(location.pathname);
+    const suffix = pathWithoutLocale === '/' ? '' : pathWithoutLocale;
+    navigate(`/${langCode}${suffix}${location.search}`);
+    void i18n.changeLanguage(langCode);
     setIsOpen(false);
   };
 

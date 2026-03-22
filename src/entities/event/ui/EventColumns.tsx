@@ -7,6 +7,7 @@ import { Link } from "react-router";
 import { EyeIcon, PencilIcon, TrashIcon } from "lucide-react";
 import { useGetCategoriesQuery } from "../../category/api";
 import { useGetCurrenciesQuery } from "../../currency/api/currencyApi";
+import { useLocalizedPath } from "../../../shared/hooks/useLocalizedPath";
 
 interface EventColumnsProps {
   onEdit: (event: EventFormValues) => void;
@@ -148,7 +149,7 @@ export function useEventColumns({
             {
               key: "preview",
               label: (
-                <Link to={`/admin/events/preview/${row.id}`}>
+                <Link to={path(`/admin/events/preview/${row.id}`)}>
                   <Space>
                     <EyeIcon className="w-4 h-4 text-blue-500" />
                     {t("events.columns.preview")}

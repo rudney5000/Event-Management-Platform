@@ -12,14 +12,19 @@ import { MobileMenu } from './MobileMenu';
 import { useCurrentUser } from '../../../../hooks/useCurrentUser';
 import { useUserMenu } from '../../../hooks';
 import { LanguageSwitcher } from '../../../../features/change-language';
+import { useLocalizedPath } from '../../../hooks/useLocalizedPath';
 
 export function Header() {
   const { t } = useTranslation();
+  const localizedPath = useLocalizedPath();
   const [searchQuery, setSearchQuery] = useState('');
   const { open: mobileMenuOpen, toggle: toggleMobileMenu, close: closeMobileMenu } = useUserMenu();
   const { user } = useCurrentUser();
 
-  const mainNavLinks = getMainNavLinks(t);
+  const mainNavLinks = getMainNavLinks(t).map((link) => ({
+    ...link,
+    to: localizedPath(link.to),
+  }));
 
   const handleLogout = () => {
     console.log('Logout');
@@ -29,7 +34,7 @@ export function Header() {
     <header className="bg-gray-900">
       <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8 gap-2">
         <div className="flex lg:flex-1">
-          <Link to="/" className="-m-1.5 p-1.5 flex items-center gap-2">
+          <Link to={localizedPath('/')} className="-m-1.5 p-1.5 flex items-center gap-2">
             <span className="sr-only">{t('header.companyName')}</span>
             <img
               alt=""
