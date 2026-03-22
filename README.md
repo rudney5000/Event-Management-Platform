@@ -151,7 +151,7 @@ feature/
 
 ### Environment Variables
 ```env
-VITE_API_URL=http://localhost:3001
+VITE_API_URL=https://event-management-platform-api.onrender.com
 ```
 
 ### Redux Configuration
