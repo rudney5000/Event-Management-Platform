@@ -3,11 +3,13 @@ import { useState } from "react";
 import { AdminSidebar } from "./AdminSidebar";
 import { AdminHeader } from "./AdminHeader";
 import { Outlet } from "react-router";
+import { useTranslation } from "react-i18next";
 
 const { Content, Footer } = Layout;
 
 export function AdminLayout() {
   const [collapsed, setCollapsed] = useState(false);
+  const { t } = useTranslation("dashboard");
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -24,7 +26,7 @@ export function AdminLayout() {
         </Content>
 
         <Footer style={{ textAlign: "center" }}>
-          Ant Design ©{new Date().getFullYear()}
+          {t("layout.footer", { year: new Date().getFullYear() })}
         </Footer>
       </Layout>
     </Layout>

@@ -1,5 +1,5 @@
 import { Layout, Menu } from "antd";
-import { menuItems } from "../model/menuItems";
+import { useAdminMenuItems } from "../model/menuItems";
 import { useLocation, useNavigate } from "react-router";
 
 const { Sider } = Layout;
@@ -13,6 +13,7 @@ export function AdminSidebar({ collapsed, onCollapse }: Props) {
 
   const location = useLocation();
   const navigate = useNavigate();
+  const menuItems = useAdminMenuItems();
   return (
     <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
       <Menu

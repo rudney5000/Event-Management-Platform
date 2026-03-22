@@ -1,5 +1,6 @@
 import type { ColumnsType } from "antd/es/table";
 import { Space } from "antd";
+import { useTranslation } from "react-i18next";
 import type { Currency } from "../model/type";
 import { PencilIcon, TrashIcon } from "lucide-react";
 import { ColumnActions } from "../../../shared/ui/column-actions/ColumnActions";
@@ -9,16 +10,18 @@ interface CurrencyColumnsProps {
   onDelete: (id: string) => void;
 }
 
-export function getCurrencyColumns({
+export function useCurrencyColumns({
   onEdit,
   onDelete,
 }: CurrencyColumnsProps): ColumnsType<Currency> {
+  const { t } = useTranslation("dashboard");
+
   return [
-    { title: "Code", dataIndex: "code", key: "code" },
-    { title: "Name", dataIndex: "name", key: "name" },
-    { title: "Symbol", dataIndex: "symbol", key: "symbol" },
+    { title: t("currencies.columns.code"), dataIndex: "code", key: "code" },
+    { title: t("currencies.columns.name"), dataIndex: "name", key: "name" },
+    { title: t("currencies.columns.symbol"), dataIndex: "symbol", key: "symbol" },
     {
-      title: "Actions",
+      title: t("currencies.columns.actions"),
       key: "actions",
       render: (_: unknown, record: Currency) => (
         <ColumnActions
@@ -29,7 +32,7 @@ export function getCurrencyColumns({
               label: (
                 <Space>
                   <PencilIcon className="w-4 h-4" />
-                  Edit
+                  {t("currencies.columns.edit")}
                 </Space>
               ),
               onClick: () => onEdit(row),
@@ -39,7 +42,7 @@ export function getCurrencyColumns({
               label: (
                 <Space>
                   <TrashIcon className="w-4 h-4 text-red-500" />
-                  Delete
+                  {t("currencies.columns.delete")}
                 </Space>
               ),
               danger: true,

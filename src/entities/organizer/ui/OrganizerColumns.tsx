@@ -1,4 +1,5 @@
 import type { ColumnsType } from "antd/es/table";
+import { useTranslation } from "react-i18next";
 import type { Organizer } from "../model/type";
 import { ColumnActions } from "../../../shared/ui/column-actions/ColumnActions";
 import { Avatar, Space } from 'antd';
@@ -9,10 +10,12 @@ interface OrganizerColumnsProps {
     onDelete: (id: string) => void;
 }
 
-export function getOrganizerColumns({onEdit, onDelete}: OrganizerColumnsProps): ColumnsType<Organizer> {
+export function useOrganizerColumns({onEdit, onDelete}: OrganizerColumnsProps): ColumnsType<Organizer> {
+    const { t } = useTranslation("dashboard");
+
     return [
       {
-        title: "Logo",
+        title: t("organizers.columns.logo"),
         dataIndex: "logo",
         key: "logo",
         render: (logo: string | string[]) => {
@@ -26,10 +29,10 @@ export function getOrganizerColumns({onEdit, onDelete}: OrganizerColumnsProps): 
           );
         },
       },
-        { title: "Name", dataIndex: "name", key: "name" },
-        { title: "ContactEmail", dataIndex: "contactEmail", key: "contactEmail" },
+        { title: t("organizers.columns.name"), dataIndex: "name", key: "name" },
+        { title: t("organizers.columns.contactEmail"), dataIndex: "contactEmail", key: "contactEmail" },
         {
-            title: "Actions",
+            title: t("organizers.columns.actions"),
             key: "actions",
             render: (_: unknown, record: Organizer) => (
             <ColumnActions
@@ -40,7 +43,7 @@ export function getOrganizerColumns({onEdit, onDelete}: OrganizerColumnsProps): 
                     label: (
                     <Space>
                         <PencilIcon className="w-4 h-4" />
-                        Edit
+                        {t("organizers.columns.edit")}
                     </Space>
                     ),
                     onClick: () => onEdit(row),
@@ -50,7 +53,7 @@ export function getOrganizerColumns({onEdit, onDelete}: OrganizerColumnsProps): 
                     label: (
                     <Space>
                         <TrashIcon className="w-4 h-4 text-red-500" />
-                        Delete
+                        {t("organizers.columns.delete")}
                     </Space>
                     ),
                     danger: true,

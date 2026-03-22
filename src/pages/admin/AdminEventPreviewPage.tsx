@@ -1,4 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import {
   Card,
   Typography,
@@ -22,8 +23,8 @@ import {
   StarOutlined
 } from "@ant-design/icons";
 import { useGetEventByIdQuery } from "../../entities/event/api/eventsApi";
-import { useGetOrganizersQuery } from "../../entities/organizer/api/OrganizerApi";
-import type { EventFormValues } from "../../features/event-form/ui/EventForm";
+import { useGetOrganizersQuery } from "../../entities/organizer";
+import type { EventFormValues } from "../../features/event-form";
 import { MapPinned } from 'lucide-react';
 
 const { Title, Paragraph, Text, Link } = Typography;
@@ -73,7 +74,7 @@ export function AdminEventPreviewPage() {
           icon={<span>←</span>}
           className="mb-6 text-gray-600 hover:text-gray-800"
         >
-          Back to Events
+          {t("preview.backToEvents")}
         </Button>
 
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden mb-6">
@@ -91,12 +92,12 @@ export function AdminEventPreviewPage() {
                   <div className="flex flex-wrap gap-2">
                     <Badge 
                       color={event.status === "published" ? "green" : "orange"}
-                      text={event.status.toUpperCase()}
+                      text={event.status === "published" ? t("preview.statusPublished") : t("preview.statusDraft")}
                       className="bg-white bg-opacity-20 text-white"
                     />
                     <Badge 
                       color="blue"
-                      text={`Priority ${event.priority}`}
+                      text={t("preview.priorityBadge", { priority: event.priority })}
                       className="bg-white bg-opacity-20 text-white"
                     />
                   </div>
@@ -112,12 +113,12 @@ export function AdminEventPreviewPage() {
                 <div className="flex flex-wrap gap-2 justify-center">
                   <Badge 
                     color={event.status === "published" ? "green" : "orange"}
-                    text={event.status.toUpperCase()}
+                    text={event.status === "published" ? t("preview.statusPublished") : t("preview.statusDraft")}
                     className="bg-white bg-opacity-20 text-white"
                   />
                   <Badge 
                     color="blue"
-                    text={`Priority ${event.priority}`}
+                    text={t("preview.priorityBadge", { priority: event.priority })}
                     className="bg-white bg-opacity-20 text-white"
                   />
                 </div>
@@ -131,7 +132,7 @@ export function AdminEventPreviewPage() {
                 <div className="flex items-center gap-3">
                   <CalendarOutlined className="text-blue-600 text-xl" />
                   <div>
-                    <Text type="secondary" className="text-xs">Date</Text>
+                    <Text type="secondary" className="text-xs">{t("preview.date")}</Text>
                     <div className="font-semibold">{event.date}</div>
                     {event.endDate && <Text type="secondary">→ {event.endDate}</Text>}
                   </div>
@@ -142,7 +143,7 @@ export function AdminEventPreviewPage() {
                 <div className="flex items-center gap-3">
                   <MapPinned className="text-green-600 text-xl" />
                   <div>
-                    <Text type="secondary" className="text-xs">Location</Text>
+                    <Text type="secondary" className="text-xs">{t("preview.location")}</Text>
                     <div className="font-semibold">{event.city}</div>
                     <Text type="secondary" className="text-sm">{event.address}</Text>
                   </div>
@@ -153,9 +154,9 @@ export function AdminEventPreviewPage() {
                 <div className="flex items-center gap-3">
                   <DollarOutlined className="text-purple-600 text-xl" />
                   <div>
-                    <Text type="secondary" className="text-xs">Price</Text>
+                    <Text type="secondary" className="text-xs">{t("preview.price")}</Text>
                     <div className="font-semibold">
-                      {event.priceType === "free" ? "Free" : `${event.price} €`}
+                      {event.priceType === "free" ? t("preview.free") : t("preview.pricePaid", { price: event.price })}
                     </div>
                   </div>
                 </div>
@@ -173,7 +174,7 @@ export function AdminEventPreviewPage() {
               {event.capacity && (
                 <div className="flex items-center gap-2 bg-gray-50 px-3 py-2 rounded-lg">
                   <TeamOutlined className="text-gray-600" />
-                  <Text>{event.availableSeats || 0} / {event.capacity} seats</Text>
+                  <Text>{t("preview.seats", { available: event.availableSeats || 0, capacity: event.capacity })}</Text>
                 </div>
               )}
 
@@ -201,7 +202,7 @@ export function AdminEventPreviewPage() {
                     />
                   )}
                   <div className="flex-1">
-                    <Text strong className="text-lg">Organizer</Text>
+                    <Text strong className="text-lg">{t("preview.organizer")}</Text>
                     <div className="text-gray-700 font-medium">
                       {organizers.find(o => o.id === event.organizerId)?.name}
                     </div>
@@ -217,7 +218,7 @@ export function AdminEventPreviewPage() {
 
             {event.tags && event.tags.length > 0 && (
               <div className="mb-6">
-                <Text strong className="block mb-2">Tags</Text>
+                <Text strong className="block mb-2">{t("preview.tags")}</Text>
                 <div className="flex flex-wrap gap-2">
                   {event.tags.map((tag) => (
                     <Tag key={tag} color="default" className="px-3 py-1">
@@ -231,7 +232,7 @@ export function AdminEventPreviewPage() {
             {event.speakers && event.speakers.length > 0 && (
               <div className="mb-6">
                 <Text strong className="block mb-2 flex items-center gap-2">
-                  <UserOutlined /> Speakers
+                  <UserOutlined /> {t("preview.speakers")}
                 </Text>
                 <div className="flex flex-wrap gap-2">
                   {event.speakers.map((speaker, index) => (
@@ -247,7 +248,7 @@ export function AdminEventPreviewPage() {
 
             {event.shortDescription && (
               <div className="mb-6">
-                <Text strong className="block mb-2">Summary</Text>
+                <Text strong className="block mb-2">{t("preview.summary")}</Text>
                 <Paragraph className="text-gray-700 bg-gray-50 p-4 rounded-lg">
                   {event.shortDescription}
                 </Paragraph>
@@ -256,7 +257,7 @@ export function AdminEventPreviewPage() {
 
             {event.description && (
               <div className="mb-6">
-                <Text strong className="block mb-2">Full Description</Text>
+                <Text strong className="block mb-2">{t("preview.fullDescription")}</Text>
                 <Paragraph className="text-gray-700 bg-gray-50 p-4 rounded-lg">
                   {event.description}
                 </Paragraph>
@@ -269,10 +270,10 @@ export function AdminEventPreviewPage() {
               {event.coordinates && (
                 <div className="bg-gray-50 rounded-lg p-4">
                   <Text strong className="block mb-2 flex items-center gap-2">
-                    <MapPinned /> Location Details
+                    <MapPinned /> {t("preview.locationDetails")}
                   </Text>
                   <Text className="text-gray-700">
-                    Coordinates: {event.coordinates.lat}, {event.coordinates.lng}
+                    {t("preview.coordinates", { lat: event.coordinates.lat, lng: event.coordinates.lng })}
                   </Text>
                 </div>
               )}
@@ -280,10 +281,10 @@ export function AdminEventPreviewPage() {
               {event.bookingUrl && (
                 <div className="bg-gray-50 rounded-lg p-4">
                   <Text strong className="block mb-2 flex items-center gap-2">
-                    <LinkOutlined /> Booking
+                    <LinkOutlined /> {t("preview.booking")}
                   </Text>
                   <Link href={event.bookingUrl} target="_blank" className="text-blue-600 hover:text-blue-800">
-                    Open Booking Page →
+                    {t("preview.openBooking")}
                   </Link>
                 </div>
               )}
@@ -291,7 +292,7 @@ export function AdminEventPreviewPage() {
 
             {event.sponsors && event.sponsors.length > 0 && (
               <div className="mb-6">
-                <Text strong className="block mb-2">Sponsors</Text>
+                <Text strong className="block mb-2">{t("preview.sponsors")}</Text>
                 <div className="flex flex-wrap gap-2">
                   {event.sponsors.map((sponsor, index) => (
                     <div key={index} className="bg-yellow-50 px-3 py-2 rounded-lg border border-yellow-200">
@@ -304,7 +305,7 @@ export function AdminEventPreviewPage() {
 
             {event.media && event.media.length > 0 && (
               <div className="mb-6">
-                <Text strong className="block mb-2">Media Gallery</Text>
+                <Text strong className="block mb-2">{t("preview.mediaGallery")}</Text>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {event.media.map((m, i) =>
                     m.type === "video" ? (
@@ -312,10 +313,10 @@ export function AdminEventPreviewPage() {
                         <div className="flex items-center gap-3">
                           <VideoCameraOutlined className="text-red-500 text-xl" />
                           <div>
-                            <Text strong>Video {i + 1}</Text>
+                            <Text strong>{t("preview.video", { n: i + 1 })}</Text>
                             <div>
                               <Link href={m.url} target="_blank" className="text-blue-600 hover:text-blue-800">
-                                Watch Video →
+                                {t("preview.watchVideo")}
                               </Link>
                             </div>
                           </div>
@@ -325,7 +326,7 @@ export function AdminEventPreviewPage() {
                       <div key={i} className="bg-gray-50 rounded-lg p-2 border border-gray-200">
                         <div className="flex items-center gap-3">
                           <PictureOutlined className="text-green-500 text-xl" />
-                          <Image src={m.url} alt={`Media ${i + 1}`} width={120} className="rounded" />
+                          <Image src={m.url} alt={t("preview.mediaAlt", { n: i + 1 })} width={120} className="rounded" />
                         </div>
                       </div>
                     )
@@ -337,7 +338,7 @@ export function AdminEventPreviewPage() {
             {event.schedule && event.schedule.length > 0 && (
               <div className="mb-6">
                 <Text strong className="block mb-2 flex items-center gap-2">
-                  <ClockCircleOutlined /> Event Schedule
+                  <ClockCircleOutlined /> {t("preview.schedule")}
                 </Text>
                 <div className="space-y-2">
                   {event.schedule.map((item, index) => (

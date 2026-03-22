@@ -1,5 +1,6 @@
 import type { ColumnsType } from "antd/es/table";
 import { Space } from "antd";
+import { useTranslation } from "react-i18next";
 import { ColumnActions } from "../../../shared/ui/column-actions/ColumnActions";
 import { PencilIcon, TrashIcon } from "lucide-react";
 import type { Category } from "../model";
@@ -9,23 +10,25 @@ interface CategoryColumnsProps {
   onDelete: (id: string) => void;
 }
 
-export function getCategoryColumns({
+export function useCategoryColumns({
   onEdit,
   onDelete,
 }: CategoryColumnsProps): ColumnsType<Category> {
+  const { t } = useTranslation("dashboard");
+
   return [
     {
-      title: "Icon",
+      title: t("categories.columns.icon"),
       dataIndex: "icon",
       key: "icon",
     },
     {
-      title: "Name",
+      title: t("categories.columns.name"),
       dataIndex: "name",
       key: "name",
     },
     {
-      title: "Color",
+      title: t("categories.columns.color"),
       dataIndex: "color",
       key: "color",
       render: (color: string) => (
@@ -36,12 +39,12 @@ export function getCategoryColumns({
       ),
     },
     {
-      title: "Description",
+      title: t("categories.columns.description"),
       dataIndex: "description",
       key: "description"
     }, 
     {
-      title: "Actions",
+      title: t("categories.columns.actions"),
       key: "actions",
       render: (_, record) => (
         <ColumnActions
@@ -52,7 +55,7 @@ export function getCategoryColumns({
               label: (
                 <Space>
                   <PencilIcon className="w-4 h-4" />
-                  Edit
+                  {t("categories.columns.edit")}
                 </Space>
               ),
               onClick: () => onEdit(row),
@@ -62,7 +65,7 @@ export function getCategoryColumns({
               label: (
                 <Space>
                   <TrashIcon className="w-4 h-4 text-red-500" />
-                  Delete
+                  {t("categories.columns.delete")}
                 </Space>
               ),
               danger: true,

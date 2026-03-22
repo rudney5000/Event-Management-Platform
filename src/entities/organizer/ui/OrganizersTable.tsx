@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
 import { Button, Modal, Space, Typography, message } from "antd";
+import { useTranslation } from "react-i18next";
 import type { TableRowSelection } from "antd/es/table/interface";
 import { CustomTable } from "../../../shared/ui/custom-table/CustomTable";
 import { useCreateOrganizerMutation, useDeleteOrganizerMutation, useGetOrganizersQuery, useUpdateOrganizerMutation } from "../api/OrganizerApi";
 import type { Organizer } from "../model/type";
-import { getOrganizerColumns } from "./OrganizerColumns";
+import { useOrganizerColumns } from "./OrganizerColumns";
 import { OrganizerForm } from "../../../features/organizer/ui/OrganizerForm";
 
 const { Title } = Typography;
 
 export function OrganizersTable() {
+  const { t } = useTranslation("dashboard");
   const { data, isLoading: _isLoading } = useGetOrganizersQuery();
   const [localData, setLocalData] = useState<Organizer[]>([]);
 
@@ -37,9 +39,9 @@ export function OrganizersTable() {
   const handleDelete = async (id: string) => {
     try {
       await deleteOrganizer(id).unwrap();
-      message.success("Organizer deleted");
+      message.success(t("organizers.msgDeleted"));
     } catch {
-      message.error("Failed to delete organizer");
+      message.error(t("organizers.msgDeleteFailed"));
     }
   };
 
@@ -47,18 +49,18 @@ export function OrganizersTable() {
     try {
       if (editingOrganizer) {
         await updateOrganizer({ id: editingOrganizer.id!, organizer: values }).unwrap();
-        message.success("Organizer updated");
+        message.success(t("organizers.msgUpdated"));
       } else {
         await createOrganizer(values).unwrap();
-        message.success("Organizer added");
+        message.success(t("organizers.msgAdded"));
       }
       setIsModalVisible(false);
     } catch {
-      message.error("Failed to save organizer");
+      message.error(t("organizers.msgSaveFailed"));
     }
   };
 
-  const columns = getOrganizerColumns({ onEdit: handleEdit, onDelete: handleDelete });
+  const columns = useOrganizerColumns({ onEdit: handleEdit, onDelete: handleDelete });
 
   const rowSelection: TableRowSelection<Organizer> = {
     onChange: (selectedRowKeys, selectedRows) => console.log("Selected:", selectedRowKeys, selectedRows),
@@ -67,8 +69,8 @@ export function OrganizersTable() {
   return (
     <>
       <Space style={{ display: "flex", justifyContent: "space-between", marginBottom: 16 }}>
-        <Title level={3}>Organizer List</Title>
-        <Button type="primary" onClick={handleAdd}>Add Organizer</Button>
+        <Title level={3}>{t("organizers.listTitle")}</Title>
+        <Button type="primary" onClick={handleAdd}>{t("organizers.addButton")}</Button>
       </Space>
 
       <CustomTable<Organizer>
@@ -80,11 +82,11 @@ export function OrganizersTable() {
       />
 
       <Modal
-        title={editingOrganizer ? "Edit Organizer" : "Add Organizer"}
+        title={editingOrganizer ? t("organizers.modalEdit") : t("organizers.modalAdd")}
         open={isModalVisible}
         onCancel={() => setIsModalVisible(false)}
         onOk={() => document.getElementById("organizer-form")?.dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }))}
-        okText={editingOrganizer ? "Save" : "Add"}
+        okText={editingOrganizer ? t("common.save") : t("common.add")}
       >
         <OrganizerForm
           initialValues={editingOrganizer || undefined}

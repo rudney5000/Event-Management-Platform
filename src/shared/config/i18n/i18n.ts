@@ -5,6 +5,9 @@ import { initReactI18next } from 'react-i18next'
 import frCommon from '../locales/fr/common.json'
 import enCommon from '../locales/en/common.json'
 import ruCommon from '../locales/ru/common.json'
+import frDashboard from '../locales/fr/dashboard.json'
+import enDashboard from '../locales/en/dashboard.json'
+import ruDashboard from '../locales/ru/dashboard.json'
 
 i18n
     .use(LanguageDetector)
@@ -17,9 +20,18 @@ i18n
             escapeValue: false
         },
         resources: {
-            fr: { common: frCommon },
-            en: { common: enCommon },
-            ru: { common: ruCommon },
+            fr: {
+                common: frCommon,
+                dashboard: frDashboard
+            },
+            en: {
+                common: enCommon,
+                dashboard: enDashboard
+            },
+            ru: {
+                common: ruCommon,
+                dashboard: ruDashboard
+            },
         }
     })
 

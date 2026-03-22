@@ -1,5 +1,6 @@
 import type { ColumnsType } from "antd/es/table";
 import { Avatar, Space, Tag } from "antd";
+import { useTranslation } from "react-i18next";
 import { ColumnActions } from "../../../shared/ui/column-actions/ColumnActions";
 import type { EventFormValues } from "../../../features/event-form/ui/EventForm";
 import { Link } from "react-router";
@@ -17,12 +18,13 @@ export function useEventColumns({
   onDelete,
 }: EventColumnsProps): ColumnsType<EventFormValues> {
 
+  const { t } = useTranslation("dashboard");
   const { data: categories } = useGetCategoriesQuery();
   const { data: currencies } = useGetCurrenciesQuery();
 
   return [
     {
-      title: "Image",
+      title: t("events.columns.image"),
       dataIndex: "imageUrl",
       key: "imageUrl",
       render: (imageUrl: string | string[]) => {
@@ -37,22 +39,22 @@ export function useEventColumns({
       },
     },
     {
-      title: "Title",
+      title: t("events.columns.title"),
       dataIndex: "title",
       key: "title",
     },
     {
-      title: "Date",
+      title: t("events.columns.date"),
       dataIndex: "date",
       key: "date",
     },
     {
-      title: "City",
+      title: t("events.columns.city"),
       dataIndex: "city",
       key: "city",
     },
     {
-      title: "Category",
+      title: t("events.columns.category"),
       dataIndex: "categoryId",
       key: "category",
       render: (categoryId: string) => {
@@ -63,7 +65,7 @@ export function useEventColumns({
       },
     },
     {
-      title: "Currency",
+      title: t("events.columns.currency"),
       dataIndex: "currencyId",
       key: "currency",
       render: (currencyId: string) => {
@@ -74,37 +76,39 @@ export function useEventColumns({
       },
     },
     {
-      title: "Price",
+      title: t("events.columns.price"),
       key: "price",
       render: (_, record) =>
         record.priceType === "free" ? (
-          <Tag color="green">Free</Tag>
+          <Tag color="green">{t("events.columns.free")}</Tag>
         ) : (
           <Tag color="blue">{record.price}</Tag>
         ),
     },
     {
-      title: "Status",
+      title: t("events.columns.status"),
       dataIndex: "status",
       key: "status",
-      render: (status) => (
+      render: (status: string) => (
         <Tag color={status === "published" ? "green" : "orange"}>
-          {status}
+          {status === "published"
+            ? t("events.status.published")
+            : t("events.status.draft")}
         </Tag>
       ),
     },
     {
-        title: "Priority",
+        title: t("events.columns.priority"),
         dataIndex: "priority",
         key: "priority",
         filters: [
-            { text: "High (1)", value: "1" },
-            { text: "Medium (2)", value: "2" },
-            { text: "Low (3)", value: "3" },
+            { text: t("events.columns.priorityHigh"), value: "1" },
+            { text: t("events.columns.priorityMedium"), value: "2" },
+            { text: t("events.columns.priorityLow"), value: "3" },
         ],
         onFilter: (value, record) => record.priority[0] === value,
         render: (priority) => {
-            const colors: any = {
+            const colors: Record<string, string> = {
             1: "red",
             2: "orange",
             3: "green",
@@ -114,7 +118,7 @@ export function useEventColumns({
         },
     },    
     {
-      title: "Actions",
+      title: t("events.columns.actions"),
       key: "actions",
       render: (_, record) => (
         <ColumnActions
@@ -125,7 +129,7 @@ export function useEventColumns({
               label: (
                 <Space>
                   <PencilIcon className="w-4 h-4" />
-                  Edit
+                  {t("events.columns.edit")}
                 </Space>
               ),
               onClick: () => onEdit(row),
@@ -135,7 +139,7 @@ export function useEventColumns({
               label: (
                 <Space>
                   <TrashIcon className="w-4 h-4 text-red-500" />
-                  Delete
+                  {t("events.columns.delete")}
                 </Space>
               ),
               danger: true,
@@ -147,7 +151,7 @@ export function useEventColumns({
                 <Link to={`/admin/events/preview/${row.id}`}>
                   <Space>
                     <EyeIcon className="w-4 h-4 text-blue-500" />
-                    Preview
+                    {t("events.columns.preview")}
                   </Space>
                 </Link>
               ),

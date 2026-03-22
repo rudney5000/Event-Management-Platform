@@ -5,6 +5,7 @@ interface MultiSelectOrCreateProps {
   value?: string[];
   options: string[];
   onChange: (values: string[]) => void;
+  placeholder?: string;
 }
 
 export function MultiSelectOrCreate({
@@ -12,6 +13,7 @@ export function MultiSelectOrCreate({
   value,
   options,
   onChange,
+  placeholder,
 }: MultiSelectOrCreateProps) {
   return (
     <div className="mb-4">
@@ -22,7 +24,7 @@ export function MultiSelectOrCreate({
         style={{ width: "100%" }}
         onChange={onChange}
         options={options.map((opt) => ({ value: opt, label: opt }))}
-        placeholder={`Select or create ${label.toLowerCase()}`}
+        placeholder={placeholder ?? `Select or create ${label.toLowerCase()}`}
       />
     </div>
   );

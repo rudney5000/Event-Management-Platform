@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { getCategoryColumns } from "./CategoryColumns";
+import { useCategoryColumns } from "./CategoryColumns";
 import type { TableRowSelection } from "antd/es/table/interface";
 import { Button, message, Modal, Space, Typography } from "antd";
+import { useTranslation } from "react-i18next";
 import type { Category } from "../model";
 import { 
     useCreateCategoryMutation, 
@@ -10,11 +11,12 @@ import {
     useUpdateCategoryMutation 
 } from "../api";
 import { CustomTable } from "../../../shared/ui/custom-table/CustomTable";
-import { CategoryForm } from "../../../features/category-form/CategoryForm";
+import { CategoryForm } from "../../../features/category-form";
 
 const { Title } = Typography;
 
 export function CategoryTable() {
+    const { t } = useTranslation("dashboard");
     const [localData, setLocalData] = useState<Category[]>([])
     const [editingCategory, setEditingCategory] = useState<Category | null>(null)
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -37,9 +39,9 @@ export function CategoryTable() {
     const handleDelete= async (id: string) => {
         try {
             await deleteCategory(id).unwrap()
-            message.success("Category Delete")
+            message.success(t("categories.msgDeleted"))
         } catch {
-            message.error("Failed to delete category")
+            message.error(t("categories.msgDeleteFailed"))
         }
     }
     const handleAdd = () => {
@@ -47,7 +49,7 @@ export function CategoryTable() {
         setIsModalVisible(true)
     }
 
-    const columns = getCategoryColumns({
+    const columns = useCategoryColumns({
         onEdit: handleEdit,
         onDelete: handleDelete
     })
@@ -62,14 +64,14 @@ export function CategoryTable() {
         try{
           if (editingCategory) {
             await updateCategory({ id: editingCategory.id!, category: values }).unwrap();
-            message.success("Category updated");
+            message.success(t("categories.msgUpdated"));
           } else {
             await createCategory( values ).unwrap()
-            message.success("Category added");
+            message.success(t("categories.msgAdded"));
           }
           setIsModalVisible(false);
         } catch{
-          message.error("Failed to save category")
+          message.error(t("categories.msgSaveFailed"))
         }
       };
     
@@ -83,8 +85,8 @@ export function CategoryTable() {
               marginBottom: 16,
             }}
           >
-            <Title level={3}>Categories List</Title>
-            <Button type="primary" onClick={handleAdd}>Add Category</Button>
+            <Title level={3}>{t("categories.listTitle")}</Title>
+            <Button type="primary" onClick={handleAdd}>{t("categories.addButton")}</Button>
           </Space>
     
           <CustomTable<Category>
@@ -96,14 +98,14 @@ export function CategoryTable() {
           />
     
           <Modal
-            title={editingCategory ? "Edit Category" : "Add Category"}
+            title={editingCategory ? t("categories.modalEdit") : t("categories.modalAdd")}
             open={isModalVisible}
             onCancel={() => setIsModalVisible(false)}
             onOk={() => document
               .getElementById("category-form")
               ?.dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }))
             }
-            okText={editingCategory ? "Save" : "Add"}
+            okText={editingCategory ? t("common.save") : t("common.add")}
           >
             <CategoryForm
               initialValues={editingCategory || undefined}

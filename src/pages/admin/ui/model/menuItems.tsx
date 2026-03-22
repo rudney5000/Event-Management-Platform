@@ -7,6 +7,8 @@ import {
 import type { MenuProps } from "antd";
 import { Users } from "lucide-react";
 import { Link } from "react-router";
+import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 
 type MenuItem = Required<MenuProps>["items"][number];
 
@@ -22,10 +24,37 @@ const item = (
   label,
 });
 
-export const menuItems: MenuItem[] = [
-  item(<Link to="/admin/dashboard">Dashboard</Link>, "dashboard", <PieChartOutlined />),
-  item(<Link to="/admin/events">Events</Link>, "events", <DesktopOutlined />),
-  item(<Link to="/admin/category">Category</Link>, "category", <AppstoreOutlined />),
-  item(<Link to="/admin/currency">Currency</Link>, "Currency", <DollarOutlined />),
-  item(<Link to="/admin/organizer">Organizer</Link>, "Organizer", <Users size={18}/>),
-];
+export function useAdminMenuItems(): MenuItem[] {
+  const { t } = useTranslation("dashboard");
+
+  return useMemo(
+    () => [
+      item(
+        <Link to="/admin/dashboard">{t("nav.dashboard")}</Link>,
+        "dashboard",
+        <PieChartOutlined />
+      ),
+      item(
+        <Link to="/admin/events">{t("nav.events")}</Link>,
+        "events",
+        <DesktopOutlined />
+      ),
+      item(
+        <Link to="/admin/category">{t("nav.category")}</Link>,
+        "category",
+        <AppstoreOutlined />
+      ),
+      item(
+        <Link to="/admin/currency">{t("nav.currency")}</Link>,
+        "Currency",
+        <DollarOutlined />
+      ),
+      item(
+        <Link to="/admin/organizer">{t("nav.organizer")}</Link>,
+        "Organizer",
+        <Users size={18} />
+      ),
+    ],
+    [t]
+  );
+}

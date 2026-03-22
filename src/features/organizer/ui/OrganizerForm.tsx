@@ -1,5 +1,6 @@
 import { Button, Form, Input } from "antd";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import type { Organizer } from "../../../entities/organizer/model/type";
 
 interface OrganizerFormProps {
@@ -8,6 +9,7 @@ interface OrganizerFormProps {
 }
 
 export function OrganizerForm({ initialValues, onSubmit }: OrganizerFormProps){
+    const { t } = useTranslation("dashboard");
     const [form] = Form.useForm<Organizer>()
 
     const handleFinish = (values: Organizer) => {
@@ -32,17 +34,17 @@ export function OrganizerForm({ initialValues, onSubmit }: OrganizerFormProps){
           layout="vertical"
           onFinish={handleFinish}
         >
-          <Form.Item name="name" label="Name" rules={[{ required: true }]}>
-            <Input placeholder="Organizer Name" />
+          <Form.Item name="name" label={t("organizers.form.name")} rules={[{ required: true }]}>
+            <Input placeholder={t("organizers.form.namePlaceholder")} />
           </Form.Item>
-          <Form.Item name="logo" label="Logo" rules={[{ required: true }]}>
-            <Input placeholder="Logo of Organizer" />
+          <Form.Item name="logo" label={t("organizers.form.logo")} rules={[{ required: true }]}>
+            <Input placeholder={t("organizers.form.logoPlaceholder")} />
           </Form.Item>
-          <Form.Item name="contactEmail" label="ContactEmail" rules={[{ required: true }]}>
-            <Input placeholder="ContactEmail of Organizer" />
+          <Form.Item name="contactEmail" label={t("organizers.form.contactEmail")} rules={[{ required: true }]}>
+            <Input placeholder={t("organizers.form.contactEmailPlaceholder")} />
           </Form.Item>
           <Button type="primary" htmlType="submit" className="mt-4">
-            Save Event
+            {t("organizers.form.submit")}
           </Button>
         </Form>
     );

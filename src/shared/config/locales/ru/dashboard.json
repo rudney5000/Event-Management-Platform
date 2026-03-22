@@ -1,0 +1,200 @@
+{
+  "page": {
+    "title": "Панель управления"
+  },
+  "nav": {
+    "dashboard": "Панель",
+    "events": "События",
+    "category": "Категории",
+    "currency": "Валюты",
+    "organizer": "Организаторы"
+  },
+  "common": {
+    "save": "Сохранить",
+    "add": "Добавить",
+    "edit": "Изменить",
+    "delete": "Удалить",
+    "actions": "Действия",
+    "loading": "Загрузка...",
+    "notFound": "Не найдено",
+    "cancel": "Отмена"
+  },
+  "layout": {
+    "footer": "Ant Design ©{{year}}"
+  },
+  "events": {
+    "listTitle": "Список событий",
+    "addButton": "Добавить событие",
+    "modalAdd": "Добавить событие",
+    "modalEdit": "Редактировать событие",
+    "msgDeleted": "Событие удалено",
+    "msgDeleteFailed": "Не удалось удалить событие",
+    "msgUpdated": "Событие обновлено",
+    "msgAdded": "Событие добавлено",
+    "msgSaveFailed": "Не удалось сохранить событие",
+    "columns": {
+      "image": "Изображение",
+      "title": "Название",
+      "date": "Дата",
+      "city": "Город",
+      "category": "Категория",
+      "currency": "Валюта",
+      "price": "Цена",
+      "status": "Статус",
+      "priority": "Приоритет",
+      "actions": "Действия",
+      "priorityHigh": "Высокий (1)",
+      "priorityMedium": "Средний (2)",
+      "priorityLow": "Низкий (3)",
+      "free": "Бесплатно",
+      "edit": "Изменить",
+      "delete": "Удалить",
+      "preview": "Просмотр"
+    },
+    "status": {
+      "draft": "черновик",
+      "published": "опубликовано"
+    },
+    "form": {
+      "title": "Название",
+      "titlePlaceholder": "Название события",
+      "date": "Дата",
+      "address": "Адрес",
+      "addressPlaceholder": "Улица и номер",
+      "priceType": "Тип цены",
+      "free": "Бесплатно",
+      "paid": "Платно",
+      "price": "Цена",
+      "currency": "Валюта",
+      "currencyPlaceholder": "Выберите валюту",
+      "city": "Город",
+      "organizer": "Организатор",
+      "organizerPlaceholder": "Выберите организатора",
+      "status": "Статус",
+      "draft": "Черновик",
+      "published": "Опубликовано",
+      "category": "Категория",
+      "categoryPlaceholder": "Выберите категорию",
+      "tags": "Теги",
+      "speakers": "Спикеры",
+      "priority": "Приоритет",
+      "submit": "Сохранить событие",
+      "citySelectPlaceholder": "Выберите или введите город",
+      "tagsPlaceholder": "Выберите или введите теги",
+      "speakersPlaceholder": "Выберите или введите спикеров",
+      "priorityItem": "Приоритет {{n}}"
+    }
+  },
+  "categories": {
+    "listTitle": "Список категорий",
+    "addButton": "Добавить категорию",
+    "modalAdd": "Добавить категорию",
+    "modalEdit": "Редактировать категорию",
+    "msgDeleted": "Категория удалена",
+    "msgDeleteFailed": "Не удалось удалить категорию",
+    "msgUpdated": "Категория обновлена",
+    "msgAdded": "Категория добавлена",
+    "msgSaveFailed": "Не удалось сохранить категорию",
+    "columns": {
+      "icon": "Иконка",
+      "name": "Название",
+      "color": "Цвет",
+      "description": "Описание",
+      "actions": "Действия",
+      "edit": "Изменить",
+      "delete": "Удалить"
+    },
+    "form": {
+      "icon": "Иконка",
+      "iconPlaceholder": "Иконка категории",
+      "name": "Название",
+      "namePlaceholder": "Название категории",
+      "submit": "Сохранить категорию"
+    }
+  },
+  "currencies": {
+    "listTitle": "Список валют",
+    "addButton": "Добавить валюту",
+    "modalAdd": "Добавить валюту",
+    "modalEdit": "Редактировать валюту",
+    "msgDeleted": "Валюта удалена",
+    "msgDeleteFailed": "Не удалось удалить валюту",
+    "msgUpdated": "Валюта обновлена",
+    "msgAdded": "Валюта добавлена",
+    "msgSaveFailed": "Не удалось сохранить валюту",
+    "columns": {
+      "code": "Код",
+      "name": "Название",
+      "symbol": "Символ",
+      "actions": "Действия",
+      "edit": "Изменить",
+      "delete": "Удалить"
+    },
+    "form": {
+      "code": "Код",
+      "codePlaceholder": "Код валюты",
+      "name": "Название",
+      "namePlaceholder": "Название валюты",
+      "symbol": "Символ",
+      "symbolPlaceholder": "Символ валюты",
+      "submit": "Сохранить валюту"
+    }
+  },
+  "organizers": {
+    "listTitle": "Список организаторов",
+    "addButton": "Добавить организатора",
+    "modalAdd": "Добавить организатора",
+    "modalEdit": "Редактировать организатора",
+    "msgDeleted": "Организатор удалён",
+    "msgDeleteFailed": "Не удалось удалить организатора",
+    "msgUpdated": "Организатор обновлён",
+    "msgAdded": "Организатор добавлен",
+    "msgSaveFailed": "Не удалось сохранить организатора",
+    "columns": {
+      "logo": "Логотип",
+      "name": "Название",
+      "contactEmail": "Контактный email",
+      "actions": "Действия",
+      "edit": "Изменить",
+      "delete": "Удалить"
+    },
+    "form": {
+      "name": "Название",
+      "namePlaceholder": "Имя организатора",
+      "logo": "Логотип",
+      "logoPlaceholder": "URL логотипа",
+      "contactEmail": "Контактный email",
+      "contactEmailPlaceholder": "Email организатора",
+      "submit": "Сохранить организатора"
+    }
+  },
+  "preview": {
+    "backToEvents": "Назад к событиям",
+    "loading": "Загрузка...",
+    "notFound": "Событие не найдено",
+    "date": "Дата",
+    "location": "Место",
+    "price": "Цена",
+    "free": "Бесплатно",
+    "pricePaid": "{{price}} €",
+    "seats": "{{available}} / {{capacity}} мест",
+    "organizer": "Организатор",
+    "tags": "Теги",
+    "speakers": "Спикеры",
+    "summary": "Кратко",
+    "fullDescription": "Полное описание",
+    "locationDetails": "Детали места",
+    "coordinates": "Координаты: {{lat}}, {{lng}}",
+    "booking": "Бронирование",
+    "openBooking": "Открыть страницу бронирования →",
+    "sponsors": "Спонсоры",
+    "mediaGallery": "Медиагалерея",
+    "video": "Видео {{n}}",
+    "watchVideo": "Смотреть видео →",
+    "mediaAlt": "Медиа {{n}}",
+    "schedule": "Расписание",
+    "priorityBadge": "Приоритет {{priority}}",
+    "statusDraft": "ЧЕРНОВИК",
+    "statusPublished": "ОПУБЛИКОВАНО"
+  }
+}

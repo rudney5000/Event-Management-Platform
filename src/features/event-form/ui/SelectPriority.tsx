@@ -4,9 +4,10 @@ interface SelectPriorityProps {
   items: string[];
   value: string;
   onChange: (value: string) => void;
+  getItemLabel?: (item: string) => string;
 }
 
-export function SelectPriority({ label, items, value, onChange }: SelectPriorityProps) {
+export function SelectPriority({ label, items, value, onChange, getItemLabel }: SelectPriorityProps) {
 
   return (
     <div className="mb-4">
@@ -30,7 +31,7 @@ export function SelectPriority({ label, items, value, onChange }: SelectPriority
           `}
         >
 
-          Priority {item}
+          {getItemLabel ? getItemLabel(item) : `Priority ${item}`}
 
         </div>
 

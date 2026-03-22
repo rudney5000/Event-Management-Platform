@@ -1,0 +1,200 @@
+{
+  "page": {
+    "title": "Dashboard"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "events": "Events",
+    "category": "Categories",
+    "currency": "Currencies",
+    "organizer": "Organizers"
+  },
+  "common": {
+    "save": "Save",
+    "add": "Add",
+    "edit": "Edit",
+    "delete": "Delete",
+    "actions": "Actions",
+    "loading": "Loading...",
+    "notFound": "Not found",
+    "cancel": "Cancel"
+  },
+  "layout": {
+    "footer": "Ant Design ©{{year}}"
+  },
+  "events": {
+    "listTitle": "Events List",
+    "addButton": "Add Event",
+    "modalAdd": "Add Event",
+    "modalEdit": "Edit Event",
+    "msgDeleted": "Event deleted",
+    "msgDeleteFailed": "Failed to delete event",
+    "msgUpdated": "Event updated",
+    "msgAdded": "Event added",
+    "msgSaveFailed": "Failed to save event",
+    "columns": {
+      "image": "Image",
+      "title": "Title",
+      "date": "Date",
+      "city": "City",
+      "category": "Category",
+      "currency": "Currency",
+      "price": "Price",
+      "status": "Status",
+      "priority": "Priority",
+      "actions": "Actions",
+      "priorityHigh": "High (1)",
+      "priorityMedium": "Medium (2)",
+      "priorityLow": "Low (3)",
+      "free": "Free",
+      "edit": "Edit",
+      "delete": "Delete",
+      "preview": "Preview"
+    },
+    "status": {
+      "draft": "draft",
+      "published": "published"
+    },
+    "form": {
+      "title": "Title",
+      "titlePlaceholder": "Event title",
+      "date": "Date",
+      "address": "Address",
+      "addressPlaceholder": "Street and number",
+      "priceType": "Price type",
+      "free": "Free",
+      "paid": "Paid",
+      "price": "Price",
+      "currency": "Currency",
+      "currencyPlaceholder": "Select currency",
+      "city": "City",
+      "organizer": "Organizer",
+      "organizerPlaceholder": "Select organizer",
+      "status": "Status",
+      "draft": "Draft",
+      "published": "Published",
+      "category": "Category",
+      "categoryPlaceholder": "Select category",
+      "tags": "Tags",
+      "speakers": "Speakers",
+      "priority": "Priority",
+      "submit": "Save event",
+      "citySelectPlaceholder": "Select or create city",
+      "tagsPlaceholder": "Select or create tags",
+      "speakersPlaceholder": "Select or create speakers",
+      "priorityItem": "Priority {{n}}"
+    }
+  },
+  "categories": {
+    "listTitle": "Categories list",
+    "addButton": "Add category",
+    "modalAdd": "Add category",
+    "modalEdit": "Edit category",
+    "msgDeleted": "Category deleted",
+    "msgDeleteFailed": "Failed to delete category",
+    "msgUpdated": "Category updated",
+    "msgAdded": "Category added",
+    "msgSaveFailed": "Failed to save category",
+    "columns": {
+      "icon": "Icon",
+      "name": "Name",
+      "color": "Color",
+      "description": "Description",
+      "actions": "Actions",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "form": {
+      "icon": "Icon",
+      "iconPlaceholder": "Category icon",
+      "name": "Name",
+      "namePlaceholder": "Category name",
+      "submit": "Save category"
+    }
+  },
+  "currencies": {
+    "listTitle": "Currencies list",
+    "addButton": "Add currency",
+    "modalAdd": "Add currency",
+    "modalEdit": "Edit currency",
+    "msgDeleted": "Currency deleted",
+    "msgDeleteFailed": "Failed to delete currency",
+    "msgUpdated": "Currency updated",
+    "msgAdded": "Currency added",
+    "msgSaveFailed": "Failed to save currency",
+    "columns": {
+      "code": "Code",
+      "name": "Name",
+      "symbol": "Symbol",
+      "actions": "Actions",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "form": {
+      "code": "Code",
+      "codePlaceholder": "Currency code",
+      "name": "Name",
+      "namePlaceholder": "Currency name",
+      "symbol": "Symbol",
+      "symbolPlaceholder": "Currency symbol",
+      "submit": "Save currency"
+    }
+  },
+  "organizers": {
+    "listTitle": "Organizers list",
+    "addButton": "Add organizer",
+    "modalAdd": "Add organizer",
+    "modalEdit": "Edit organizer",
+    "msgDeleted": "Organizer deleted",
+    "msgDeleteFailed": "Failed to delete organizer",
+    "msgUpdated": "Organizer updated",
+    "msgAdded": "Organizer added",
+    "msgSaveFailed": "Failed to save organizer",
+    "columns": {
+      "logo": "Logo",
+      "name": "Name",
+      "contactEmail": "Contact email",
+      "actions": "Actions",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Organizer name",
+      "logo": "Logo",
+      "logoPlaceholder": "Logo URL",
+      "contactEmail": "Contact email",
+      "contactEmailPlaceholder": "Organizer contact email",
+      "submit": "Save organizer"
+    }
+  },
+  "preview": {
+    "backToEvents": "Back to events",
+    "loading": "Loading...",
+    "notFound": "Event not found",
+    "date": "Date",
+    "location": "Location",
+    "price": "Price",
+    "free": "Free",
+    "pricePaid": "{{price}} €",
+    "seats": "{{available}} / {{capacity}} seats",
+    "organizer": "Organizer",
+    "tags": "Tags",
+    "speakers": "Speakers",
+    "summary": "Summary",
+    "fullDescription": "Full description",
+    "locationDetails": "Location details",
+    "coordinates": "Coordinates: {{lat}}, {{lng}}",
+    "booking": "Booking",
+    "openBooking": "Open booking page →",
+    "sponsors": "Sponsors",
+    "mediaGallery": "Media gallery",
+    "video": "Video {{n}}",
+    "watchVideo": "Watch video →",
+    "mediaAlt": "Media {{n}}",
+    "schedule": "Event schedule",
+    "priorityBadge": "Priority {{priority}}",
+    "statusDraft": "DRAFT",
+    "statusPublished": "PUBLISHED"
+  }
+}

@@ -1,6 +1,7 @@
 import { Button, Form, Input } from "antd";
 import type { Category } from "../../entities/category/model/types";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 interface CategoryFormProps {
     initialValues?: Partial<Category>
@@ -8,6 +9,7 @@ interface CategoryFormProps {
 }
 
 export function CategoryForm({ initialValues, onSubmit }: CategoryFormProps){
+    const { t } = useTranslation("dashboard");
     const [form] = Form.useForm<Category>()
 
     const handleFinish = (values: Category) => {
@@ -32,8 +34,8 @@ export function CategoryForm({ initialValues, onSubmit }: CategoryFormProps){
           layout="vertical"
           onFinish={handleFinish}
         >
-          <Form.Item name="icon" label="Icon" rules={[{ required: true }]}>
-            <Input placeholder="Category Icon" />
+          <Form.Item name="icon" label={t("categories.form.icon")} rules={[{ required: true }]}>
+            <Input placeholder={t("categories.form.iconPlaceholder")} />
           </Form.Item>
     
           {/* <Form.Item name="date" label="Date" rules={[{ required: true }]}>
@@ -43,8 +45,8 @@ export function CategoryForm({ initialValues, onSubmit }: CategoryFormProps){
               />
           </Form.Item> */}
     
-          <Form.Item name="name" label="Name" rules={[{ required: true }]}>
-            <Input placeholder="Name of category" />
+          <Form.Item name="name" label={t("categories.form.name")} rules={[{ required: true }]}>
+            <Input placeholder={t("categories.form.namePlaceholder")} />
           </Form.Item>
     
           {/* <Form.Item name="priceType" label="Price Type">
@@ -108,7 +110,7 @@ export function CategoryForm({ initialValues, onSubmit }: CategoryFormProps){
           <SelectPriority label="Priority" items={["1", "2", "3"]} value={priority} onChange={setPriority} /> */}
     
           <Button type="primary" htmlType="submit" className="mt-4">
-            Save Event
+            {t("categories.form.submit")}
           </Button>
         </Form>
     );

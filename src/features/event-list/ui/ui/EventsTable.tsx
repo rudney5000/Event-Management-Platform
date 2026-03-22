@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { 
   Button, 
   message, 
@@ -22,6 +23,7 @@ const { Title } = Typography;
 
 
 export function EventsTable() {
+  const { t } = useTranslation("dashboard");
   const [localData, setLocalData] = useState<EventFull[]>([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [editingEvent, setEditingEvent] = useState<EventFormValues | null>(null);
@@ -52,9 +54,9 @@ export function EventsTable() {
   const handleDelete = async (id: string) => {
     try {
       await deleteEvent(id).unwrap();
-      message.success("Event Delete")
+      message.success(t("events.msgDeleted"))
     } catch {
-      message.error("Failed to delete event")
+      message.error(t("events.msgDeleteFailed"))
     }
   };
 
@@ -67,14 +69,14 @@ export function EventsTable() {
     try{
       if (editingEvent) {
         await updateEvent({ id: editingEvent.id!, event: values }).unwrap();
-        message.success("Event updated");
+        message.success(t("events.msgUpdated"));
       } else {
         await createEvent( values ).unwrap()
-        message.success("Event added");
+        message.success(t("events.msgAdded"));
       }
       setIsModalVisible(false);
     } catch{
-      message.error("Failed to save event")
+      message.error(t("events.msgSaveFailed"))
     }
   };
 
@@ -98,8 +100,8 @@ export function EventsTable() {
           marginBottom: 16,
         }}
       >
-        <Title level={3}>Events List</Title>
-        <Button type="primary" onClick={handleAdd}>Add Event</Button>
+        <Title level={3}>{t("events.listTitle")}</Title>
+        <Button type="primary" onClick={handleAdd}>{t("events.addButton")}</Button>
       </Space>
 
       <CustomTable<EventFormValues>
@@ -118,14 +120,14 @@ export function EventsTable() {
       />
 
       <Modal
-        title={editingEvent ? "Edit Event" : "Add Event"}
+        title={editingEvent ? t("events.modalEdit") : t("events.modalAdd")}
         open={isModalVisible}
         onCancel={() => setIsModalVisible(false)}
         onOk={() => document
           .getElementById("event-form")
           ?.dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }))
         }
-        okText={editingEvent ? "Save" : "Add"}
+        okText={editingEvent ? t("common.save") : t("common.add")}
       >
         <EventForm
           initialValues={editingEvent || undefined}

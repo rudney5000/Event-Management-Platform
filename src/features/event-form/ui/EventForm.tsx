@@ -1,5 +1,6 @@
 import { Form, Input, Button, DatePicker, Radio, InputNumber, Select } from "antd";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { SelectOrCreate } from "./SelectOrCreate";
 import { MultiSelectOrCreate } from "./MultiSelectOrCreate";
 import { SelectPriority } from "./SelectPriority";
@@ -35,6 +36,7 @@ interface EventFormInternalValues extends Omit<EventFormValues, 'date'> {
 }
 
 export function EventForm({ initialValues, onSubmit }: EventFormProps) {
+  const { t } = useTranslation("dashboard");
   const [form] = Form.useForm<EventFormInternalValues>();
   const [tags, setTags] = useState<string[]>(initialValues?.tags || []);
   const [speakers, setSpeakers] = useState<string[]>(initialValues?.speakers || []);
@@ -71,25 +73,25 @@ export function EventForm({ initialValues, onSubmit }: EventFormProps) {
       layout="vertical"
       onFinish={handleFinish}
     >
-      <Form.Item name="title" label="Title" rules={[{ required: true }]}>
-        <Input placeholder="Event title" />
+      <Form.Item name="title" label={t("events.form.title")} rules={[{ required: true }]}>
+        <Input placeholder={t("events.form.titlePlaceholder")} />
       </Form.Item>
 
-      <Form.Item name="date" label="Date" rules={[{ required: true }]}>
+      <Form.Item name="date" label={t("events.form.date")} rules={[{ required: true }]}>
         <DatePicker
           style={{ width: "100%" }}
           value={initialValues?.date ? dayjs(initialValues.date) : undefined}
           />
       </Form.Item>
 
-      <Form.Item name="address" label="Address" rules={[{ required: true }]}>
-        <Input placeholder="Street and number" />
+      <Form.Item name="address" label={t("events.form.address")} rules={[{ required: true }]}>
+        <Input placeholder={t("events.form.addressPlaceholder")} />
       </Form.Item>
 
-      <Form.Item name="priceType" label="Price Type">
+      <Form.Item name="priceType" label={t("events.form.priceType")}>
         <Radio.Group>
-          <Radio value="free">Free</Radio>
-          <Radio value="paid">Paid</Radio>
+          <Radio value="free">{t("events.form.free")}</Radio>
+          <Radio value="paid">{t("events.form.paid")}</Radio>
         </Radio.Group>
       </Form.Item>
 
@@ -99,7 +101,7 @@ export function EventForm({ initialValues, onSubmit }: EventFormProps) {
             <>
               <Form.Item
                 name="price"
-                label="Price"
+                label={t("events.form.price")}
                 rules={[{ required: true }]}
               >
                 <InputNumber style={{ width: "100%" }} min={0} />
@@ -107,10 +109,10 @@ export function EventForm({ initialValues, onSubmit }: EventFormProps) {
 
               <Form.Item
                 name="currencyId"
-                label="Currency"
+                label={t("events.form.currency")}
                 rules={[{ required: true }]}
               >
-                <Select placeholder="Select currency">
+                <Select placeholder={t("events.form.currencyPlaceholder")}>
                   {currencies?.map((currency) => (
                     <Select.Option key={currency.id} value={currency.id}>
                       {currency.symbol} {currency.code}
@@ -124,21 +126,22 @@ export function EventForm({ initialValues, onSubmit }: EventFormProps) {
       </Form.Item>
       <Form.Item
         name="city"
-        label="City"
+        label={t("events.form.city")}
         rules={[{ required: true }]}
       >
         <SelectOrCreate
-          label="City"
+          label={t("events.form.city")}
           value={form.getFieldValue("city")}
           options={["Paris", "Lyon", "Marseille"]}
           onChange={(v) => form.setFieldsValue({ city: v })}
+          placeholder={t("events.form.citySelectPlaceholder")}
         />
       </Form.Item>
       <Form.Item
         name="organizerId"
-        label="Organizer"
+        label={t("events.form.organizer")}
       >
-        <Select placeholder="Select organizer" allowClear>
+        <Select placeholder={t("events.form.organizerPlaceholder")} allowClear>
           {organizers?.map((organizer) => (
             <Select.Option key={organizer.id} value={organizer.id}>
               {organizer.name}
@@ -146,22 +149,22 @@ export function EventForm({ initialValues, onSubmit }: EventFormProps) {
           ))}
         </Select>
       </Form.Item>
-      <Form.Item name="status" label="Status">
+      <Form.Item name="status" label={t("events.form.status")}>
         <Radio.Group>
           <Radio value="draft">
-            Draft
+            {t("events.form.draft")}
           </Radio>
           <Radio value="published">
-            Published
+            {t("events.form.published")}
           </Radio>
         </Radio.Group>
       </Form.Item>
       <Form.Item
         name="categoryId"
-        label="Category"
+        label={t("events.form.category")}
         rules={[{ required: true }]}
       >
-        <Select placeholder="Select category">
+        <Select placeholder={t("events.form.categoryPlaceholder")}>
           {categories?.map((cat) => (
             <Select.Option key={cat.id} value={cat.id}>
               {cat.name}
@@ -170,23 +173,31 @@ export function EventForm({ initialValues, onSubmit }: EventFormProps) {
         </Select>
       </Form.Item>
       <MultiSelectOrCreate
-        label="Tags"
+        label={t("events.form.tags")}
         value={tags}
         options={["Tech", "Business", "Health"]}
         onChange={setTags}
+        placeholder={t("events.form.tagsPlaceholder")}
       />
 
       <MultiSelectOrCreate
-        label="Speakers"
+        label={t("events.form.speakers")}
         value={speakers}
         options={["Alice", "Bob", "Charlie"]}
         onChange={setSpeakers}
+        placeholder={t("events.form.speakersPlaceholder")}
       />
 
-      <SelectPriority label="Priority" items={["1", "2", "3"]} value={priority} onChange={setPriority} />
+      <SelectPriority
+        label={t("events.form.priority")}
+        items={["1", "2", "3"]}
+        value={priority}
+        onChange={setPriority}
+        getItemLabel={(item) => t("events.form.priorityItem", { n: item })}
+      />
 
       <Button type="primary" htmlType="submit" className="mt-4">
-        Save Event
+        {t("events.form.submit")}
       </Button>
     </Form>
   );

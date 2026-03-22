@@ -1,0 +1,200 @@
+{
+  "page": {
+    "title": "Tableau de bord"
+  },
+  "nav": {
+    "dashboard": "Tableau de bord",
+    "events": "Événements",
+    "category": "Catégories",
+    "currency": "Devises",
+    "organizer": "Organisateurs"
+  },
+  "common": {
+    "save": "Enregistrer",
+    "add": "Ajouter",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "actions": "Actions",
+    "loading": "Chargement...",
+    "notFound": "Introuvable",
+    "cancel": "Annuler"
+  },
+  "layout": {
+    "footer": "Ant Design ©{{year}}"
+  },
+  "events": {
+    "listTitle": "Liste des événements",
+    "addButton": "Ajouter un événement",
+    "modalAdd": "Ajouter un événement",
+    "modalEdit": "Modifier l'événement",
+    "msgDeleted": "Événement supprimé",
+    "msgDeleteFailed": "Échec de la suppression de l'événement",
+    "msgUpdated": "Événement mis à jour",
+    "msgAdded": "Événement ajouté",
+    "msgSaveFailed": "Échec de l'enregistrement de l'événement",
+    "columns": {
+      "image": "Image",
+      "title": "Titre",
+      "date": "Date",
+      "city": "Ville",
+      "category": "Catégorie",
+      "currency": "Devise",
+      "price": "Prix",
+      "status": "Statut",
+      "priority": "Priorité",
+      "actions": "Actions",
+      "priorityHigh": "Haute (1)",
+      "priorityMedium": "Moyenne (2)",
+      "priorityLow": "Basse (3)",
+      "free": "Gratuit",
+      "edit": "Modifier",
+      "delete": "Supprimer",
+      "preview": "Aperçu"
+    },
+    "status": {
+      "draft": "brouillon",
+      "published": "publié"
+    },
+    "form": {
+      "title": "Titre",
+      "titlePlaceholder": "Titre de l'événement",
+      "date": "Date",
+      "address": "Adresse",
+      "addressPlaceholder": "Rue et numéro",
+      "priceType": "Type de prix",
+      "free": "Gratuit",
+      "paid": "Payant",
+      "price": "Prix",
+      "currency": "Devise",
+      "currencyPlaceholder": "Sélectionner une devise",
+      "city": "Ville",
+      "organizer": "Organisateur",
+      "organizerPlaceholder": "Sélectionner un organisateur",
+      "status": "Statut",
+      "draft": "Brouillon",
+      "published": "Publié",
+      "category": "Catégorie",
+      "categoryPlaceholder": "Sélectionner une catégorie",
+      "tags": "Tags",
+      "speakers": "Intervenants",
+      "priority": "Priorité",
+      "submit": "Enregistrer l'événement",
+      "citySelectPlaceholder": "Sélectionner ou créer une ville",
+      "tagsPlaceholder": "Sélectionner ou créer des tags",
+      "speakersPlaceholder": "Sélectionner ou créer des intervenants",
+      "priorityItem": "Priorité {{n}}"
+    }
+  },
+  "categories": {
+    "listTitle": "Liste des catégories",
+    "addButton": "Ajouter une catégorie",
+    "modalAdd": "Ajouter une catégorie",
+    "modalEdit": "Modifier la catégorie",
+    "msgDeleted": "Catégorie supprimée",
+    "msgDeleteFailed": "Échec de la suppression de la catégorie",
+    "msgUpdated": "Catégorie mise à jour",
+    "msgAdded": "Catégorie ajoutée",
+    "msgSaveFailed": "Échec de l'enregistrement de la catégorie",
+    "columns": {
+      "icon": "Icône",
+      "name": "Nom",
+      "color": "Couleur",
+      "description": "Description",
+      "actions": "Actions",
+      "edit": "Modifier",
+      "delete": "Supprimer"
+    },
+    "form": {
+      "icon": "Icône",
+      "iconPlaceholder": "Icône de la catégorie",
+      "name": "Nom",
+      "namePlaceholder": "Nom de la catégorie",
+      "submit": "Enregistrer la catégorie"
+    }
+  },
+  "currencies": {
+    "listTitle": "Liste des devises",
+    "addButton": "Ajouter une devise",
+    "modalAdd": "Ajouter une devise",
+    "modalEdit": "Modifier la devise",
+    "msgDeleted": "Devise supprimée",
+    "msgDeleteFailed": "Échec de la suppression de la devise",
+    "msgUpdated": "Devise mise à jour",
+    "msgAdded": "Devise ajoutée",
+    "msgSaveFailed": "Échec de l'enregistrement de la devise",
+    "columns": {
+      "code": "Code",
+      "name": "Nom",
+      "symbol": "Symbole",
+      "actions": "Actions",
+      "edit": "Modifier",
+      "delete": "Supprimer"
+    },
+    "form": {
+      "code": "Code",
+      "codePlaceholder": "Code devise",
+      "name": "Nom",
+      "namePlaceholder": "Nom de la devise",
+      "symbol": "Symbole",
+      "symbolPlaceholder": "Symbole de la devise",
+      "submit": "Enregistrer la devise"
+    }
+  },
+  "organizers": {
+    "listTitle": "Liste des organisateurs",
+    "addButton": "Ajouter un organisateur",
+    "modalAdd": "Ajouter un organisateur",
+    "modalEdit": "Modifier l'organisateur",
+    "msgDeleted": "Organisateur supprimé",
+    "msgDeleteFailed": "Échec de la suppression de l'organisateur",
+    "msgUpdated": "Organisateur mis à jour",
+    "msgAdded": "Organisateur ajouté",
+    "msgSaveFailed": "Échec de l'enregistrement de l'organisateur",
+    "columns": {
+      "logo": "Logo",
+      "name": "Nom",
+      "contactEmail": "E-mail de contact",
+      "actions": "Actions",
+      "edit": "Modifier",
+      "delete": "Supprimer"
+    },
+    "form": {
+      "name": "Nom",
+      "namePlaceholder": "Nom de l'organisateur",
+      "logo": "Logo",
+      "logoPlaceholder": "URL du logo",
+      "contactEmail": "E-mail de contact",
+      "contactEmailPlaceholder": "E-mail de contact de l'organisateur",
+      "submit": "Enregistrer l'organisateur"
+    }
+  },
+  "preview": {
+    "backToEvents": "Retour aux événements",
+    "loading": "Chargement...",
+    "notFound": "Événement introuvable",
+    "date": "Date",
+    "location": "Lieu",
+    "price": "Prix",
+    "free": "Gratuit",
+    "pricePaid": "{{price}} €",
+    "seats": "{{available}} / {{capacity}} places",
+    "organizer": "Organisateur",
+    "tags": "Tags",
+    "speakers": "Intervenants",
+    "summary": "Résumé",
+    "fullDescription": "Description complète",
+    "locationDetails": "Détails du lieu",
+    "coordinates": "Coordonnées : {{lat}}, {{lng}}",
+    "booking": "Réservation",
+    "openBooking": "Ouvrir la page de réservation →",
+    "sponsors": "Partenaires",
+    "mediaGallery": "Galerie média",
+    "video": "Vidéo {{n}}",
+    "watchVideo": "Voir la vidéo →",
+    "mediaAlt": "Média {{n}}",
+    "schedule": "Programme",
+    "priorityBadge": "Priorité {{priority}}",
+    "statusDraft": "BROUILLON",
+    "statusPublished": "PUBLIÉ"
+  }
+}
