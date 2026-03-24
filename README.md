@@ -81,6 +81,7 @@ src/
 - Currency management
 - Organizer management
 - Event preview
+- City management
 
 ### 🎉 Customer
 - Event navigation
@@ -97,7 +98,7 @@ src/
 ### Installation
 ```bash
 # Clone the project
-git clone <repository-url>
+git clone https://github.com/rudney5000/Event-Management-Platform.git
 cd Event-Management-Platform
 
 # Install dependencies
@@ -114,8 +115,8 @@ npm run dev
   "users": [
     {
       "id": 1,
-      "email": "admin@example.com",
-      "password": "admin123",
+      "email": "user@example.com",
+      "password": "password",
       "name": "Admin User"
     }
   ]
