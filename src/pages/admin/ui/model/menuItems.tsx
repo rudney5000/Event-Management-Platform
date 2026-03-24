@@ -2,6 +2,7 @@ import {
   AppstoreOutlined,
   DesktopOutlined,
   DollarOutlined,
+  EnvironmentOutlined,
   PieChartOutlined,
 } from "@ant-design/icons";
 import type { MenuProps } from "antd";
@@ -55,6 +56,11 @@ export function useAdminMenuItems(): MenuItem[] {
         <Link to={path("/admin/organizer")}>{t("nav.organizer")}</Link>,
         path("/admin/organizer"),
         <Users size={18} />
+      ),
+      item(
+        <Link to={path("/admin/city")}>{t("nav.city")}</Link>,
+        path("/admin/city"),
+        <EnvironmentOutlined />
       ),
     ],
     [t, path]
