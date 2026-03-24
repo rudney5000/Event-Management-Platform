@@ -1,5 +1,5 @@
 import type { ChangeEvent } from 'react';
-import { CATEGORIES } from '../../entities/event/constants';
+import { getTranslatedCategories } from '../../entities/event/constants';
 import { Filter, ChevronDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
@@ -55,7 +55,7 @@ export function EventFilters(props: Props) {
                                 {t('filters.categories')}
                             </label>
                             <div className="space-y-2 max-h-48 overflow-y-auto">
-                                {CATEGORIES.map(cat => (
+                                {getTranslatedCategories(t).map(cat => (
                                     <label key={cat.id} className="flex items-center">
                                         <input
                                             type="checkbox"

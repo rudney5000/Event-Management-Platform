@@ -57,6 +57,16 @@
       }
     }
   },
+  "eventCategories": {
+    "conference": "Conference",
+    "workshop": "Workshop",
+    "seminar": "Seminar", 
+    "networking": "Networking",
+    "concert": "Concert",
+    "exhibition": "Exhibition",
+    "sport": "Sports",
+    "other": "Other"
+  },
   "layout": {
     "footer": "Ant Design ©{{year}}"
   },

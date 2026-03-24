@@ -55,6 +55,16 @@
       }
     }
   },
+  "eventCategories": {
+    "conference": "Конференция",
+    "workshop": "Мастер-класс",
+    "seminar": "Семинар",
+    "networking": "Нетворкинг",
+    "concert": "Концерт",
+    "exhibition": "Выставка",
+    "sport": "Спорт",
+    "other": "Другое"
+  },
   "layout": { "footer": "Ant Design ©{{year}}" },
   "events": {
     "listTitle": "Список событий",
