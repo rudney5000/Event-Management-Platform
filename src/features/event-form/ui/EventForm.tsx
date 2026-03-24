@@ -1,19 +1,15 @@
-import { Form, Input, Button, DatePicker, Radio, InputNumber, Select } from "antd";
+import { Form, Input, Button, DatePicker, Radio, InputNumber } from "antd";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { SelectOrCreate } from "./SelectOrCreate";
-import { MultiSelectOrCreate } from "./MultiSelectOrCreate";
 import { SelectPriority } from "./SelectPriority";
+import { SelectOrCreateCity, SelectOrCreateOrganizer, SelectOrCreateCategory, SelectOrCreateTags, SelectOrCreateCurrency } from "../../../shared/ui/select-or-create";
 import dayjs, { Dayjs } from "dayjs";
-import { useGetCategoriesQuery } from "../../../entities/category/api";
-import { useGetCurrenciesQuery } from "../../../entities/currency/api/currencyApi";
-import { useGetOrganizersQuery } from "../../../entities/organizer/api/OrganizerApi";
 
 export interface EventFormValues {
   id: string;
   title: string;
   date: string;
-  city: string;
+  cityId: string;
   address: string;
   priceType: "free" | "paid";
   status: "draft" | "published";
@@ -41,10 +37,6 @@ export function EventForm({ initialValues, onSubmit }: EventFormProps) {
   const [tags, setTags] = useState<string[]>(initialValues?.tags || []);
   const [speakers, setSpeakers] = useState<string[]>(initialValues?.speakers || []);
   const [priority, setPriority] = useState<string>(initialValues?.priority || "1");
-
-  const { data: categories } = useGetCategoriesQuery()
-  const { data: currencies } = useGetCurrenciesQuery()
-  const { data: organizers } = useGetOrganizersQuery()
 
   const handleFinish = (values: EventFormInternalValues) => {
   onSubmit({
@@ -112,42 +104,24 @@ export function EventForm({ initialValues, onSubmit }: EventFormProps) {
                 label={t("events.form.currency")}
                 rules={[{ required: true }]}
               >
-                <Select placeholder={t("events.form.currencyPlaceholder")}>
-                  {currencies?.map((currency) => (
-                    <Select.Option key={currency.id} value={currency.id}>
-                      {currency.symbol} {currency.code}
-                    </Select.Option>
-                  ))}
-                </Select>
+                <SelectOrCreateCurrency placeholder={t("events.form.currencyPlaceholder")} />
               </Form.Item>
             </>
           ) : null
         }
       </Form.Item>
       <Form.Item
-        name="city"
+        name="cityId"
         label={t("events.form.city")}
         rules={[{ required: true }]}
       >
-        <SelectOrCreate
-          label={t("events.form.city")}
-          value={form.getFieldValue("city")}
-          options={["Paris", "Lyon", "Marseille"]}
-          onChange={(v) => form.setFieldsValue({ city: v })}
-          placeholder={t("events.form.citySelectPlaceholder")}
-        />
+        <SelectOrCreateCity placeholder={t("events.form.citySelectPlaceholder")} />
       </Form.Item>
       <Form.Item
         name="organizerId"
         label={t("events.form.organizer")}
       >
-        <Select placeholder={t("events.form.organizerPlaceholder")} allowClear>
-          {organizers?.map((organizer) => (
-            <Select.Option key={organizer.id} value={organizer.id}>
-              {organizer.name}
-            </Select.Option>
-          ))}
-        </Select>
+        <SelectOrCreateOrganizer placeholder={t("events.form.organizerPlaceholder")} />
       </Form.Item>
       <Form.Item name="status" label={t("events.form.status")}>
         <Radio.Group>
@@ -164,29 +138,29 @@ export function EventForm({ initialValues, onSubmit }: EventFormProps) {
         label={t("events.form.category")}
         rules={[{ required: true }]}
       >
-        <Select placeholder={t("events.form.categoryPlaceholder")}>
-          {categories?.map((cat) => (
-            <Select.Option key={cat.id} value={cat.id}>
-              {cat.name}
-            </Select.Option>
-          ))}
-        </Select>
+        <SelectOrCreateCategory placeholder={t("events.form.categoryPlaceholder")} />
       </Form.Item>
-      <MultiSelectOrCreate
-        label={t("events.form.tags")}
-        value={tags}
-        options={["Tech", "Business", "Health"]}
-        onChange={setTags}
-        placeholder={t("events.form.tagsPlaceholder")}
-      />
+      <Form.Item name="tags" label={t("events.form.tags")}>
+        <SelectOrCreateTags 
+          value={tags}
+          onChange={setTags}
+          placeholder={t("events.form.tagsPlaceholder")}
+          existingTags={["Tech", "Business", "Health", "Education", "Finance"]}
+          modalTitle={t("selectOrCreate.createTag")}
+          entityName="tag"
+        />
+      </Form.Item>
 
-      <MultiSelectOrCreate
-        label={t("events.form.speakers")}
-        value={speakers}
-        options={["Alice", "Bob", "Charlie"]}
-        onChange={setSpeakers}
-        placeholder={t("events.form.speakersPlaceholder")}
-      />
+      <Form.Item name="speakers" label={t("events.form.speakers")}>
+        <SelectOrCreateTags 
+          value={speakers}
+          onChange={setSpeakers}
+          placeholder={t("events.form.speakersPlaceholder")}
+          existingTags={["Alice", "Bob", "Charlie", "David", "Emma"]}
+          modalTitle={t("selectOrCreate.createSpeaker")}
+          entityName="speaker"
+        />
+      </Form.Item>
 
       <SelectPriority
         label={t("events.form.priority")}
