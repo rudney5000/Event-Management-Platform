@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { useGetCategoriesQuery } from "../../entities/category/api";
 import { useGetOrganizersQuery } from "../../entities/organizer/api/OrganizerApi";
+import { useGetCitiesQuery } from "../../entities/city/api/cityApi";
 import type { EventFull } from "../../pages/admin/AdminEventPreviewPage";
 import { useTranslation } from "react-i18next";
 import { useLocalizedPath } from "../../shared/hooks/useLocalizedPath";
@@ -23,10 +24,12 @@ export function EventCard({ event, isLiked, onLike }: Props) {
     const { t } = useTranslation();
     const { data: categories } = useGetCategoriesQuery();
     const { data: organizers } = useGetOrganizersQuery();
+    const { data: cities } = useGetCitiesQuery();
     const path = useLocalizedPath();
     
     const category = categories?.find(cat => cat.id === event.categoryId);
     const organizer = organizers?.find(org => org.id === event.organizerId);
+    const city = cities?.find(c => c.id === event.cityId);
 
     return (
         <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative">
@@ -88,7 +91,7 @@ export function EventCard({ event, isLiked, onLike }: Props) {
                     <div className="flex items-start text-gray-600">
                         <MapPin className="w-4 h-4 mr-2 flex-shrink-0 mt-0.5" />
                         <span className="text-sm">
-                            {event.city}
+                            {city?.name ||event.cityId}
                             {event.address && (
                                 <span className="block text-xs text-gray-400">{event.address}</span>
                             )}

@@ -145,7 +145,7 @@ export function AdminEventPreviewPage() {
                   <MapPinned className="text-green-600 text-xl" />
                   <div>
                     <Text type="secondary" className="text-xs">{t("preview.location")}</Text>
-                    <div className="font-semibold">{event.city}</div>
+                    <div className="font-semibold">{event.cityId}</div>
                     <Text type="secondary" className="text-sm">{event.address}</Text>
                   </div>
                 </div>

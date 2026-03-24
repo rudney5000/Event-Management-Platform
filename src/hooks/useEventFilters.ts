@@ -1,9 +1,10 @@
 import { useState, useMemo } from 'react';
 import { toggleLike } from '../features/like-event'
 import { useGetEventsQuery } from '../entities/event/api/eventsApi';
-import { inferCategoryFromTitle } from '../entities/event/constants';
-import type { EventFormValues } from '../features/event-form/ui/EventForm';
+import { inferCategoryFromTitle } from '../entities/event';
+import type { EventFormValues } from '../features/event-form';
 import { useAppDispatch, useAppSelector } from '../shared/hooks';
+import { useTranslation } from 'react-i18next';
 
 interface UseEventFiltersProps {
   page?: number;
@@ -40,7 +41,8 @@ interface UseEventFiltersReturn {
 const ITEMS_PER_PAGE = 8
 
 export function useEventFilters({ page = 1, limit = 10 }: UseEventFiltersProps = {}): UseEventFiltersReturn {
-  const { data, isLoading, error } = useGetEventsQuery({ page, limit });
+  const { i18n } = useTranslation();
+  const { data, isLoading, error } = useGetEventsQuery({ page, limit, lang: i18n.language });
   
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [priceFilter, setPriceFilter] = useState<'all' | 'free' | 'paid'>('all');
@@ -56,8 +58,8 @@ export function useEventFilters({ page = 1, limit = 10 }: UseEventFiltersProps =
 
   const uniqueCities = useMemo(() => {
     if (!data?.events) return [];
-    return Array.from(new Set(data.events.map(e => e.city))).sort();
-  }, [data?.events]);
+    return Array.from(new Set(data.events.map(e => e.cityId))).sort();
+  }, [data]);
 
   const filteredEvents = useMemo(() => {
     if (!data?.events) return [];
@@ -68,12 +70,12 @@ export function useEventFilters({ page = 1, limit = 10 }: UseEventFiltersProps =
         if (selectedCategories.length && !selectedCategories.includes(category.id)) return false;
         if (priceFilter === 'free' && event.priceType !== 'free') return false;
         if (priceFilter === 'paid' && event.priceType !== 'paid') return false;
-        if (cityFilter && event.city !== cityFilter) return false;
+        if (cityFilter && event.cityId !== cityFilter) return false;
         if (searchQuery) {
           const q = searchQuery.toLowerCase();
-          return event.title.toLowerCase().includes(q)
-            || event.city.toLowerCase().includes(q)
-            || (event.speakers?.some(s => s.toLowerCase().includes(q)));
+          return (event.title?.toLowerCase().includes(q) || false)
+            || (event.cityId?.toLowerCase().includes(q) || false)
+            || (event.speakers?.some(s => s.toLowerCase().includes(q)) || false);
         }
         return true;
       })
@@ -81,11 +83,11 @@ export function useEventFilters({ page = 1, limit = 10 }: UseEventFiltersProps =
         switch(sortBy) {
           case 'date': return new Date(a.date).getTime() - new Date(b.date).getTime();
           case 'price': return (a.price || 0) - (b.price || 0);
-          case 'title': return a.title.localeCompare(b.title);
+          case 'title': return (a.title || '').localeCompare(b.title || '');
           default: return 0;
         }
       });
-  }, [data?.events, selectedCategories, priceFilter, cityFilter, searchQuery, sortBy]);
+  }, [data, selectedCategories, priceFilter, cityFilter, searchQuery, sortBy]);
 
   const handleLike = (eventId: string) => {
     dispatch(toggleLike(eventId));
