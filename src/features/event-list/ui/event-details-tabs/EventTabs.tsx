@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import type { EventFull } from '../../../../pages/admin/AdminEventPreviewPage';
+import { useGetCitiesQuery } from "../../../../entities/city/api/cityApi";
 
 export type TabId = 'details' | 'speakers' | 'location' | 'reviews'
 
@@ -11,6 +12,8 @@ interface EventTabsProps {
 
 export function EventTabs({ event, activeTab, setActiveTab }: EventTabsProps) {
   const { t } = useTranslation();
+  const { data: cities } = useGetCitiesQuery();
+  const city = cities?.find(c => c.id === event.cityId);
   const tabs: { id: TabId; label: string }[] = [
     { id: 'details',  label: t('eventTabs.details')  },
     { id: 'speakers', label: t('eventTabs.speakers') },
@@ -64,7 +67,7 @@ export function EventTabs({ event, activeTab, setActiveTab }: EventTabsProps) {
             <h3 className="text-lg font-semibold mb-3">
               {t('eventTabs.location')}
             </h3>
-            <p>{event.address}, {event.city}</p>
+            <p>{event.address}, {city?.name || 'Ville inconnue'}</p>
           </div>
         )}
 
