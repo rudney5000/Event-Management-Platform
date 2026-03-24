@@ -4,7 +4,6 @@ import { EventTabs, type TabId } from "../event-details-tabs";
 import { LikeButton } from "../../../like-event";
 import type { EventFull } from '../../../../pages/admin/AdminEventPreviewPage.tsx';
 import { useTranslation } from "react-i18next";
-import { useGetCitiesQuery } from "../../../../entities/city/api/cityApi";
 
 interface EventDetailsLayoutProps {
   event: EventFull;
@@ -14,10 +13,7 @@ interface EventDetailsLayoutProps {
 
 export function EventDetailsLayout({ event, isLoading, error }: EventDetailsLayoutProps) {
   const { t } = useTranslation();
-  const { data: cities } = useGetCitiesQuery();
   const [activeTab, setActiveTab] = useState<TabId>('details');
-
-  const city = cities?.find(c => c.id === event.cityId);
 
   if (isLoading) return <div>{t('eventPage.loading')}</div>;
   if (error) return <div>{t('eventPage.error')}</div>;
@@ -27,7 +23,7 @@ export function EventDetailsLayout({ event, isLoading, error }: EventDetailsLayo
       <div className="flex justify-between items-start">
         <div>
           <h1 className="text-3xl font-bold">{event.title}</h1>
-          <p className="text-gray-500">{city?.name || 'Ville inconnue'}</p>
+          <p className="text-gray-500">{event.cityId}</p>
         </div>
         <LikeButton eventId={event.id} />
       </div>
