@@ -7,7 +7,8 @@
     "events": "Events",
     "category": "Categories",
     "currency": "Currencies",
-    "organizer": "Organizers"
+    "organizer": "Organizers", 
+    "city": "Cities"
   },
   "common": {
     "save": "Save",
@@ -18,6 +19,43 @@
     "loading": "Loading...",
     "notFound": "Not found",
     "cancel": "Cancel"
+  },
+  "selectOrCreate": {
+    "createCity": "Create a new city",
+    "createOrganizer": "Create a new organizer",
+    "createCategory": "Create a new category",
+    "createCurrency": "Create a new currency",
+    "createTag": "Add a tag",
+    "createSpeaker": "Add a speaker",
+    "create": "Create",
+    "cancel": "Cancel",
+    "fields": {
+      "city": {
+        "slug": "Slug (ex: london)",
+        "name": "Name (ex: London)",
+        "countryCode": "Country code (ex: GB)",
+        "currencyId": "Currency ID"
+      },
+      "organizer": {
+        "name": "Organizer name",
+        "logo": "Logo URL (optional)",
+        "contactEmail": "Contact email"
+      },
+      "category": {
+        "name": "Category name",
+        "icon": "Icon (ex: 🎤, 🔧, 📊)",
+        "color": "Color (ex: bg-blue-500)"
+      },
+      "currency": {
+        "code": "Code (ex: USD)",
+        "name": "Name (ex: Dollar)",
+        "symbol": "Symbol (ex: $)"
+      },
+      "tag": {
+        "tag": "New tag",
+        "speaker": "New speaker"
+      }
+    }
   },
   "layout": {
     "footer": "Ant Design ©{{year}}"
@@ -168,7 +206,37 @@
       "submit": "Save organizer"
     }
   },
-  "preview": {
+  "cities": {
+    "listTitle": "Cities list",
+    "addButton": "Add city",
+    "modalAdd": "Add city",
+    "modalEdit": "Edit city",
+    "msgDeleted": "City deleted",
+    "msgDeleteFailed": "Failed to delete city",
+    "msgUpdated": "City updated",
+    "msgAdded": "City added",
+    "msgSaveFailed": "Failed to save city",
+    "columns": {
+      "slug": "Slug",
+      "name": "Name",
+      "countryCode": "Country code",
+      "currencyId": "Currency",
+      "actions": "Actions",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "form": {
+      "slug": "Slug",
+      "slugPlaceholder": "City slug",
+      "name": "Name",
+      "namePlaceholder": "City name",
+      "countryCode": "Country code",
+      "countryCodePlaceholder": "ISO code (e.g. GB)",
+      "currency": "Currency",
+      "currencyPlaceholder": "Select currency",
+      "submit": "Save city"
+    },  
+    "preview": {
     "backToEvents": "Back to events",
     "loading": "Loading...",
     "notFound": "Event not found",
@@ -196,5 +264,6 @@
     "priorityBadge": "Priority {{priority}}",
     "statusDraft": "DRAFT",
     "statusPublished": "PUBLISHED"
+  }
   }
 }

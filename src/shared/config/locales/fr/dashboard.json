@@ -7,7 +7,8 @@
     "events": "Événements",
     "category": "Catégories",
     "currency": "Devises",
-    "organizer": "Organisateurs"
+    "organizer": "Organisateurs",    
+    "city": "Villes"
   },
   "common": {
     "save": "Enregistrer",
@@ -18,6 +19,43 @@
     "loading": "Chargement...",
     "notFound": "Introuvable",
     "cancel": "Annuler"
+  },
+  "selectOrCreate": {
+    "createCity": "Créer une nouvelle ville",
+    "createOrganizer": "Créer un nouvel organisateur",
+    "createCategory": "Créer une nouvelle catégorie",
+    "createCurrency": "Créer une nouvelle devise",
+    "createTag": "Ajouter un tag",
+    "createSpeaker": "Ajouter un intervenant",
+    "create": "Créer",
+    "cancel": "Annuler",
+    "fields": {
+      "city": {
+        "slug": "Slug (ex: paris)",
+        "name": "Nom (ex: Paris)",
+        "countryCode": "Code pays (ex: FR)",
+        "currencyId": "ID Devise"
+      },
+      "organizer": {
+        "name": "Nom de l'organisateur",
+        "logo": "URL du logo (optionnel)",
+        "contactEmail": "Email de contact"
+      },
+      "category": {
+        "name": "Nom de la catégorie",
+        "icon": "Icône (ex: 🎤, 🔧, 📊)",
+        "color": "Couleur (ex: bg-blue-500)"
+      },
+      "currency": {
+        "code": "Code (ex: RUB)",
+        "name": "Nom (ex: Rouble)",
+        "symbol": "Symbole (ex: ₽)"
+      },
+      "tag": {
+        "tag": "Nouveau tag",
+        "speaker": "Nouvel intervenant"
+      }
+    }
   },
   "layout": {
     "footer": "Ant Design ©{{year}}"
@@ -168,7 +206,37 @@
       "submit": "Enregistrer l'organisateur"
     }
   },
-  "preview": {
+  "cities": {
+    "listTitle": "Liste des villes",
+    "addButton": "Ajouter une ville",
+    "modalAdd": "Ajouter une ville",
+    "modalEdit": "Modifier la ville",
+    "msgDeleted": "Ville supprim�e",
+    "msgDeleteFailed": "�chec de la suppression de la ville",
+    "msgUpdated": "Ville mise � jour",
+    "msgAdded": "Ville ajout�e",
+    "msgSaveFailed": "�chec de l'enregistrement de la ville",
+    "columns": {
+      "slug": "Slug",
+      "name": "Nom",
+      "countryCode": "Code pays",
+      "currencyId": "Devise",
+      "actions": "Actions",
+      "edit": "Modifier",
+      "delete": "Supprimer"
+    },
+    "form": {
+      "slug": "Slug",
+      "slugPlaceholder": "Slug de la ville",
+      "name": "Nom",
+      "namePlaceholder": "Nom de la ville",
+      "countryCode": "Code pays",
+      "countryCodePlaceholder": "Code ISO (ex: GB)",
+      "currency": "Devise",
+      "currencyPlaceholder": "S�lectionner une devise",
+      "submit": "Enregistrer la ville"
+    },
+    "preview": {
     "backToEvents": "Retour aux événements",
     "loading": "Chargement...",
     "notFound": "Événement introuvable",
@@ -196,5 +264,6 @@
     "priorityBadge": "Priorité {{priority}}",
     "statusDraft": "BROUILLON",
     "statusPublished": "PUBLIÉ"
+  }
   }
 }

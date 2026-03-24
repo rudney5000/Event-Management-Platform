@@ -1,27 +1,61 @@
 {
-  "page": {
-    "title": "Панель управления"
-  },
+  "page": { "title": "Панель управления" },
   "nav": {
-    "dashboard": "Панель",
+    "dashboard": "Панель управления",
     "events": "События",
     "category": "Категории",
     "currency": "Валюты",
-    "organizer": "Организаторы"
+    "organizer": "Организаторы",
+    "city": "Города"
   },
   "common": {
     "save": "Сохранить",
     "add": "Добавить",
-    "edit": "Изменить",
+    "edit": "Редактировать",
     "delete": "Удалить",
     "actions": "Действия",
     "loading": "Загрузка...",
     "notFound": "Не найдено",
     "cancel": "Отмена"
   },
-  "layout": {
-    "footer": "Ant Design ©{{year}}"
+  "selectOrCreate": {
+    "createCity": "Создать новый город",
+    "createOrganizer": "Создать нового организатора",
+    "createCategory": "Создать новую категорию",
+    "createCurrency": "Создать новую валюту",
+    "createTag": "Добавить тег",
+    "createSpeaker": "Добавить спикера",
+    "create": "Создать",
+    "cancel": "Отмена",
+    "fields": {
+      "city": {
+        "slug": "Slug (ex: moscow)",
+        "name": "Название (ex: Москва)",
+        "countryCode": "Код страны (ex: RU)",
+        "currencyId": "ID валюты"
+      },
+      "organizer": {
+        "name": "Название организатора",
+        "logo": "URL логотипа (опционально)",
+        "contactEmail": "Контактный email"
+      },
+      "category": {
+        "name": "Название категории",
+        "icon": "Иконка (ex: 🎤, 🔧, 📊)",
+        "color": "Цвет (ex: bg-blue-500)"
+      },
+      "currency": {
+        "code": "Код (ex: RUB)",
+        "name": "Название (ex: Рубль)",
+        "symbol": "Символ (ex: ₽)"
+      },
+      "tag": {
+        "tag": "Новый тег",
+        "speaker": "Новый спикер"
+      }
+    }
   },
+  "layout": { "footer": "Ant Design ©{{year}}" },
   "events": {
     "listTitle": "Список событий",
     "addButton": "Добавить событие",
@@ -47,14 +81,11 @@
       "priorityMedium": "Средний (2)",
       "priorityLow": "Низкий (3)",
       "free": "Бесплатно",
-      "edit": "Изменить",
+      "edit": "Редактировать",
       "delete": "Удалить",
-      "preview": "Просмотр"
+      "preview": "Предпросмотр"
     },
-    "status": {
-      "draft": "черновик",
-      "published": "опубликовано"
-    },
+    "status": { "draft": "черновик", "published": "опубликовано" },
     "form": {
       "title": "Название",
       "titlePlaceholder": "Название события",
@@ -63,7 +94,7 @@
       "addressPlaceholder": "Улица и номер",
       "priceType": "Тип цены",
       "free": "Бесплатно",
-      "paid": "Платно",
+      "paid": "Платное",
       "price": "Цена",
       "currency": "Валюта",
       "currencyPlaceholder": "Выберите валюту",
@@ -79,9 +110,9 @@
       "speakers": "Спикеры",
       "priority": "Приоритет",
       "submit": "Сохранить событие",
-      "citySelectPlaceholder": "Выберите или введите город",
-      "tagsPlaceholder": "Выберите или введите теги",
-      "speakersPlaceholder": "Выберите или введите спикеров",
+      "citySelectPlaceholder": "Выберите или создайте город",
+      "tagsPlaceholder": "Выберите или создайте теги",
+      "speakersPlaceholder": "Выберите или создайте спикеров",
       "priorityItem": "Приоритет {{n}}"
     }
   },
@@ -101,7 +132,7 @@
       "color": "Цвет",
       "description": "Описание",
       "actions": "Действия",
-      "edit": "Изменить",
+      "edit": "Редактировать",
       "delete": "Удалить"
     },
     "form": {
@@ -127,7 +158,7 @@
       "name": "Название",
       "symbol": "Символ",
       "actions": "Действия",
-      "edit": "Изменить",
+      "edit": "Редактировать",
       "delete": "Удалить"
     },
     "form": {
@@ -145,9 +176,9 @@
     "addButton": "Добавить организатора",
     "modalAdd": "Добавить организатора",
     "modalEdit": "Редактировать организатора",
-    "msgDeleted": "Организатор удалён",
+    "msgDeleted": "Организатор удален",
     "msgDeleteFailed": "Не удалось удалить организатора",
-    "msgUpdated": "Организатор обновлён",
+    "msgUpdated": "Организатор обновлен",
     "msgAdded": "Организатор добавлен",
     "msgSaveFailed": "Не удалось сохранить организатора",
     "columns": {
@@ -155,17 +186,48 @@
       "name": "Название",
       "contactEmail": "Контактный email",
       "actions": "Действия",
-      "edit": "Изменить",
+      "edit": "Редактировать",
       "delete": "Удалить"
     },
     "form": {
       "name": "Название",
-      "namePlaceholder": "Имя организатора",
+      "namePlaceholder": "Название организатора",
       "logo": "Логотип",
       "logoPlaceholder": "URL логотипа",
       "contactEmail": "Контактный email",
-      "contactEmailPlaceholder": "Email организатора",
+      "contactEmailPlaceholder": "Контактный email организатора",
       "submit": "Сохранить организатора"
+    }
+  },
+  "cities": {
+    "listTitle": "Список городов",
+    "addButton": "Добавить город",
+    "modalAdd": "Добавить город",
+    "modalEdit": "Редактировать город",
+    "msgDeleted": "Город удален",
+    "msgDeleteFailed": "Не удалось удалить город",
+    "msgUpdated": "Город обновлен",
+    "msgAdded": "Город добавлен",
+    "msgSaveFailed": "Не удалось сохранить город",
+    "columns": {
+      "slug": "Slug",
+      "name": "Название",
+      "countryCode": "Код страны",
+      "currencyId": "Валюта",
+      "actions": "Действия",
+      "edit": "Редактировать",
+      "delete": "Удалить"
+    },
+    "form": {
+      "slug": "Slug",
+      "slugPlaceholder": "Slug города",
+      "name": "Название",
+      "namePlaceholder": "Название города",
+      "countryCode": "Код страны",
+      "countryCodePlaceholder": "ISO код (например GB)",
+      "currency": "Валюта",
+      "currencyPlaceholder": "Выберите валюту",
+      "submit": "Сохранить город"
     }
   },
   "preview": {
@@ -173,7 +235,7 @@
     "loading": "Загрузка...",
     "notFound": "Событие не найдено",
     "date": "Дата",
-    "location": "Место",
+    "location": "Место проведения",
     "price": "Цена",
     "free": "Бесплатно",
     "pricePaid": "{{price}} €",
@@ -181,20 +243,21 @@
     "organizer": "Организатор",
     "tags": "Теги",
     "speakers": "Спикеры",
-    "summary": "Кратко",
+    "summary": "Краткое описание",
     "fullDescription": "Полное описание",
-    "locationDetails": "Детали места",
+    "locationDetails": "Детали местоположения",
     "coordinates": "Координаты: {{lat}}, {{lng}}",
     "booking": "Бронирование",
     "openBooking": "Открыть страницу бронирования →",
     "sponsors": "Спонсоры",
-    "mediaGallery": "Медиагалерея",
+    "mediaGallery": "Медиа галерея",
     "video": "Видео {{n}}",
     "watchVideo": "Смотреть видео →",
     "mediaAlt": "Медиа {{n}}",
-    "schedule": "Расписание",
+    "schedule": "Расписание события",
     "priorityBadge": "Приоритет {{priority}}",
     "statusDraft": "ЧЕРНОВИК",
     "statusPublished": "ОПУБЛИКОВАНО"
   }
 }
+
