@@ -1,17 +1,18 @@
 import { createBrowserRouter, Navigate } from "react-router";
 import App from "../App";
 import { PrivateRoute } from "../../shared/ui/PrivateRoute";
-import { EventsPage } from "../../pages/admin";
-import { DashboardPage } from "../../pages/admin";
+import {
+  EventsPage,
+  DashboardPage,
+  AdminEventPreviewPage,
+  AdminCategoryPage,
+  AdminCurrencyPage,
+  AdminOrganizerPage,
+  AdminCityPage,
+} from "../../pages/admin";
 import { AdminLayout } from "../../pages/admin/ui/ui/AdminLayout";
-import { EventDetailsPage } from "../../pages/customer";
-import { EventPage } from "../../pages/customer";
-import { LoginPage } from "../../pages/auth";
-import { RegisterPage } from "../../pages/auth";
-import { AdminEventPreviewPage } from "../../pages/admin";
-import { AdminCategoryPage } from "../../pages/admin";
-import { AdminCurrencyPage } from "../../pages/admin";
-import { AdminOrganizerPage } from "../../pages/admin";
+import { EventDetailsPage, EventPage } from "../../pages/customer";
+import { LoginPage, RegisterPage } from "../../pages/auth";
 import { LocaleLayout } from "./LocaleLayout";
 
 export const router = createBrowserRouter([
@@ -73,6 +74,10 @@ export const router = createBrowserRouter([
               {
                 path: "organizer",
                 element: <AdminOrganizerPage />,
+              },
+              {
+                path: "city",
+                element: <AdminCityPage />,
               },
             ],
           },
