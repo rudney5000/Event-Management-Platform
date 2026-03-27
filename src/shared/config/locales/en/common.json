@@ -130,5 +130,14 @@
     "error": "Error loading favorites",
     "noFavorites": "No favorites",
     "noFavoritesMessage": "Start liking events to find them here!"
+  },
+  "chat": {
+    "title": "Chat",
+    "open": "Open chat",
+    "close": "Close",
+    "placeholder": "Type your message...",
+    "send": "Send",
+    "loading": "Loading messages...",
+    "noMessages": "No messages yet. Be the first to write!"
   }
 }

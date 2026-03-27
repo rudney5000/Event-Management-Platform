@@ -130,5 +130,14 @@
     "error": "Erreur lors du chargement des favoris",
     "noFavorites": "Aucun favori",
     "noFavoritesMessage": "Commencez à liker des événements pour les retrouver ici !"
+  },
+  "chat": {
+    "title": "Discussion",
+    "open": "Ouvrir le chat",
+    "close": "Fermer",
+    "placeholder": "Écrivez votre message...",
+    "send": "Envoyer",
+    "loading": "Chargement des messages...",
+    "noMessages": "Aucun message pour le moment. Soyez le premier à écrire !"
   }
 }
