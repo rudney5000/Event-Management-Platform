@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { eventsApi } from "../../entities/event";
-import { likeSLice } from "../../features/like-event";
+import {likeSlice} from "../../features/like-event";
 import { categoryApi } from "../../entities/category";
 import { currencyApi } from "../../entities/currency";
 import { organizerApi } from "../../entities/organizer";
@@ -10,21 +10,32 @@ import storage from "redux-persist/lib/storage"
 import { authSlice, userSlice } from "../../features/auth/slice";
 import { authApi } from "../../features/auth/api";
 
-const persistConfig = {
-  key: "root",
-  storage,
-  whitelist: ["user"],
-};
+const userPersistConfig = {
+  key: 'user',
+  storage
+}
 
-const persistedUserReducer = persistReducer(persistConfig, userSlice.reducer)
+const likesPersistConfig = {
+  key: "likes",
+  storage
+}
 
+const persistedUserReducer = persistReducer(
+    userPersistConfig,
+    userSlice.reducer
+)
+
+const persistLikesReducer = persistReducer(
+    likesPersistConfig,
+    likeSlice
+)
 export const store = configureStore({
   reducer: {
     [authApi.reducerPath]: authApi.reducer,
     auth: authSlice.reducer,
     user: persistedUserReducer,
     [eventsApi.reducerPath]: eventsApi.reducer,
-    likes: likeSLice.reducer,
+    likes: persistLikesReducer,
     [categoryApi.reducerPath]: categoryApi.reducer,
     [currencyApi.reducerPath]: currencyApi.reducer,
     [organizerApi.reducerPath]: organizerApi.reducer,
