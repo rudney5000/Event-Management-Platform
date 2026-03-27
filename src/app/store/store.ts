@@ -27,7 +27,7 @@ const persistedUserReducer = persistReducer(
 
 const persistLikesReducer = persistReducer(
     likesPersistConfig,
-    likeSlice
+    likeSlice.reducer
 )
 export const store = configureStore({
   reducer: {
