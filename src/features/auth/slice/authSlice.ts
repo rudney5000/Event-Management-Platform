@@ -1,9 +1,6 @@
 import {createSlice, type PayloadAction} from "@reduxjs/toolkit";
 import { tokenService } from "../../../shared/lib/token.ts";
-
-type AuthState = {
-    isAuthenticated: boolean;
-};
+import type {AuthState} from "./types.ts";
 
 const initialState: AuthState = {
     isAuthenticated: !!tokenService.getAccess(),
