@@ -11,8 +11,7 @@ import type { TableRowSelection } from "antd/es/table/interface";
 import { CustomTable } from "../../../../shared/ui/custom-table/CustomTable";
 import { EventForm, type EventFormValues } from "../../../event-form";
 import { 
-  useCreateEventMutation, 
-  useDeleteEventMutation, 
+  useDeleteEventMutation,
   useGetEventsQuery, 
   useUpdateEventMutation 
 } from "../../../../entities/event/api/eventsApi";
@@ -38,7 +37,6 @@ export function EventsTable() {
   const total = data?.total || 0;
   const events = data?.events || [];
 
-  const [createEvent] = useCreateEventMutation();
   const [updateEvent] = useUpdateEventMutation();
   const [deleteEvent] = useDeleteEventMutation();
 
@@ -71,7 +69,7 @@ export function EventsTable() {
         await updateEvent({ id: editingEvent.id!, event: values }).unwrap();
         message.success(t("events.msgUpdated"));
       } else {
-        await createEvent( values ).unwrap()
+        // await createEvent( values ).unwrap()
         message.success(t("events.msgAdded"));
       }
       setIsModalVisible(false);

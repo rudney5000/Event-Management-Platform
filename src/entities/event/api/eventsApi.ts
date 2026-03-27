@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import type { GetEventsParams, PaginatedEvents, BrowseResponse } from "../model/types";
+import type { GetEventsParams, PaginatedEvents } from "../model/types";
 import type { EventFull } from "../../../pages/admin/AdminEventPreviewPage";
 import type { EventFormValues } from "../../../features/event-form";
 
@@ -58,19 +58,6 @@ export const eventsApi = createApi({
       }),
       providesTags: ["Events"],
     }),
-    getBrowseByCity: builder.query<BrowseResponse, { citySlug: string; cityId: string; lang: string; page?: number; limit?: number }>({
-      query: ({ citySlug, cityId, lang, page = 1, limit = 20 }) =>
-        `/api/browse/${citySlug}-${cityId}?lang=${lang}&page=${page}&limit=${limit}`,
-      providesTags: ["Browse"],
-    }),
-    createEvent: builder.mutation<EventFormValues, Partial<EventFormValues>>({
-      query: (event) => ({
-        url: "/api/events",
-        method: "POST",
-        body: event,
-      }),
-      invalidatesTags: ["Events", "Browse"],
-    }),
     createAdminEvent: builder.mutation<EventFull, CreateEventPayload>({
       query: (payload) => ({
         url: "/api/admin/events",
@@ -128,12 +115,7 @@ export const eventsApi = createApi({
 
 export const {
   useGetEventsQuery,
-  useGetBrowseByCityQuery,
-  useCreateEventMutation,
-  useCreateAdminEventMutation,
   useUpdateEventMutation,
-  useUpdateAdminEventBaseMutation,
-  useUpsertEventTranslationMutation,
   useDeleteEventMutation,
   useGetEventByIdQuery,
 } = eventsApi;
