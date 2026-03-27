@@ -18,9 +18,9 @@ export const LikeButton = memo(function LikeButton({ eventId }: LikeButtonProps)
   return (
     <button
       onClick={() => dispatch(toggleLike(eventId))}
-      aria-label={liked ? 'Retirer des favoris' : 'Ajouter aux favoris'}
+      aria-label={isLiked ? 'Retirer des favoris' : 'Ajouter aux favoris'}
       className={`p-2 rounded-full transition-colors ${
-        liked
+          isLiked
           ? 'text-red-500 hover:text-red-600 bg-red-50'
           : 'text-gray-400 hover:text-red-500 hover:bg-red-50'
       }`}

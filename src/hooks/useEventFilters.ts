@@ -35,7 +35,7 @@ interface UseEventFiltersReturn {
   totalPages: number;
   currentPage: number;
   setCurrentPage: (page: number) => void;
-  likeIds: string[];
+  likeIds: Record<string, boolean>;
 }
 
 const ITEMS_PER_PAGE = 8
@@ -54,7 +54,7 @@ export function useEventFilters({ page = 1, limit = 10 }: UseEventFiltersProps =
 
 
   const dispatch = useAppDispatch();
-  const likeIds = useAppSelector(state => state.likes.likedIds);
+  const likeIds = useAppSelector(state => state.likes.liked);
 
   const uniqueCities = useMemo(() => {
     if (!data?.events) return [];

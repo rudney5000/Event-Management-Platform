@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { EventFilters } from "../../features/event-filters/EventFilters";
+import { EventFilters } from "../../features/event-filters";
 import { EventCard } from "../../features/event-list";
 import { useEventFilters } from "../../hooks/useEventFilters";
 import Footer from "../../shared/ui/footer/Footer";
@@ -65,7 +65,7 @@ export function EventPage() {
                         <EventCard
                         key={event.id}
                         event={event}
-                        isLiked={likeIds.includes(event.id)}
+                        isLiked={!!likeIds[event.id]}
                         onLike={handleLike}
                         />
                     ))}
