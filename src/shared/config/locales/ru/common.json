@@ -30,7 +30,8 @@
       "about": "О нас",
       "contact": "Контакты",
       "blog": "Блог",
-      "faq": "FAQ"
+      "faq": "FAQ",
+      "favorites": "Избранное"
     },
     "userMenu": {
       "profile": "Мой профиль",
@@ -55,7 +56,24 @@
   "eventPage": {
     "loading": "Загрузка...",
     "error": "Ошибка загрузки",
-    "noEvents": "События не найдены."
+    "noEvents": "События не найдены.",
+    "browseCity": {
+      "title": "События в {{city}}",
+      "description": "Откройте для себя все события в {{city}}",
+      "backToEvents": "Назад к событиям",
+      "noEvents": "Нет событий в {{city}}",
+      "noEventsDesc": "Пока нет запланированных событий в {{city}}.",
+      "exploreOtherCities": "Исследовать другие города",
+      "stats": {
+        "totalEvents": "Всего событий",
+        "city": "Город",
+        "totalSpeakers": "Всего спикеров"
+      },
+      "pagination": {
+        "previous": "Предыдущая",
+        "next": "Следующая"
+      }
+    }
   },
   "filters": {
     "title": "Фильтры",
@@ -103,5 +121,14 @@
     "aboutEvent": "О мероприятии",
     "noSpeakers": "Докладчики не указаны.",
     "noReviews": "Отзывов пока нет."
+  },
+  "favoritesPage": {
+    "title": "Мои избранные",
+    "subtitle": "{{count}} избранное событие",
+    "subtitle_plural": "{{count}} избранных событий",
+    "loading": "Загрузка избранных...",
+    "error": "Ошибка при загрузке избранных",
+    "noFavorites": "Нет избранных",
+    "noFavoritesMessage": "Начните отмечать события, чтобы найти их здесь!"
   }
 }

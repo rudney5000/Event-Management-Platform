@@ -7,9 +7,9 @@ import {
   Info,
   ExternalLink
 } from "lucide-react";
-import { useGetCategoriesQuery } from "../../entities/category/api";
-import { useGetOrganizersQuery } from "../../entities/organizer/api/OrganizerApi";
-import { useGetCitiesQuery } from "../../entities/city/api/cityApi";
+import { useGetCategoriesQuery } from "../../entities/category";
+import { useGetOrganizersQuery } from "../../entities/organizer";
+import { useGetCitiesQuery } from "../../entities/city";
 import type { EventFull } from "../../pages/admin/AdminEventPreviewPage";
 import { useTranslation } from "react-i18next";
 import { useLocalizedPath } from "../../shared/hooks/useLocalizedPath";

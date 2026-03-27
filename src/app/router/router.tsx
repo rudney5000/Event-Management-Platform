@@ -9,11 +9,12 @@ import {
   AdminCurrencyPage,
   AdminOrganizerPage,
   AdminCityPage,
-} from "../../pages/admin";
-import { AdminLayout } from "../../pages/admin/ui/ui/AdminLayout";
-import { EventDetailsPage, EventPage } from "../../pages/customer";
-import { LoginPage, RegisterPage } from "../../pages/auth";
+} from "../../pages";
+import { AdminLayout } from "../../pages/admin/ui";
+import { EventDetailsPage, EventPage } from "../../pages";
+import { LoginPage, RegisterPage } from "../../pages";
 import { LocaleLayout } from "./LocaleLayout";
+import {EventFavoritesPage} from "../../pages";
 
 export const router = createBrowserRouter([
   {
@@ -85,6 +86,10 @@ export const router = createBrowserRouter([
             path: "event/:id",
             element: <EventDetailsPage />,
           },
+          {
+            path: "event/favorites",
+            element: <EventFavoritesPage/>
+          }
         ],
       },
     ],

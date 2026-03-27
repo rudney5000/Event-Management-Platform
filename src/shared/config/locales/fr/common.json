@@ -30,7 +30,8 @@
       "about": "À propos",
       "contact": "Contact",
       "blog": "Blog",
-      "faq": "FAQ"
+      "faq": "FAQ",
+      "favorites": "Favoris"
     },
     "userMenu": {
       "profile": "Mon profil",
@@ -55,7 +56,24 @@
   "eventPage": {
     "loading": "Chargement...",
     "error": "Erreur de chargement",
-    "noEvents": "Aucun événement trouvé."
+    "noEvents": "Aucun événement trouvé.",
+    "browseCity": {
+      "title": "Événements à {{city}}",
+      "description": "Découvrez tous les événements à {{city}}",
+      "backToEvents": "Retour aux événements",
+      "noEvents": "Aucun événement à {{city}}",
+      "noEventsDesc": "Il n'y a pas encore d'événements prévus à {{city}}.",
+      "exploreOtherCities": "Explorer d'autres villes",
+      "stats": {
+        "totalEvents": "Événements totaux",
+        "city": "Ville",
+        "totalSpeakers": "Intervenants totaux"
+      },
+      "pagination": {
+        "previous": "Précédent",
+        "next": "Suivant"
+      }
+    }
   },
   "filters": {
     "title": "Filtres",
@@ -103,5 +121,14 @@
     "aboutEvent": "À propos de l'événement",
     "noSpeakers": "Aucun intervenant renseigné.",
     "noReviews": "Aucun avis pour le moment."
+  },
+  "favoritesPage": {
+    "title": "Mes favoris",
+    "subtitle": "{{count}} événement favori",
+    "subtitle_plural": "{{count}} événements favoris",
+    "loading": "Chargement de vos favoris...",
+    "error": "Erreur lors du chargement des favoris",
+    "noFavorites": "Aucun favori",
+    "noFavoritesMessage": "Commencez à liker des événements pour les retrouver ici !"
   }
 }

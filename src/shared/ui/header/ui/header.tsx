@@ -3,16 +3,17 @@ import { Link, NavLink } from 'react-router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { PopoverGroup } from '@headlessui/react';
-import { MOCK_NOTIFICATIONS, getMainNavLinks } from '../model/constants';
+import { MOCK_NOTIFICATIONS, getMainNavLinks } from '../model';
 import { SearchBar } from './SearchBar';
 import { ProductsPopover } from './ProductsPopover';
 import { NotificationsMenu } from './NotificationsMenu';
 import { UserMenu } from './UserMenu';
 import { MobileMenu } from './MobileMenu';
 import { useCurrentUser } from '../../../../hooks/useCurrentUser';
-import { useUserMenu } from '../../../hooks';
+import {useAppSelector, useUserMenu} from '../../../hooks';
 import { LanguageSwitcher } from '../../../../features/change-language';
 import { useLocalizedPath } from '../../../hooks/useLocalizedPath';
+import {Heart} from "lucide-react";
 
 export function Header() {
   const { t } = useTranslation();
@@ -20,10 +21,13 @@ export function Header() {
   const [searchQuery, setSearchQuery] = useState('');
   const { open: mobileMenuOpen, toggle: toggleMobileMenu, close: closeMobileMenu } = useUserMenu();
   const { user } = useCurrentUser();
+  const likeIds = useAppSelector(state => state.likes.liked);
+  const favoritesCount = Object.keys(likeIds).length;
+
 
   const mainNavLinks = getMainNavLinks(t).map((link) => ({
     ...link,
-    to: localizedPath(link.to),
+    to: localizedPath(link.to)
   }));
 
   const handleLogout = () => {
@@ -84,6 +88,17 @@ export function Header() {
         <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-4">
           <LanguageSwitcher />
           <NotificationsMenu notifications={MOCK_NOTIFICATIONS} />
+          <Link
+              to={localizedPath('/event/favorites')}
+              className="relative p-2 text-gray-400 hover:text-white transition-colors"
+          >
+            <Heart className="w-5 h-5" />
+            {favoritesCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+            {favoritesCount > 9 ? '9+' : favoritesCount}
+          </span>
+            )}
+          </Link>
           <UserMenu user={user || null} onLogout={handleLogout} />
         </div>
       </nav>

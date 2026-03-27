@@ -54,6 +54,10 @@ export const getMainNavLinks = (t: TFunction): NavLinkItem[] => [
   { name: t('header.navigation.events'), to: '/events' },
   { name: t('header.navigation.about'), to: '/about' },
   { name: t('header.navigation.contact'), to: '/contact' },
+  {
+    name: t('header.favorites'),
+    to: '/event/favorites',
+  },
 ];
 
 export const getUserMenuItems = (t: TFunction): UserMenuItem[] => [

@@ -30,7 +30,8 @@
       "about": "About",
       "contact": "Contact",
       "blog": "Blog",
-      "faq": "FAQ"
+      "faq": "FAQ",
+      "favorites": "favorites"
     },
     "userMenu": {
       "profile": "My profile",
@@ -55,7 +56,24 @@
   "eventPage": {
     "loading": "Loading...",
     "error": "Error loading",
-    "noEvents": "No events found."
+    "noEvents": "No events found.",
+    "browseCity": {
+      "title": "Events in {{city}}",
+      "description": "Discover all events in {{city}}",
+      "backToEvents": "Back to events",
+      "noEvents": "No events in {{city}}",
+      "noEventsDesc": "There are no events yet scheduled in {{city}}.",
+      "exploreOtherCities": "Explore other cities",
+      "stats": {
+        "totalEvents": "Total events",
+        "city": "City",
+        "totalSpeakers": "Total speakers"
+      },
+      "pagination": {
+        "previous": "Previous",
+        "next": "Next"
+      }
+    }
   },
   "filters": {
     "title": "Filters",
@@ -103,5 +121,14 @@
     "aboutEvent": "About this event",
     "noSpeakers": "No speakers listed.",
     "noReviews": "No reviews yet."
+  },
+  "favoritesPage": {
+    "title": "My favorites",
+    "subtitle": "{{count}} favorite event",
+    "subtitle_plural": "{{count}} favorite events",
+    "loading": "Loading your favorites...",
+    "error": "Error loading favorites",
+    "noFavorites": "No favorites",
+    "noFavoritesMessage": "Start liking events to find them here!"
   }
 }
