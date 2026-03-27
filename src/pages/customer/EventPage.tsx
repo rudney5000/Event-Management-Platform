@@ -4,6 +4,8 @@ import { EventCard } from "../../features/event-list";
 import { useEventFilters } from "../../hooks/useEventFilters";
 import Footer from "../../shared/ui/footer/Footer";
 import Pagination from "../../shared/ui/pagination/Pagination";
+import {Chat} from "../../features/event-chat/ui/Chat.tsx";
+import {useState} from "react";
 
 export function EventPage() {
     const { t } = useTranslation()
@@ -30,7 +32,10 @@ export function EventPage() {
         likeIds
     } = useEventFilters({ page: 1, limit: 10 });
 
-     if (isLoading) return (
+    const [isChatOpen, setIsChatOpen] = useState(false);
+    const [currentEventId, setCurrentEventId] = useState<string | null>(filteredEvents[0]?.id ?? null);    const [currentEventTitle, setCurrentEventTitle] = useState<string>("");
+
+    if (isLoading) return (
         <div className="min-h-screen flex items-center justify-center">
             {t('eventPage.loading')}
         </div>
@@ -63,18 +68,18 @@ export function EventPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {filteredEvents.map(event => (
                         <EventCard
-                        key={event.id}
-                        event={event}
-                        isLiked={!!likeIds[event.id]}
-                        onLike={handleLike}
+                            key={event.id}
+                            event={event}
+                            isLiked={!!likeIds[event.id]}
+                            onLike={handleLike}
                         />
                     ))}
                 </div>
-                
+
                 {filteredEvents.length === 0 && (
                     <p className="text-center mt-8">{t('eventPage.noEvents')}</p>
                 )}
-                
+
                 <div className="mt-8">
                     <Pagination
                         currentPage={currentPage}
@@ -82,7 +87,31 @@ export function EventPage() {
                         onPageChange={setCurrentPage}
                     />
                 </div>
-                
+
+                {isChatOpen && currentEventId && (
+                    <Chat
+                        eventId={currentEventId}
+                        eventTitle={currentEventTitle}
+                        isOpen={isChatOpen}
+                        onClose={() => setIsChatOpen(false)}
+                    />
+                )}
+
+                <button
+                    onClick={() => {
+                        const firstEvent = filteredEvents[0];
+
+                        if (!firstEvent) return;
+
+                        setCurrentEventId(firstEvent.id);
+                        setCurrentEventTitle(firstEvent.title);
+                        setIsChatOpen(true);
+                    }}
+                    className="fixed bottom-6 right-6 bg-indigo-600 text-white p-4 rounded-full shadow-lg hover:bg-indigo-700 transition-all hover:scale-110 z-50"
+                >
+                    💬
+                </button>
+
                 <div className="mt-8">
                     <Footer/>
                 </div>
