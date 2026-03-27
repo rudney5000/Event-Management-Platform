@@ -55,7 +55,7 @@ export const getMainNavLinks = (t: TFunction): NavLinkItem[] => [
   { name: t('header.navigation.about'), to: '/about' },
   { name: t('header.navigation.contact'), to: '/contact' },
   {
-    name: t('header.favorites'),
+    name: t('header.navigation.favorites'),
     to: '/event/favorites',
   },
 ];
