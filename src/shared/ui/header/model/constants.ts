@@ -3,7 +3,7 @@ import type { ComponentType } from 'react';
 import {
   CalendarDaysIcon,
   CalendarIcon,
-  HeartIcon,
+  HeartIcon, LayoutDashboardIcon,
   PlusCircleIcon,
   StarIcon,
   TagIcon,
@@ -61,6 +61,7 @@ export const getMainNavLinks = (t: TFunction): NavLinkItem[] => [
 ];
 
 export const getUserMenuItems = (t: TFunction): UserMenuItem[] => [
+  { name: t('header.userMenu.dashboard'), to: '/admin/dashboard', icon: LayoutDashboardIcon },
   { name: t('header.userMenu.profile'), to: '/profile', icon: UserCircleIcon },
   { name: t('header.userMenu.myEvents'), to: '/my-events', icon: CalendarIcon },
   { name: t('header.userMenu.myTickets'), to: '/my-tickets', icon: TicketIcon },

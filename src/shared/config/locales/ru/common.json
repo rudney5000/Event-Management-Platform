@@ -39,7 +39,8 @@
       "myTickets": "Мои билеты",
       "favorites": "Избранное",
       "settings": "Настройки",
-      "logout": "Выйти"
+      "logout": "Выйти",
+      "dashboard": "Дашборд"
     },
     "logIn": "Войти",
     "logOut": "Выйти",

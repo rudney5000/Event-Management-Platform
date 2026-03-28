@@ -2,7 +2,7 @@ import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import { NavLink } from 'react-router';
 import { useTranslation } from 'react-i18next';
-import { getCallsToAction, getProducts } from '../model/constants';
+import { getCallsToAction, getProducts } from '../model';
 import { useLocalizedPath } from '../../../hooks/useLocalizedPath';
 
 export function ProductsPopover() {

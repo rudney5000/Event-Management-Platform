@@ -39,7 +39,8 @@
       "myTickets": "My tickets",
       "favorites": "Favorites",
       "settings": "Settings",
-      "logout": "Logout"
+      "logout": "Logout",
+      "dashboard": "dashboard"
     },
     "logIn": "Log in",
     "logOut": "Log out",

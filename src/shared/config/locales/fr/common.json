@@ -39,7 +39,8 @@
       "myTickets": "Mes billets",
       "favorites": "Favoris",
       "settings": "Paramètres",
-      "logout": "Déconnexion"
+      "logout": "Déconnexion",
+      "dashboard": "dashboard"
     },
     "logIn": "Connexion",
     "logOut": "Déconnexion",

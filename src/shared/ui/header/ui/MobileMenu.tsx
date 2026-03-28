@@ -10,7 +10,7 @@ import {
   getProducts,
   getUserMenuItems,
   type Notification,
-} from '../model/constants';
+} from '../model';
 import { LanguageSwitcher } from '../../../../features/change-language';
 import { useLocalizedPath } from '../../../hooks/useLocalizedPath';
 

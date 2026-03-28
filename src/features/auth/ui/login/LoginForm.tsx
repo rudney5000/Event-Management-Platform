@@ -1,13 +1,13 @@
 import { useNavigate } from "react-router"
 import { useLocalizedPath } from "../../../../shared/hooks/useLocalizedPath"
 import { useLoginForm } from "../../hooks/useLoginForm"
-import { useLoginMutation } from "../../api/authApi"
+import { useLoginMutation } from "../../api"
 import { initialLoginForm } from "../../model/constants/loginConstants"
 import { useState } from "react"
-import { useAppDispatch } from '../../../../shared/hooks/useAppDispatch';
+import { useAppDispatch } from '../../../../shared/hooks';
 import {tokenService} from "../../../../shared/lib/token.ts";
-import {loginSuccess} from "../../slice/authSlice.ts";
-import { setUserProfile } from '../../slice/userSlice.ts';
+import {loginSuccess} from "../../slice";
+import { setUserProfile } from '../../slice';
 import { errors } from "../../../../shared/config/i18n/errors.ts"
 
 export function LoginForm(){
@@ -37,7 +37,7 @@ export function LoginForm(){
         dispatch(loginSuccess({ accessToken: data.accessToken, refreshToken: data.refreshToken }));
         dispatch(setUserProfile(data.user))
           
-        navigate(localizedPath("/admin"))
+        navigate(localizedPath("/"))
       } catch(error) {
         console.error(errors.login.failed, error)
         let msg = errors.login.invalidCredentials.en;

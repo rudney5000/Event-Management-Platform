@@ -2,7 +2,7 @@ import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import { NavLink, Link } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { UserCircleIcon } from 'lucide-react';
-import { getUserMenuItems } from '../model/constants';
+import { getUserMenuItems } from '../model';
 import { useLocalizedPath } from '../../../hooks/useLocalizedPath';
 
 interface User {
