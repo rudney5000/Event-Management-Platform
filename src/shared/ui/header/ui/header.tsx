@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { PopoverGroup } from '@headlessui/react';
 import { MOCK_NOTIFICATIONS, getMainNavLinks } from '../model';
 import { SearchBar } from './SearchBar';
-import { ProductsPopover } from './ProductsPopover';
+// import { ProductsPopover } from './ProductsPopover';
 import { NotificationsMenu } from './NotificationsMenu';
 import { UserMenu } from './UserMenu';
 import { MobileMenu } from './MobileMenu';
@@ -71,7 +71,7 @@ export function Header() {
         </div>
 
         <PopoverGroup className="hidden lg:flex lg:gap-x-8">
-          <ProductsPopover />
+          {/*<ProductsPopover />*/}
           {mainNavLinks.map((link) => (
             <NavLink
               key={link.name}
