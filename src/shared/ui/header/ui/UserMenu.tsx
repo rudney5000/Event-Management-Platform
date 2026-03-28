@@ -42,7 +42,7 @@ export function UserMenu({ user, onLogout }: UserMenuProps) {
         <UserCircleIcon className="h-6 w-6 text-gray-400" />
       </MenuButton>
 
-      <MenuItems className="absolute right-0 mt-2 w-48 origin-top-right rounded-lg bg-gray-800 shadow-lg ring-1 ring-black/5 focus:outline-none">
+      <MenuItems className="absolute right-0 mt-2 w-48 origin-top-right rounded-lg bg-gray-800 shadow-lg ring-1 ring-black/5 focus:outline-none z-50">
         <div className="py-1">
           {userMenuItems.map((item) => (
             <MenuItem key={item.name}>
