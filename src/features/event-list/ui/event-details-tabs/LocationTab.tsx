@@ -8,7 +8,7 @@ interface LocationTabProps {
     t: Function 
 }
 
-export function LocationTab({ event, t }: LocationTabProps) {
+export function LocationTab({ event }: LocationTabProps) {
   const [copied, setCopied] = useState(false);
   const { data: cities } = useGetCitiesQuery();
   const city = cities?.find(c => c.id === event.cityId);

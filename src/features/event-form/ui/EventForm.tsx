@@ -8,7 +8,7 @@ import dayjs, { Dayjs } from "dayjs";
 export interface EventFormValues {
   id: string;
   title: string;
-  date?: string;
+  date: string;
   cityId: string;
   address: string;
   priceType: "free" | "paid";
