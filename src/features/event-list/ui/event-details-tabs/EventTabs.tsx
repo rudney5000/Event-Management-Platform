@@ -1,6 +1,10 @@
 import { useTranslation } from 'react-i18next';
 import type { EventFull } from '../../../../pages/admin/AdminEventPreviewPage';
-import { useGetCitiesQuery } from "../../../../entities/city/api/cityApi";
+import { Info, MapPin, MessageSquare, User } from 'lucide-react';
+import { DetailsTab } from './DetailsTab';
+import { SpeakersTab } from './SpeakersTab';
+import { LocationTab } from './LocationTab';
+import { ReviewsTab } from './ReviewsTab';
 
 export type TabId = 'details' | 'speakers' | 'location' | 'reviews'
 
@@ -12,73 +16,38 @@ interface EventTabsProps {
 
 export function EventTabs({ event, activeTab, setActiveTab }: EventTabsProps) {
   const { t } = useTranslation();
-  const { data: cities } = useGetCitiesQuery();
-  const city = cities?.find(c => c.id === event.cityId);
-  const tabs: { id: TabId; label: string }[] = [
-    { id: 'details',  label: t('eventTabs.details')  },
-    { id: 'speakers', label: t('eventTabs.speakers') },
-    { id: 'location', label: t('eventTabs.location') },
-    { id: 'reviews',  label: t('eventTabs.reviews')  },
+
+  const tabs: { id: TabId; label: string; icon: React.ReactNode }[] = [
+    { id: 'details',  label: t('eventTabs.details'),  icon: <Info className="w-3.5 h-3.5" /> },
+    { id: 'speakers', label: t('eventTabs.speakers'), icon: <User className="w-3.5 h-3.5" /> },
+    { id: 'location', label: t('eventTabs.location'), icon: <MapPin className="w-3.5 h-3.5" /> },
+    { id: 'reviews',  label: t('eventTabs.reviews'),  icon: <MessageSquare className="w-3.5 h-3.5" /> },
   ];
 
   return (
     <div>
-      <nav className="border-b border-gray-200 mb-6 flex space-x-8">
+      <nav className="flex gap-1 mb-6 border-b border-white/10">
         {tabs.map(tab => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            aria-current={activeTab === tab.id ? 'page' : undefined}
-            className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
+            className={`flex items-center gap-1.5 px-4 py-3 text-sm font-medium border-b-2 transition-all ${
               activeTab === tab.id
-                ? 'border-indigo-600 text-indigo-600'
-                : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                ? 'border-[#f5c518] text-white'
+                : 'border-transparent text-gray-500 hover:text-gray-300 hover:border-white/20'
             }`}
           >
+            {tab.icon}
             {tab.label}
           </button>
         ))}
       </nav>
-
-      <div className="bg-white rounded-xl shadow-md p-6">
-        {activeTab === 'details' && (
-          <div>
-            <h3 className="text-lg font-semibold mb-3">
-              {t('eventTabs.aboutEvent')}
-            </h3>
-            <p>{event.description}</p>
-          </div>
-        )}
-
-        {activeTab === 'speakers' && (
-          <div>
-            <h3 className="text-lg font-semibold mb-3">
-              {t('eventTabs.speakers')}
-            </h3>
-            {event.speakers && event.speakers.length > 0
-              ? event.speakers.map((s, i) => <p key={i}>{s}</p>)
-              : <p className="text-gray-400">{t('eventTabs.noSpeakers')}</p>
-            }
-          </div>
-        )}
-
-        {activeTab === 'location' && (
-          <div>
-            <h3 className="text-lg font-semibold mb-3">
-              {t('eventTabs.location')}
-            </h3>
-            <p>{event.address}, {city?.name || 'Ville inconnue'}</p>
-          </div>
-        )}
-
-        {activeTab === 'reviews' && (
-          <div>
-            <h3 className="text-lg font-semibold mb-3">
-              {t('eventTabs.reviews')}
-            </h3>
-            <p className="text-gray-400">{t('eventTabs.noReviews')}</p>
-          </div>
-        )}
+ 
+      <div className="text-sm text-gray-300 leading-relaxed">
+        {activeTab === 'details' && <DetailsTab event={event} t={t} />}
+        {activeTab === 'speakers' && <SpeakersTab event={event} t={t} />}
+        {activeTab === 'location' && <LocationTab event={event} t={t} />}
+        {activeTab === 'reviews' && <ReviewsTab t={t} />}
       </div>
     </div>
   );
