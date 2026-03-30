@@ -1,1 +1,1 @@
-export * from './EventsTable'
+export * from '../../../event-details/EventsTable'

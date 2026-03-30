@@ -1,8 +1,8 @@
 import { Heart } from "lucide-react";
-import { useAppDispatch, useAppSelector } from "../../../shared/hooks";
-import {toggleLike} from "../model";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import {toggleLike} from "../../../features/like-event/model";
 import {memo} from "react";
-import {selectIsLiked} from "../model";
+import {selectIsLiked} from "../../../features/like-event/model";
 
 interface LikeButtonProps {
   eventId: string;
