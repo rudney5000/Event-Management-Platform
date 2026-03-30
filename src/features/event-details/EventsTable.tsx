@@ -8,15 +8,15 @@ import {
   Typography 
 } from "antd";
 import type { TableRowSelection } from "antd/es/table/interface";
-import { CustomTable } from "../../../../shared/ui/custom-table/CustomTable";
-import { EventForm, type EventFormValues } from "../../../event-form";
+import { CustomTable } from "../../shared/ui/custom-table/CustomTable";
+import { EventForm, type EventFormValues } from "../event-form";
 import { 
   useDeleteEventMutation,
   useGetEventsQuery, 
   useUpdateEventMutation 
-} from "../../../../entities/event/api/eventsApi";
-import { useEventColumns } from "../../../../entities/event";
-import type { EventFull } from "../../../../pages/admin/AdminEventPreviewPage";
+} from "../../entities/event/api/eventsApi";
+import { useEventColumns } from "../../entities/event";
+import type { EventFull } from "../../pages/admin/AdminEventPreviewPage";
 
 const { Title } = Typography;
 
