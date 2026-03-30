@@ -1,8 +1,21 @@
-import { Form, Input, Button, DatePicker, Radio, InputNumber } from "antd";
+import { 
+  Form, 
+  Input, 
+  Button, 
+  DatePicker, 
+  Radio, 
+  InputNumber 
+} from "antd";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { SelectPriority } from "./SelectPriority";
-import { SelectOrCreateCity, SelectOrCreateOrganizer, SelectOrCreateCategory, SelectOrCreateTags, SelectOrCreateCurrency } from "../../../shared/ui/select-or-create";
+import { 
+  SelectOrCreateCity, 
+  SelectOrCreateOrganizer, 
+  SelectOrCreateCategory, 
+  SelectOrCreateTags, 
+  SelectOrCreateCurrency 
+} from "../../../shared/ui/select-or-create";
 import dayjs, { Dayjs } from "dayjs";
 
 export interface EventFormValues {
