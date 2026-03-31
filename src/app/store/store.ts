@@ -8,6 +8,7 @@ import {currencyApi} from "../../entities/currency";
 import {organizerApi} from "../../entities/organizer";
 import {cityApi} from "../../entities/city";
 import {messagesApi} from "../../entities/chat/api";
+import {registrationApi} from "../../entities/registration/api";
 
 export const store = configureStore({
   reducer: rootReducer,
@@ -30,7 +31,8 @@ export const store = configureStore({
           currencyApi.middleware,
           organizerApi.middleware,
           cityApi.middleware,
-          messagesApi.middleware
+          messagesApi.middleware,
+          registrationApi.middleware
       )
 })
 

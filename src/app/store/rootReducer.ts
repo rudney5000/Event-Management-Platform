@@ -10,6 +10,7 @@ import {combineReducers} from "@reduxjs/toolkit";
 import {likeSlice} from "../../features/like-event";
 import {messagesApi} from "../../entities/chat/api";
 import {authPersistConfig, likesPersistConfig} from "../../shared/config/persist";
+import {registrationApi} from "../../entities/registration/api";
 
 const likesReducer = persistReducer(likesPersistConfig, likeSlice.reducer);
 const authReducer = persistReducer(authPersistConfig, authSlice.reducer)
@@ -24,4 +25,5 @@ export const rootReducer = combineReducers({
     [currencyApi.reducerPath]: currencyApi.reducer,
     [organizerApi.reducerPath]: organizerApi.reducer,
     [cityApi.reducerPath]: cityApi.reducer,
+    [registrationApi.reducerPath]: registrationApi.reducer,
 });
