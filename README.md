@@ -12,12 +12,14 @@ src/
 │   ├── router/            # Application routing
 │   └── store/             # Redux store configuration
 ├── entities/              # Entities Layer - Reusable business logic
+│   ├── chat/              # Chat entities and types
 │   ├── event/
 │   ├── category/
 │   ├── currency/
 │   └── organizer/
 ├── features/              # Features Layer - User functionalities
 │   ├── auth/              # Authentication
+│   ├── event-chat/        # Real-time event chat
 │   └── like-event/        # Event likes
 ├── pages/                 # Pages Layer - Page components
 │   ├── admin/             # Admin pages
@@ -65,6 +67,7 @@ src/
 ### Backend Integration
 - **JSON Server** : Mock REST API for development
 - **Custom Auth Endpoints** : Custom authentication
+- **WebSocket** : Real-time communication for chat functionality
 
 ## 📋 Features
 
@@ -82,6 +85,15 @@ src/
 - Organizer management
 - Event preview
 - City management
+
+### 💬 Real-time Chat
+- **Live Messaging** : Real-time chat functionality for events using WebSocket
+- **Typing Indicators** : See when other users are typing messages
+- **Read Receipts** : Message read status with double checkmarks
+- **User Authentication** : Chat requires user authentication
+- **Responsive Design** : Mobile-friendly chat interface
+- **Optimistic Updates** : Messages appear instantly with optimistic UI updates
+- **Message History** : Persistent message storage and retrieval
 
 ### 🎉 Customer
 - Event navigation

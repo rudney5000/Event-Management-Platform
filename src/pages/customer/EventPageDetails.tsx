@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useGetEventByIdQuery } from "../../entities/event/api/eventsApi";
-import { EventDetailsLayout } from "../../features/event-list/ui/event-details-layout/EventDetailsLayout";
+import { EventDetailsLayout } from "../../features/event-details/EventDetailsLayout";
 
 export function EventDetailsPage() {
   const { id } = useParams<{ id: string }>();
