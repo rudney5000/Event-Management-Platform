@@ -5,18 +5,17 @@ import {categoryApi} from "../../entities/category";
 import {currencyApi} from "../../entities/currency";
 import {organizerApi} from "../../entities/organizer";
 import {cityApi} from "../../entities/city";
-import {likesPersistConfig, userPersistConfig} from "./persistConfig.ts";
-import {authSlice, userSlice} from "../../features/auth/slice";
+import {authSlice} from "../../features/auth/slice";
 import {combineReducers} from "@reduxjs/toolkit";
 import {likeSlice} from "../../features/like-event";
 import {messagesApi} from "../../entities/chat/api";
+import {authPersistConfig, likesPersistConfig} from "../../shared/config/persist";
 
-const userReducer = persistReducer(userPersistConfig, userSlice.reducer);
 const likesReducer = persistReducer(likesPersistConfig, likeSlice.reducer);
+const authReducer = persistReducer(authPersistConfig, authSlice.reducer)
 
 export const rootReducer = combineReducers({
-    auth: authSlice.reducer,
-    user: userReducer,
+    auth: authReducer,
     likes: likesReducer,
     [messagesApi.reducerPath]: messagesApi.reducer,
     [authApi.reducerPath]: authApi.reducer,
