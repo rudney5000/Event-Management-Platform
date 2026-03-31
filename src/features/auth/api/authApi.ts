@@ -1,33 +1,49 @@
 import {createApi} from "@reduxjs/toolkit/query/react"
-import {zodBaseQueryWithLang} from "../../../shared/api/baseQuery.ts";
+import {baseQueryWithRefresh} from "../../../shared/api/baseQuery.ts";
 import {type LoginResponse, loginResponseSchema} from "../model/schema/loginSchema.ts";
 import {handleAuthSuccess} from "./handlers";
+import type {User} from "../slice";
+import {userSchema} from "../model/schema/userSchema.ts";
 
 export const authApi = createApi({
-    reducerPath: "authApi",
-    baseQuery: zodBaseQueryWithLang(loginResponseSchema),
-    endpoints: (builder) => ({
-        login: builder.mutation<LoginResponse, { email: string, password: string }>({
-            query: (credentials) => ({
-                url: "/auth/login",
-                method: "POST",
-                body: credentials
-            }),
-            async onQueryStarted(_arg, { dispatch, queryFulfilled }) {
-                await handleAuthSuccess(dispatch, queryFulfilled);
-            }
-        }),
-        refreshToken: builder.mutation<LoginResponse, { refreshToken: string }>({
-            query: ({ refreshToken }) => ({
-                url: "/auth/refresh",
-                method: "POST",
-                body: { refreshToken },
-            }),
-            async onQueryStarted(_arg, { dispatch, queryFulfilled }) {
-                await handleAuthSuccess(dispatch, queryFulfilled);
-            },
-        }),
-    })
-})
+  reducerPath: 'authApi',
+  baseQuery: baseQueryWithRefresh,
+  endpoints: (builder) => ({
+    login: builder.mutation<LoginResponse, { email: string; password: string }>({
+      query: (credentials) => ({
+        url: '/auth/login',
+        method: 'POST',
+        body: credentials,
+      }),
+      transformResponse: (raw) => {
+        return loginResponseSchema.parse(raw);
+      },
+      async onQueryStarted(_arg, { dispatch, queryFulfilled }) {
+        await handleAuthSuccess(dispatch, queryFulfilled);
+      },
+    }),
+    getMe: builder.query<User, void>({
+      query: () => "/auth/me",
+        transformResponse: (raw) => userSchema.parse(raw)
+    }),
+    changePassword: builder.mutation<void, { oldPassword: string, newPassword: string }>({
+      query: (body) => ({
+        url: "/auth/change-password",
+        method: "POST",
+        body
+      })
+    }),
+    refreshToken: builder.mutation<LoginResponse, { refreshToken: string }>({
+      query: ({ refreshToken }) => ({
+        url: '/auth/refresh',
+        method: 'POST',
+        body: { refreshToken },
+      }),
+      async onQueryStarted(_arg, { dispatch, queryFulfilled }) {
+        await handleAuthSuccess(dispatch, queryFulfilled);
+      },
+    }),
+  }),
+});
 
 export const { useLoginMutation } = authApi
