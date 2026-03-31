@@ -13,7 +13,9 @@ import type {
 export function useChat(eventId: string) {
     const user = useAppSelector((state) => state.auth.user);
 
-    const { data: initialMessages } = useGetMessagesQuery(eventId);
+    const { data: initialMessages } = useGetMessagesQuery(eventId, {
+        skip: !eventId,
+    });
 
     const [messages, setMessages] = useState<ChatMessage[]>([]);
     const [typingUsers, setTypingUsers] = useState<string[]>([]);
@@ -42,11 +44,11 @@ export function useChat(eventId: string) {
 
         socket.emit("join", joinPayload);
 
-        socket.on("message", (message: ChatMessage) => {
+        const handleMessage = (message: ChatMessage) => {
             setMessages((prev) => [...prev, message]);
-        });
+        };
 
-        socket.on("typing", (payload: TypingPayload) => {
+        const handleTyping = (payload: TypingPayload) => {
             if (payload.userName === user.email) return;
 
             setTypingUsers((prev) =>
@@ -58,9 +60,9 @@ export function useChat(eventId: string) {
                     prev.filter((u) => u !== payload.userName)
                 );
             }, 2000);
-        });
+        };
 
-        socket.on("seen", (payload: SeenPayload) => {
+        const handleSeen = (payload: SeenPayload) => {
             setMessages((prev) =>
                 prev.map((msg) =>
                     payload.messageIds.includes(msg.id)
@@ -73,7 +75,11 @@ export function useChat(eventId: string) {
                         : msg
                 )
             );
-        });
+        };
+
+        socket.on("message", handleMessage);
+        socket.on("typing", handleTyping);
+        socket.on("seen", handleSeen);
 
         return () => {
             socket.emit("leave", {
@@ -81,9 +87,11 @@ export function useChat(eventId: string) {
                 userId: user.id,
             });
 
-            socket.off("message");
-            socket.off("typing");
-            socket.off("seen");
+            socket.off("message", handleMessage);
+            socket.off("typing", handleTyping);
+            socket.off("seen", handleSeen);
+
+            socket.disconnect();
         };
     }, [eventId, user]);
 
