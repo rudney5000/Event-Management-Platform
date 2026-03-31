@@ -5,7 +5,7 @@ interface EventActionsProps {
   onShare: () => void;
 }
 
-export function EventActions({ eventId, onShare }: EventActionsProps) {
+export function EventActions({ onShare }: EventActionsProps) {
   return (
     <div className="flex flex-wrap gap-3">
       <button

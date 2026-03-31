@@ -10,8 +10,6 @@ interface EventHeaderProps {
 }
 
 export function EventHeader({ 
-  title, 
-  organizer, 
   formattedDate, 
   formattedTime,
   category,
