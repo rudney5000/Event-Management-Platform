@@ -1,43 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import type { GetEventsParams, PaginatedEvents } from "../model/types";
-import type { EventFull } from "../../../pages/admin/AdminEventPreviewPage";
+import type {
+  EventBasePayload,
+  EventFull,
+  EventTranslationPayload,
+  GetEventsParams,
+  PaginatedEvents
+} from "../model";
 import type { EventFormValues } from "../../../features/event-form";
-
-export interface EventBasePayload {
-  date: string;
-  endDate?: string;
-  startTime?: string;
-  endTime?: string;
-  priceType: "free" | "paid";
-  price?: number;
-  status: "draft" | "published";
-  priority: string;
-  categoryId?: string;
-  currencyId?: string;
-  organizerId?: string;
-  imageUrl?: string;
-  capacity?: number;
-  availableSeats?: number;
-  coordinates?: { lat: number; lng: number };
-  bookingUrl?: string;
-  level?: string;
-  language?: string;
-  cityId?: string;
-}
-
-export interface EventTranslationPayload {
-  lang: "fr" | "en" | "ru";
-  title: string;
-  city: string;
-  address: string;
-  shortDescription?: string;
-  description?: string;
-  tags?: string[];
-  speakers?: string[];
-  schedule?: { time: string; title: string; description?: string }[];
-  sponsors?: string[];
-  media?: { type: "video" | "image"; url: string }[];
-}
 
 export interface CreateEventPayload {
   base: EventBasePayload;
