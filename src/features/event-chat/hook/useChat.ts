@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import { useAppSelector } from "../../../shared/hooks";
-import { useGetMessagesQuery } from "../../../entities/chat/api/messagesApi.ts";
+import { useGetMessagesQuery } from "../../../entities/chat/api";
 import { getSocket } from "../../../shared/api/socket.ts";
 import type {
     ChatMessage,
@@ -11,7 +11,7 @@ import type {
 } from "../../../entities/chat/model/type.ts";
 
 export function useChat(eventId: string) {
-    const user = useAppSelector((state) => state.user.profile);
+    const user = useAppSelector((state) => state.auth.user);
 
     const { data: initialMessages } = useGetMessagesQuery(eventId);
 

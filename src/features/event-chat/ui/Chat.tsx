@@ -19,7 +19,7 @@ export function Chat({
                          onClose,
                      }: ChatProps) {
     const { t } = useTranslation();
-    const user = useAppSelector((state) => state.user.profile);
+    const user = useAppSelector((state) => state.auth.user);
 
     const [newMessage, setNewMessage] = useState<string>("");
     const [isChatOpen, setIsChatOpen] = useState<boolean>(isOpen);
