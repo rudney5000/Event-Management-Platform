@@ -5,17 +5,17 @@ import { useLoginMutation } from "../../api"
 import { initialLoginForm } from "../../model/constants/loginConstants"
 import { useState } from "react"
 import { useAppDispatch } from '../../../../shared/hooks';
-import {tokenService} from "../../../../shared/lib/token.ts";
-import {loginSuccess} from "../../slice";
-import { setUserProfile } from '../../slice';
 import { errors } from "../../../../shared/config/i18n/errors.ts"
+import {setCredentials} from "../../slice";
 
 export function LoginForm(){
     const navigate = useNavigate()
     const localizedPath = useLocalizedPath()
     const dispatch = useAppDispatch();
+
     const [login, { isLoading }] = useLoginMutation();
     const [errorMsg, setErrorMsg] = useState<string | null>(null);
+
     const { 
       values, 
       errors: formErrors,
@@ -31,11 +31,7 @@ export function LoginForm(){
         setErrorMsg(null)
           
         const data = await login(values).unwrap()
-        tokenService.setAccess(data.accessToken)
-        tokenService.setRefresh(data.refreshToken)
-        
-        dispatch(loginSuccess({ accessToken: data.accessToken, refreshToken: data.refreshToken }));
-        dispatch(setUserProfile(data.user))
+        dispatch(setCredentials(data));
           
         navigate(localizedPath("/"))
       } catch(error) {

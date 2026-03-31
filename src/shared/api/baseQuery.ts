@@ -6,22 +6,19 @@ import type {
 } from '@reduxjs/toolkit/query';
 import { fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 import type {AppError} from "./types.ts";
-import {tokenService} from "../lib/token.ts";
 import type {ZodType} from "zod";
 import {errors} from "../config/i18n/errors.ts";
+import type {RootState} from "../../app/store/store.ts";
+import {logout, setCredentials} from "../../features/auth/slice";
 
 const baseQuery = fetchBaseQuery({
     baseUrl: import.meta.env.VITE_API_URL,
 
-    prepareHeaders: (headers) => {
-        const token = localStorage.getItem("token")
-
-        if (token) {
-            headers.set("Authorization", `Bearer ${token}`)
-        }
-
+    prepareHeaders: (headers, { getState }) => {
+        const token = (getState() as RootState).auth.accessToken
+        if (token) headers.set("Authorization", `Bearer ${token}`)
         return headers
-    },
+    }
 })
 
 export const baseQueryWithRefresh: BaseQueryFn<
@@ -33,9 +30,10 @@ export const baseQueryWithRefresh: BaseQueryFn<
         let result = await baseQuery(args, api, extraOptions);
 
         if (result.error && (result.error as FetchBaseQueryError)?.status === 401) {
-            const refreshToken = tokenService.getRefresh();
+            const state = api.getState() as RootState;
+            const refreshToken = state.auth.refreshToken;
             if (!refreshToken) {
-                tokenService.clear();
+                api.dispatch(logout());
                 return { error: { type: "HTTP_ERROR", status: 401, message: "Unauthorized" } };
             }
 
@@ -50,13 +48,20 @@ export const baseQueryWithRefresh: BaseQueryFn<
             );
 
             if (refreshResult.data) {
-                const { accessToken, refreshToken: newRefreshToken } = refreshResult.data as { accessToken: string; refreshToken: string };
-                tokenService.setAccess(accessToken);
-                tokenService.setRefresh(newRefreshToken);
+                const { accessToken, refreshToken: newRefreshToken } = refreshResult.data as {
+                    accessToken: string;
+                    refreshToken: string
+                };
 
+                const state = api.getState() as RootState;
+                api.dispatch(setCredentials({
+                    user: state.auth.user!,
+                    accessToken,
+                    refreshToken: newRefreshToken,
+                }));
                 result = await baseQuery(args, api, extraOptions);
             } else {
-                tokenService.clear();
+                api.dispatch(logout());
                 return { error: { type: "HTTP_ERROR", status: 401, message: "Unauthorized" } };
             }
         }
@@ -107,12 +112,13 @@ export const zodBaseQuery = <T>(schema: ZodType<T>, local: "fr" | "en" | "ru") =
         return result;
     };
 
-export const zodBaseQueryWithLang = <T>(schema: ZodType<T>) => {
+export const zodBaseQueryWithLang = <T>(schema: ZodType<T>) =>
+    (args: string | FetchArgs, api: BaseQueryApi, extraOptions?: object) => {
     const lang: "en" | "fr" | "ru" = navigator.language.startsWith("fr")
         ? "fr"
         : navigator.language.startsWith("ru")
             ? "ru"
             : "en";
 
-    return zodBaseQuery<T>(schema, lang);
+        return zodBaseQuery<T>(schema, lang)(args, api, extraOptions ?? {});
 };
