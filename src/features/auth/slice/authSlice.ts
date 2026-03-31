@@ -1,25 +1,38 @@
 import {createSlice, type PayloadAction} from "@reduxjs/toolkit";
-import { tokenService } from "../../../shared/lib/token.ts";
 import type {AuthState} from "./types.ts";
+import type {LoginResponse} from "../model/schema/loginSchema.ts";
 
 const initialState: AuthState = {
-    isAuthenticated: !!tokenService.getAccess(),
+    isAuthenticated: false,
+    user: undefined,
+    accessToken: undefined
 };
 
 export const authSlice = createSlice({
     name: "auth",
     initialState,
     reducers: {
-        loginSuccess: (state, action: PayloadAction<{ accessToken: string; refreshToken: string }>) => {
-            tokenService.setAccess(action.payload.accessToken);
-            tokenService.setRefresh(action.payload.refreshToken);
+        setCredentials: (state, action: PayloadAction<LoginResponse>) => {
+            const { user, accessToken, refreshToken } = action.payload;
+
+            state.user = user;
+            state.accessToken = accessToken;
+            state.refreshToken = refreshToken;
             state.isAuthenticated = true;
+
+            localStorage.setItem("access_token", accessToken);
+            localStorage.setItem("refresh_token", refreshToken);
         },
         logout: (state) => {
-            tokenService.clear();
+            state.user = undefined;
+            state.accessToken = undefined;
+            state.refreshToken = undefined;
             state.isAuthenticated = false;
+
+            localStorage.removeItem("access_token");
+            localStorage.removeItem("refresh_token");
         },
     },
 });
 
-export const { loginSuccess, logout } = authSlice.actions;
+export const { logout, setCredentials } = authSlice.actions;
