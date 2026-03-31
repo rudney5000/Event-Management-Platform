@@ -1,18 +1,17 @@
-import type {ThunkDispatch, UnknownAction} from "@reduxjs/toolkit";
 import type {LoginResponse} from "../../model/schema/loginSchema.ts";
-import {storeAuthTokens} from "./storeAuthTokens.ts";
-import {dispatchAuthActions} from "./dispatchAuthActions.ts";
 import {errors} from "../../../../shared/config/i18n/errors.ts";
+import type {AppDispatch} from "../../../../app/store/store.ts";
+import {setCredentials} from "../../slice";
 
 export async function handleAuthSuccess(
-    dispatch: ThunkDispatch<unknown, unknown, UnknownAction>,
+    dispatch: AppDispatch,
     queryFulfilled: Promise<{ data: LoginResponse }>
 ) {
     try {
         const { data } = await queryFulfilled;
-        storeAuthTokens(data);
-        dispatchAuthActions(dispatch, data);
+        dispatch(setCredentials(data));
     } catch (err) {
         console.error(errors.login.failed.en, err);
+        throw err
     }
 }

@@ -1,8 +1,7 @@
 import { useAppSelector } from '../shared/hooks';
 
 export function useCurrentUser() {
-  const isAuth = useAppSelector((state) => state.auth.isAuthenticated);
-  const user = useAppSelector((state) => state.user.profile);
+  const { user, isAuthenticated } = useAppSelector((state) => state.auth);
 
-  return { user, isAuth };
+  return { user, isAuth: isAuthenticated };
 }
