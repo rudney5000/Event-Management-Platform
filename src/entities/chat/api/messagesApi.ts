@@ -1,33 +1,56 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi } from "@reduxjs/toolkit/query/react";
 import type {ChatMessage} from "../model/type.ts";
 import {getSocket} from "../../../shared/api/socket.ts";
+import {baseQueryWithRefresh} from "../../../shared/api/baseQuery.ts";
 
 export const messagesApi = createApi({
     reducerPath: "messagesApi",
-    baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_API_URL }),
+    baseQuery: baseQueryWithRefresh,
     tagTypes: ["Messages"],
     endpoints: (builder) => ({
         getMessages: builder.query<ChatMessage[], string>({
             query: () => `/api/messages`,
-            async onCacheEntryAdded(_arg, { updateCachedData, cacheDataLoaded }) {
+            providesTags: ["Messages"],
+
+            async onCacheEntryAdded(eventId, {
+                updateCachedData,
+                cacheDataLoaded,
+                cacheEntryRemoved
+            }) {
                 const socket = getSocket();
 
-                await cacheDataLoaded;
+                try {
+                    await cacheDataLoaded;
 
-                socket.on("message", (message) => {
-                    updateCachedData((draft) => {
-                        draft.push(message);
+                    socket.emit("join_room", "global");
+
+                    socket.on("message", (message: ChatMessage) => {
+                        updateCachedData((draft) => {
+                            const exists = draft.some(m => m.id === message.id);
+                            if (!exists) draft.push(message);
+                        });
                     });
-                });
-            },
-            providesTags: (_result, _error, eventId) => [
-                { type: "Messages", id: eventId }
-            ]
+
+                    socket.on("message_updated", (updated: ChatMessage) => {
+                        updateCachedData((draft) => {
+                            const index = draft.findIndex(m => m.id === updated.id);
+                            if (index !== -1) draft[index] = updated;
+                        });
+                    });
+
+                } catch (error) {
+                    console.error("WebSocket connection error:", error);
+                }
+
+                await cacheEntryRemoved;
+                socket.emit("leave_room", eventId);
+                socket.off("message");
+                socket.off("message_updated");
+            }
         }),
         sendMessage: builder.mutation<
             ChatMessage,
             {
-                eventId: string;
                 content: string;
                 userId: string;
                 userName: string;
@@ -41,11 +64,7 @@ export const messagesApi = createApi({
                     timestamp: new Date().toISOString(),
                     seenBy: [],
                 },
-            }),
-
-            invalidatesTags: (_result, _error, arg) => [
-                { type: "Messages", id: arg.eventId },
-            ],
+            })
         }),
         updateMessage: builder.mutation<
             ChatMessage,
@@ -58,11 +77,7 @@ export const messagesApi = createApi({
                 url: `/api/messages/${id}`,
                 method: "PUT",
                 body: { content },
-            }),
-
-            invalidatesTags: (_result, _error, arg) => [
-                { type: "Messages", id: arg.id },
-            ],
+            })
         }),
         markAsSeen: builder.mutation<
             ChatMessage,
@@ -77,11 +92,7 @@ export const messagesApi = createApi({
                 body: {
                     seenBy: userId,
                 },
-            }),
-
-            invalidatesTags: (_result, _error, arg) => [
-                { type: "Messages", id: arg.id },
-            ],
+            })
         }),
     })
 });
