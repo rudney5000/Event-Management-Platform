@@ -1,6 +1,5 @@
 import { useMemo, useState } from "react";
-import { EventTabs, type TabId } from "../event-list/ui/event-details-tabs/index.ts";
-import type { EventFull } from '../../pages/admin/AdminEventPreviewPage.tsx';
+import { EventTabs, type TabId } from "../event-list/ui/event-details-tabs";
 import { useTranslation } from "react-i18next";
 import { TicketCard } from "../event-list/ui/ui/TicketCard.tsx";
 import { EventLoadingSkeleton } from "./EventLoadingSkeleton.tsx";
@@ -11,6 +10,7 @@ import { EventActions } from "./EventActions.tsx";
 import { EventVenue } from "./EventVenue.tsx";
 import { EventLineup } from "./EventLineup.tsx";
 import { EventSimilar } from "./EventSimilar.tsx";
+import type {EventFull} from "../../entities/event/model";
 
 interface EventDetailsLayoutProps {
   event: EventFull;
