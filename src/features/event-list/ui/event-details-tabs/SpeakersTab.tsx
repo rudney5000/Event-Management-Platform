@@ -1,5 +1,5 @@
 import { User } from "lucide-react";
-import type { EventFull } from "../../../../pages/admin/AdminEventPreviewPage";
+import type {EventFull} from "../../../../entities/event/model";
 
 interface SpeakersTabProps { 
     event: EventFull; 
