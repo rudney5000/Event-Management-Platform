@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useGetCitiesQuery } from "../../../../entities/city";
-import type { EventFull } from "../../../../pages/admin/AdminEventPreviewPage";
 import { Check, Copy, MapPin } from "lucide-react";
+import type {EventFull} from "../../../../entities/event/model";
 
 interface LocationTabProps { 
     event: EventFull; 

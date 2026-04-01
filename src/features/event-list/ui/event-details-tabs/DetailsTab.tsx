@@ -1,4 +1,4 @@
-import type { EventFull } from "../../../../pages/admin/AdminEventPreviewPage";
+import type {EventFull} from "../../../../entities/event/model";
 
 interface DetailsTabProps { 
     event: EventFull; 

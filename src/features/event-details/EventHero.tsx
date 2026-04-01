@@ -1,5 +1,5 @@
-import type { EventFull } from "../../pages/admin/AdminEventPreviewPage";
 import { BackButton, LikeButton, ShareButton } from "../../shared/ui/buttons";
+import type {EventFull} from "../../entities/event/model";
 
 interface EventHeroProps {
   event: EventFull;
