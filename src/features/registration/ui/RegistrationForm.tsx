@@ -3,7 +3,8 @@ import { X, Loader2, CheckCircle, CreditCard, Mail } from "lucide-react";
 import {useRegisterMutation} from "../../../entities/registration/api";
 import type {RegistrationResponse} from "../../../entities/registration/model/types.ts";
 import type {EventFull} from "../../../entities/event/model";
-import {useGetEventByIdQuery, useUpdateEventMutation} from "../../../entities/event/api/eventsApi.ts";
+import {eventsApi} from "../../../entities/event/api/eventsApi.ts";
+import {useAppDispatch} from "../../../shared/hooks";
 
 interface RegistrationFormValues {
     fullName: string;
@@ -28,12 +29,11 @@ export function RegistrationForm({ eventId, event, visible, onClose, onSuccess }
     const [errors, setErrors] = useState<Partial<RegistrationFormValues>>({});
     const [currentStep, setCurrentStep] = useState<number>(0);
     const [registrationSuccess, setRegistrationSuccess] = useState<boolean>(false);
+    const dispatch = useAppDispatch();
     const [register, { isLoading: isRegistering }] = useRegisterMutation();
-    const [updateEvent, { isLoading: isUpdating }] = useUpdateEventMutation();
-    const { refetch: refetchEvent } = useGetEventByIdQuery({ id: eventId });
 
     const isPaidEvent = event.price !== undefined && event.price > 0;
-    const isLoading = isRegistering || isUpdating;
+    const isLoading = isRegistering;
 
     const validateForm = (): boolean => {
         const newErrors: Partial<RegistrationFormValues> = {};
@@ -64,40 +64,6 @@ export function RegistrationForm({ eventId, event, visible, onClose, onSuccess }
         }
     };
 
-    const addParticipantToEvent = async (participantData: {
-        id: string;
-        userName: string;
-        userEmail: string;
-        userPhone: string;
-        registrationDate: string;
-        status: string;
-        paymentStatus: string;
-    }) => {
-        const newParticipant = {
-            id: participantData.id,
-            userId: `user_${Date.now()}`,
-            userName: participantData.userName,
-            userEmail: participantData.userEmail,
-            userPhone: participantData.userPhone,
-            registrationDate: participantData.registrationDate,
-            status: participantData.status,
-            paymentStatus: participantData.paymentStatus,
-        };
-
-        const updatedEvent = {
-            ...event,
-            participants: [...(event.participants || []), newParticipant],
-            availableSeats: event.availableSeats !== undefined ? event.availableSeats - 1 : undefined,
-        };
-
-        await updateEvent({
-            id: eventId,
-            event: updatedEvent
-        }).unwrap();
-
-        await refetchEvent();
-    };
-
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
@@ -114,15 +80,10 @@ export function RegistrationForm({ eventId, event, visible, onClose, onSuccess }
                 userId: `user_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
             }).unwrap();
 
-            await addParticipantToEvent({
-                id: registrationResult.id,
-                userName: formData.fullName,
-                userEmail: formData.email,
-                userPhone: formData.phone,
-                registrationDate: new Date().toISOString(),
-                status: isPaidEvent ? 'pending' : 'confirmed',
-                paymentStatus: isPaidEvent ? 'pending' : 'free',
-            });
+            const idKey = String(eventId);
+            dispatch(
+                eventsApi.endpoints.getEventById.initiate(idKey, { forceRefetch: true })
+            );
 
             if (isPaidEvent && registrationResult.paymentRequired) {
                 if (registrationResult.paymentLink) {
@@ -139,8 +100,21 @@ export function RegistrationForm({ eventId, event, visible, onClose, onSuccess }
                     resetForm();
                 }, 2000);
             }
-        } catch (error) {
-            const errorMessage = error instanceof Error ? error.message : "Erreur lors de l'inscription. Veuillez réessayer.";
+        } catch (error: unknown) {
+            const fromApi =
+                error &&
+                typeof error === "object" &&
+                "data" in error &&
+                error.data &&
+                typeof error.data === "object" &&
+                "message" in error.data &&
+                typeof (error.data as { message: unknown }).message === "string"
+                    ? (error.data as { message: string }).message
+                    : null;
+            const errorMessage =
+                fromApi ??
+                (error instanceof Error ? error.message : null) ??
+                "Erreur lors de l'inscription. Veuillez réessayer.";
             console.error("Registration error:", error);
             alert(errorMessage);
         }

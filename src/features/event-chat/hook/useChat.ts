@@ -165,13 +165,38 @@ export function useChat(eventId: string) {
             userId: user.id,
         };
 
-        socket.emit("seen", payload);
+        socket.emit('seen', payload);
     }, [messages, eventId, user]);
+
+    const sendAdminReply = useCallback((
+        content: string,
+        userEmail: string,
+        _userName: string,
+        type: 'chat' | 'info' | 'payment' = 'chat',
+        paymentLink?: string
+    ) => {
+        if (!user) return;
+
+        const socket = socketRef.current;
+
+        const payload = {
+            eventId,
+            content,
+            userId: user.id,
+            userName: user.email,
+            userEmail,
+            type,
+            paymentLink,
+        };
+
+        socket.emit("admin_reply", payload);
+    }, [eventId, user]);
 
     return {
         messages,
         typingUsers,
         sendMessage,
         sendTyping,
+        sendAdminReply
     };
 }
