@@ -1,10 +1,15 @@
 import { useTranslation } from 'react-i18next';
-import type { EventFull } from '../../../../pages/admin/AdminEventPreviewPage';
-import { Info, MapPin, MessageSquare, User } from 'lucide-react';
+import {
+    Info,
+    MapPin,
+    MessageSquare,
+    User
+} from 'lucide-react';
 import { DetailsTab } from './DetailsTab';
 import { SpeakersTab } from './SpeakersTab';
 import { LocationTab } from './LocationTab';
 import { ReviewsTab } from './ReviewsTab';
+import type {EventFull} from "../../../../entities/event/model";
 
 export type TabId = 'details' | 'speakers' | 'location' | 'reviews'
 
