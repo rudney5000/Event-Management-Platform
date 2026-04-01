@@ -5,7 +5,11 @@ import {Button, Empty, Input, Spin, Typography} from 'antd';
 import type { ChatMessage } from '../../entities/chat/model/type';
 import {Send} from "lucide-react";
 
-export function MessagesTab({ eventId }: { eventId: string }) {
+interface MessagesTabProps {
+    eventId: string;
+}
+
+export function MessagesTab({ eventId }: MessagesTabProps) {
     const user = useAppSelector(s => s.auth.user);
     const { data: messages = [], isLoading } = useGetMessagesQuery(eventId);
     const [sendMessage, { isLoading: isSending }] = useSendMessageMutation();
