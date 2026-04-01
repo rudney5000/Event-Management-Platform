@@ -1,1 +1,75 @@
 @import "tailwindcss";
+
+.ant-tabs {
+    height: 100%;
+}
+
+.ant-tabs-nav {
+    margin-bottom: 0 !important;
+    padding: 0 16px;
+}
+
+.ant-tabs-nav::before {
+    border-bottom-color: #f0f0f0 !important;
+}
+
+.ant-tabs-tab {
+    padding: 12px 0 !important;
+    font-size: 14px !important;
+}
+
+.ant-tabs-tab-active {
+    color: #6366f1 !important;
+}
+
+.ant-tabs-ink-bar {
+    background: #6366f1 !important;
+}
+
+.ant-tabs-content-holder {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.ant-badge-count {
+    background-color: #6366f1 !important;
+    box-shadow: none !important;
+}
+
+.ant-btn-primary {
+    background-color: #6366f1 !important;
+    border-color: #6366f1 !important;
+}
+
+.ant-btn-primary:hover {
+    background-color: #4f46e5 !important;
+    border-color: #4f46e5 !important;
+}
+
+.ant-input:focus,
+.ant-input-focused {
+    border-color: #6366f1 !important;
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.1) !important;
+}
+
+.ant-spin-dot-item {
+    background-color: #6366f1 !important;
+}
+
+.overflow-y-auto::-webkit-scrollbar {
+    width: 6px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
