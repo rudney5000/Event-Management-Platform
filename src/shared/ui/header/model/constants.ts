@@ -70,12 +70,34 @@ export const getUserMenuItems = (t: TFunction): UserMenuItem[] => [
 ];
 
 export interface Notification {
-  id: number;
+  id: string;
   message: string;
   time: string;
+  read?: boolean;
+  type?: 'info' | 'success' | 'warning' | 'error';
+  link?: string;
 }
 
 export const MOCK_NOTIFICATIONS: Notification[] = [
-  { id: 1, message: 'Nouvel événement créé', time: '5 min' },
-  { id: 2, message: 'Votre billet est confirmé', time: '1 heure' },
+  {
+    id: '1',
+    message: 'Votre inscription pour "Concert de Jazz" a été confirmée',
+    time: 'Il y a 5 minutes',
+    read: false,
+    type: 'success',
+  },
+  {
+    id: '2',
+    message: 'Nouvel événement recommandé: "Festival de la Bière"',
+    time: 'Il y a 1 heure',
+    read: false,
+    type: 'info',
+  },
+  {
+    id: '3',
+    message: 'Rappel: "Atelier de Cuisine" commence dans 2 jours',
+    time: 'Il y a 3 heures',
+    read: true,
+    type: 'warning',
+  },
 ];
