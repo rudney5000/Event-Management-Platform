@@ -1,13 +1,10 @@
 import type {
-    BaseQueryApi,
     BaseQueryFn,
     FetchArgs,
     FetchBaseQueryError,
 } from '@reduxjs/toolkit/query';
 import { fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 import type {AppError} from "./types.ts";
-import type {ZodType} from "zod";
-import {errors} from "../config/i18n/errors.ts";
 import type {RootState} from "../../app/store/store.ts";
 import {logout, setCredentials} from "../../features/auth/slice";
 
@@ -85,40 +82,3 @@ export const baseQueryWithRefresh: BaseQueryFn<
 
         return { data: result.data };
     };
-
-// Zod wrapper
-export const zodBaseQuery = <T>(schema: ZodType<T>, local: "fr" | "en" | "ru") =>
-    async (
-        args: string | FetchArgs,
-        api: BaseQueryApi,
-        extraOptions?: object
-    ) => {
-        const result = await baseQueryWithRefresh(args, api, extraOptions ?? {});
-
-        if ("data" in result) {
-            const parsed = schema.safeParse(result.data);
-            if (!parsed.success) {
-                return {
-                    error: {
-                        type: "PARSING_ERROR",
-                        message: errors.parsing.invalidResponse[local],
-                        details: parsed.error.flatten(),
-                    },
-                };
-            }
-            return { data: parsed.data };
-        }
-
-        return result;
-    };
-
-export const zodBaseQueryWithLang = <T>(schema: ZodType<T>) =>
-    (args: string | FetchArgs, api: BaseQueryApi, extraOptions?: object) => {
-    const lang: "en" | "fr" | "ru" = navigator.language.startsWith("fr")
-        ? "fr"
-        : navigator.language.startsWith("ru")
-            ? "ru"
-            : "en";
-
-        return zodBaseQuery<T>(schema, lang)(args, api, extraOptions ?? {});
-};
