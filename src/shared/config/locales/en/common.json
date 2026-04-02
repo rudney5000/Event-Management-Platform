@@ -50,6 +50,9 @@
     "welcome": "Welcome",
     "notifications": "Notifications",
     "noNotifications": "No notifications",
+    "noNotificationsMessage": "You have no notifications at the moment",
+    "markAllAsRead": "Mark everything as read",
+    "newMessage": "news(s)",
     "search": "Search",
     "searchPlaceholder": "Search for an event...",
     "language": "Language"

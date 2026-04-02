@@ -25,7 +25,7 @@ export function NotificationsMenu({ notifications }: NotificationsMenuProps) {
                     <div className="flex items-center justify-between">
                         <h3 className="text-sm font-semibold text-white">{t('header.notifications')}</h3>
                         {notifications.length > 0 && (
-                            <span className="text-xs text-[#f5c518]">{notifications.length} nouvelle(s)</span>
+                            <span className="text-xs text-[#f5c518]">{notifications.length} {t('header.newMessage')}</span>
                         )}
                     </div>
                 </div>
@@ -55,7 +55,7 @@ export function NotificationsMenu({ notifications }: NotificationsMenuProps) {
                             <BellIcon className="h-10 w-10 text-gray-600 mx-auto mb-2" />
                             <p className="text-sm text-gray-500">{t('header.noNotifications')}</p>
                             <p className="text-xs text-gray-600 mt-1">
-                                {t('header.noNotificationsMessage', 'Vous n\'avez aucune notification pour le moment')}
+                                {t('header.noNotificationsMessage')}
                             </p>
                         </div>
                     )}
@@ -64,7 +64,7 @@ export function NotificationsMenu({ notifications }: NotificationsMenuProps) {
                 {notifications.length > 0 && (
                     <div className="p-3 border-t border-white/10 bg-white/5">
                         <button className="w-full text-center text-xs text-[#f5c518] hover:text-[#f5c518]/80 transition-colors">
-                            {t('header.markAllAsRead', 'Tout marquer comme lu')}
+                            {t('header.markAllAsRead')}
                         </button>
                     </div>
                 )}

@@ -54,7 +54,6 @@ export function UserMenu({ user, onLogout }: UserMenuProps) {
             <MenuItems className="absolute right-0 mt-2 w-56 origin-top-right rounded-xl bg-black border border-white/10 shadow-lg focus:outline-none z-50 overflow-hidden">
                 <div className="py-2">
                     <div className="px-4 py-3 border-b border-white/10 mb-2">
-                        <p className="text-xs text-gray-400">{t('header.signedInAs')}</p>
                         <p className="text-sm font-semibold text-white truncate">{user.email}</p>
                     </div>
 

@@ -50,6 +50,9 @@
     "welcome": "Bienvenue",
     "notifications": "Notifications",
     "noNotifications": "Aucune notification",
+    "noNotificationsMessage": "Vous n'avez aucune notification pour le moment",
+    "markAllAsRead": "Tout marquer comme lu",
+    "newMessage": "nouvelle(s)",
     "search": "Rechercher",
     "searchPlaceholder": "Rechercher un événement...",
     "language": "Langue"

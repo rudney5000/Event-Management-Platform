@@ -50,6 +50,9 @@
     "welcome": "Добро пожаловать",
     "notifications": "Уведомления",
     "noNotifications": "Нет уведомлений",
+    "noNotificationsMessage": "В настоящее время у вас нет уведомлений",
+    "markAllAsRead": "Отметить все как прочитанное",
+    "newMessage": "новые(и)",
     "search": "Поиск",
     "searchPlaceholder": "Поиск событий...",
     "language": "Язык"
