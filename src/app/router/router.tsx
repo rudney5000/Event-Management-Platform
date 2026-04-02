@@ -11,7 +11,7 @@ import {
   AdminCityPage,
 } from "../../pages";
 import { AdminLayout } from "../../pages/admin/ui";
-import { EventDetailsPage, EventPage } from "../../pages";
+import { EventDetailsPage, EventPage, AboutPage } from "../../pages";
 import { LoginPage, RegisterPage } from "../../pages";
 import { LocaleLayout } from "./LocaleLayout";
 import {EventFavoritesPage} from "../../pages";
@@ -89,6 +89,10 @@ export const router = createBrowserRouter([
           {
             path: "event/favorites",
             element: <EventFavoritesPage/>
+          },
+          {
+            path: "about",
+            element: <AboutPage/>
           }
         ],
       },
