@@ -146,5 +146,15 @@
     "send": "Send",
     "loading": "Loading messages...",
     "noMessages": "No messages yet. Be the first to write!"
+  },
+  "eventCategories": {
+    "conference": "Conference",
+    "workshop": "Workshop",
+    "seminar": "Seminar",
+    "networking": "Networking",
+    "concert": "Concert",
+    "exhibition": "Exhibition",
+    "sport": "Sport",
+    "other": "Other"
   }
 }

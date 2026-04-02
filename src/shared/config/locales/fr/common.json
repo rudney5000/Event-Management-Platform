@@ -97,6 +97,9 @@
     "sortPrice": "Prix",
     "sortTitle": "Titre"
   },
+  "eventCategory": {
+
+  },
   "eventCard": {
     "free": "Gratuit",
     "price": "Prix",
@@ -146,5 +149,15 @@
     "send": "Envoyer",
     "loading": "Chargement des messages...",
     "noMessages": "Aucun message pour le moment. Soyez le premier à écrire !"
+  },
+  "eventCategories": {
+    "conference": "Conférence",
+    "workshop": "Atelier",
+    "seminar": "Séminaire",
+    "networking": "Réseau",
+    "concert": "Concert",
+    "exhibition": "Exposition",
+    "sport": "Sport",
+    "other": "Autre"
   }
 }

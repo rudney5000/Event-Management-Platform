@@ -146,5 +146,15 @@
     "send": "Отправить",
     "loading": "Загрузка сообщений...",
     "noMessages": "Пока нет сообщений. Будьте первым!"
+  },
+  "eventCategories": {
+    "conference": "Конференция",
+    "workshop": "Воркшоп",
+    "seminar": "Семинар",
+    "networking": "Нетворкинг",
+    "concert": "Концерт",
+    "exhibition": "Выставка",
+    "sport": "Спорт",
+    "other": "Другое"
   }
 }
