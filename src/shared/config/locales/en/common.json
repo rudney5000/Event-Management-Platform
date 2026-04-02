@@ -156,5 +156,54 @@
     "exhibition": "Exhibition",
     "sport": "Sport",
     "other": "Other"
+  },
+  "aboutPage": {
+    "title": "About Eventra",
+    "subtitle": "Your reference platform to discover and participate in the best events near you. We connect passionate organizers with enthusiastic participants to create unforgettable experiences.",
+    "whyChooseUs": "Why choose Eventra?",
+    "whyChooseUsDesc": "We are committed to providing the best possible experience for organizers and participants.",
+    "mission": "Our mission",
+    "missionDesc": "To make every event accessible, memorable and meaningful. We believe in the power of human connections and the ability of events to transform lives, create bonds and inspire change.",
+    "readyToJoin": "Ready to join the adventure?",
+    "readyToJoinDesc": "Whether you are an organizer or a participant, Eventra is the platform you need.",
+    "createEvent": "Create an event",
+    "exploreEvents": "Explore events",
+    "features": {
+      "variedEvents": {
+        "title": "Varied Events",
+        "description": "Discover a wide range of events suitable for all tastes and interests."
+      },
+      "activeCommunity": {
+        "title": "Active Community",
+        "description": "Join a passionate community and connect with other participants."
+      },
+      "preciseLocation": {
+        "title": "Precise Location",
+        "description": "Easily find events near you with our geolocation system."
+      },
+      "qualityGuaranteed": {
+        "title": "Quality Guaranteed",
+        "description": "All our events are verified to guarantee an exceptional experience."
+      },
+      "customerService": {
+        "title": "Customer Service",
+        "description": "Our team is available to support you and answer all your questions."
+      },
+      "multilingual": {
+        "title": "Multilingual",
+        "description": "Enjoy our platform in French, English and Russian."
+      }
+    },
+    "stats": {
+      "events": "Events",
+      "cities": "Cities",
+      "users": "Users",
+      "satisfaction": "Satisfaction"
+    },
+    "values": {
+      "innovation": "Innovation",
+      "community": "Community",
+      "excellence": "Excellence"
+    }
   }
 }

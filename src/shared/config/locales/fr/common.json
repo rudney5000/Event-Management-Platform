@@ -159,5 +159,54 @@
     "exhibition": "Exposition",
     "sport": "Sport",
     "other": "Autre"
+  },
+  "aboutPage": {
+    "title": "À propos d'Eventra",
+    "subtitle": "Votre plateforme de référence pour découvrir et participer aux meilleurs événements près de chez vous. Nous connectons les organisateurs passionnés avec des participants enthousiastes pour créer des expériences inoubliables.",
+    "whyChooseUs": "Pourquoi choisir Eventra ?",
+    "whyChooseUsDesc": "Nous nous engageons à offrir la meilleure expérience possible pour les organisateurs et les participants.",
+    "mission": "Notre mission",
+    "missionDesc": "Rendre chaque événement accessible, mémorable et significatif. Nous croyons au pouvoir des rencontres humaines et à la capacité des événements à transformer des vies, créer des liens et inspirer le changement.",
+    "readyToJoin": "Prêt à rejoindre l'aventure ?",
+    "readyToJoinDesc": "Que vous soyez organisateur ou participant, Eventra est la plateforme qu'il vous faut.",
+    "createEvent": "Créer un événement",
+    "exploreEvents": "Explorer les événements",
+    "features": {
+      "variedEvents": {
+        "title": "Événements variés",
+        "description": "Découvrez une large gamme d'événements adaptés à tous les goûts et intérêts."
+      },
+      "activeCommunity": {
+        "title": "Communauté active",
+        "description": "Rejoignez une communauté passionnée et connectez-vous avec d'autres participants."
+      },
+      "preciseLocation": {
+        "title": "Localisation précise",
+        "description": "Trouvez facilement des événements près de chez vous avec notre système de géolocalisation."
+      },
+      "qualityGuaranteed": {
+        "title": "Qualité garantie",
+        "description": "Tous nos événements sont vérifiés pour garantir une expérience exceptionnelle."
+      },
+      "customerService": {
+        "title": "Service client",
+        "description": "Notre équipe est disponible pour vous accompagner et répondre à toutes vos questions."
+      },
+      "multilingual": {
+        "title": "Multilingue",
+        "description": "Profitez de notre plateforme en français, anglais et russe."
+      }
+    },
+    "stats": {
+      "events": "Événements",
+      "cities": "Villes",
+      "users": "Utilisateurs",
+      "satisfaction": "Satisfaction"
+    },
+    "values": {
+      "innovation": "Innovation",
+      "community": "Communauté",
+      "excellence": "Excellence"
+    }
   }
 }
