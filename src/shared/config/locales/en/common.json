@@ -55,6 +55,8 @@
     "language": "Language"
   },
   "eventPage": {
+    "title": "Event",
+    "subtitle": "Discover the best events near you",
     "loading": "Loading...",
     "error": "Error loading",
     "noEvents": "No events found.",
@@ -107,7 +109,8 @@
   },
   "footer": {
     "rights": "All rights reserved",
-    "poweredBy": ""
+    "poweredBy": "",
+    "companyName": "Eventra"
   },
   "languages": {
     "fr": "French",

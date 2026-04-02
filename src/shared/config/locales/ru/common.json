@@ -55,6 +55,8 @@
     "language": "Язык"
   },
   "eventPage": {
+    "title": "События",
+    "subtitle": "Ознакомьтесь с лучшими событиями рядом с вами",
     "loading": "Загрузка...",
     "error": "Ошибка загрузки",
     "noEvents": "События не найдены.",
@@ -107,7 +109,8 @@
   },
   "footer": {
     "rights": "Все права защищены",
-    "poweredBy": ""
+    "poweredBy": "",
+    "companyName": "Eventra"
   },
   "languages": {
     "fr": "Французский",

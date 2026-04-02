@@ -13,7 +13,7 @@ export default function Footer() {
                             <ChefHat className="w-4 h-4 text-black" />
                         </div>
                         <span className="font-serif font-bold text-lg text-white">
-                            Event management platform
+                            {t('footer.companyName')}
                         </span>
                     </div>
                     <p className="text-sm text-gray-400">

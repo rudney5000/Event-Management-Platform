@@ -55,6 +55,8 @@
     "language": "Langue"
   },
   "eventPage": {
+    "title": "Événements",
+    "subtitle": "Découvrez les meilleurs événements près de chez vous",
     "loading": "Chargement...",
     "error": "Erreur de chargement",
     "noEvents": "Aucun événement trouvé.",
@@ -107,7 +109,8 @@
   },
   "footer": {
     "rights": "Tous droits réservés",
-    "poweredBy": ""
+    "poweredBy": "",
+    "companyName": "Eventra"
   },
   "languages": {
     "fr": "Français",
