@@ -210,7 +210,7 @@
     }
   },
   "contactPage": {
-    "title": "Contactez-nous",
+    "title": "Nous contacter",
     "subtitle": "Nous sommes là pour vous aider et répondre à toutes vos questions. Nous avons hâte d'avoir de vos nouvelles.",
     "form": {
       "title": "Envoyez-nous un message",
@@ -220,11 +220,11 @@
       "message": "Message",
       "submit": "Envoyer le message",
       "submitting": "Envoi en cours...",
-      "success": "Votre message a été envoyé avec succès! Nous vous répondrons bientôt.",
+      "success": "Votre message a été envoyé avec succès ! Nous vous répondrons bientôt.",
       "error": "Une erreur s'est produite lors de l'envoi de votre message. Veuillez réessayer."
     },
     "info": {
-      "title": "Coordonnées",
+      "title": "Informations de contact",
       "email": {
         "title": "E-mail",
         "value": "contact@eventra.com"
@@ -250,6 +250,73 @@
     },
     "social": {
       "title": "Suivez-nous"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Se connecter",
+      "subtitle": "Bon retour sur Eventra",
+      "formTitle": "Se connecter",
+      "formSubtitle": "Entrez vos identifiants pour accéder à votre compte",
+      "email": "Adresse e-mail",
+      "emailPlaceholder": "Entrez votre e-mail",
+      "password": "Mot de passe",
+      "passwordPlaceholder": "Entrez votre mot de passe",
+      "forgotPassword": "Mot de passe oublié ?",
+      "signIn": "Se connecter",
+      "register": "S'inscrire",
+      "signingIn": "Connexion en cours...",
+      "newHere": "Nouveau sur Eventra ?",
+      "newHereDesc": "Rejoignez des milliers d'organisateurs et de participants découvrant des événements incroyables.",
+      "benefits": {
+        "title": "Pourquoi choisir Eventra ?",
+        "discover": "Découvrez des événements incroyables",
+        "connect": "Connectez-vous avec des organisateurs",
+        "manage": "Gérez vos réservations"
+      }
+    },
+    "register": {
+      "title": "Créer un compte",
+      "subtitle": "Rejoignez Eventra et commencez à découvrir des événements incroyables",
+      "formTitle": "Créer un compte",
+      "formSubtitle": "Remplissez vos informations pour commencer",
+      "username": "Nom d'utilisateur",
+      "usernamePlaceholder": "Choisissez un nom d'utilisateur",
+      "email": "Adresse e-mail",
+      "emailPlaceholder": "Entrez votre e-mail",
+      "password": "Mot de passe",
+      "passwordPlaceholder": "Créez un mot de passe",
+      "confirmPassword": "Confirmer le mot de passe",
+      "confirmPasswordPlaceholder": "Confirmez votre mot de passe",
+      "createAccount": "Créer un compte",
+      "signIn": "Se connecter",
+      "alreadyHaveAccount": "Vous avez déjà un compte ?",
+      "alreadyHaveAccountDesc": "Connectez-vous pour accéder à votre compte existant et continuer votre parcours événementiel.",
+      "features": {
+        "title": "Ce que vous obtiendrez",
+        "events": {
+          "title": "Découverte d'événements",
+          "desc": "Trouvez des événements qui correspondent à vos intérêts"
+        },
+        "networking": {
+          "title": "Réseautage",
+          "desc": "Connectez-vous avec des personnes partageant les mêmes idées"
+        },
+        "favorites": {
+          "title": "Favoris",
+          "desc": "Sauvegardez et suivez vos événements favoris"
+        }
+      },
+      "errors": {
+        "usernameRequired": "Le nom d'utilisateur est requis",
+        "emailRequired": "L'e-mail est requis",
+        "emailInvalid": "L'e-mail est invalide",
+        "passwordRequired": "Le mot de passe est requis",
+        "passwordMinLength": "Le mot de passe doit contenir au moins 6 caractères",
+        "confirmPasswordRequired": "Veuillez confirmer votre mot de passe",
+        "passwordsNotMatch": "Les mots de passe ne correspondent pas",
+        "general": "L'inscription a échoué. Veuillez réessayer."
+      }
     }
   }
 }

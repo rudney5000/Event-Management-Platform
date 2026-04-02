@@ -248,5 +248,72 @@
     "social": {
       "title": "Follow Us"
     }
+  },
+  "auth": {
+    "login": {
+      "title": "Sign In",
+      "subtitle": "Welcome back to Eventra",
+      "formTitle": "Sign In",
+      "formSubtitle": "Enter your credentials to access your account",
+      "email": "Email address",
+      "emailPlaceholder": "Enter your email",
+      "password": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "forgotPassword": "Forgot password?",
+      "signIn": "Sign in",
+      "register": "Register",
+      "signingIn": "Signing in...",
+      "newHere": "New to Eventra?",
+      "newHereDesc": "Join thousands of event organizers and participants discovering amazing events.",
+      "benefits": {
+        "title": "Why Choose Eventra?",
+        "discover": "Discover amazing events",
+        "connect": "Connect with organizers",
+        "manage": "Manage your bookings"
+      }
+    },
+    "register": {
+      "title": "Create Account",
+      "subtitle": "Join Eventra and start discovering amazing events",
+      "formTitle": "Create Account",
+      "formSubtitle": "Fill in your information to get started",
+      "username": "Username",
+      "usernamePlaceholder": "Choose a username",
+      "email": "Email address",
+      "emailPlaceholder": "Enter your email",
+      "password": "Password",
+      "passwordPlaceholder": "Create a password",
+      "confirmPassword": "Confirm Password",
+      "confirmPasswordPlaceholder": "Confirm your password",
+      "createAccount": "Create Account",
+      "signIn": "Sign In",
+      "alreadyHaveAccount": "Already have an account?",
+      "alreadyHaveAccountDesc": "Sign in to access your existing account and continue your event journey.",
+      "features": {
+        "title": "What You'll Get",
+        "events": {
+          "title": "Event Discovery",
+          "desc": "Find events that match your interests"
+        },
+        "networking": {
+          "title": "Networking",
+          "desc": "Connect with like-minded people"
+        },
+        "favorites": {
+          "title": "Favorites",
+          "desc": "Save and track your favorite events"
+        }
+      },
+      "errors": {
+        "usernameRequired": "Username is required",
+        "emailRequired": "Email is required",
+        "emailInvalid": "Email is invalid",
+        "passwordRequired": "Password is required",
+        "passwordMinLength": "Password must be at least 6 characters",
+        "confirmPasswordRequired": "Please confirm your password",
+        "passwordsNotMatch": "Passwords do not match",
+        "general": "Registration failed. Please try again."
+      }
+    }
   }
 }
