@@ -205,5 +205,48 @@
       "community": "Community",
       "excellence": "Excellence"
     }
+  },
+  "contactPage": {
+    "title": "Contact Us",
+    "subtitle": "We're here to help and answer any questions you might have. We look forward to hearing from you.",
+    "form": {
+      "title": "Send us a message",
+      "name": "Full Name",
+      "email": "Email Address",
+      "subject": "Subject",
+      "message": "Message",
+      "submit": "Send Message",
+      "submitting": "Sending...",
+      "success": "Your message has been sent successfully! We'll get back to you soon.",
+      "error": "There was an error sending your message. Please try again."
+    },
+    "info": {
+      "title": "Contact Information",
+      "email": {
+        "title": "Email",
+        "value": "contact@eventra.com"
+      },
+      "phone": {
+        "title": "Phone",
+        "value": "+1 (555) 123-4567"
+      },
+      "address": {
+        "title": "Address",
+        "value": "123 Event Street, City, State 12345"
+      }
+    },
+    "hours": {
+      "title": "Business Hours",
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "weekend": "Weekend",
+      "weekendHours": "Closed"
+    },
+    "social": {
+      "title": "Follow Us"
+    }
   }
 }

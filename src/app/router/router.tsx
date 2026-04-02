@@ -15,6 +15,7 @@ import { EventDetailsPage, EventPage, AboutPage } from "../../pages";
 import { LoginPage, RegisterPage } from "../../pages";
 import { LocaleLayout } from "./LocaleLayout";
 import {EventFavoritesPage} from "../../pages";
+import {ContactPage} from "../../pages/customer/ContactPage.tsx";
 
 export const router = createBrowserRouter([
   {
@@ -93,6 +94,10 @@ export const router = createBrowserRouter([
           {
             path: "about",
             element: <AboutPage/>
+          },
+          {
+            path: "contact",
+            element: <ContactPage/>
           }
         ],
       },

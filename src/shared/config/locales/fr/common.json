@@ -208,5 +208,48 @@
       "community": "Communauté",
       "excellence": "Excellence"
     }
+  },
+  "contactPage": {
+    "title": "Contactez-nous",
+    "subtitle": "Nous sommes là pour vous aider et répondre à toutes vos questions. Nous avons hâte d'avoir de vos nouvelles.",
+    "form": {
+      "title": "Envoyez-nous un message",
+      "name": "Nom complet",
+      "email": "Adresse e-mail",
+      "subject": "Sujet",
+      "message": "Message",
+      "submit": "Envoyer le message",
+      "submitting": "Envoi en cours...",
+      "success": "Votre message a été envoyé avec succès! Nous vous répondrons bientôt.",
+      "error": "Une erreur s'est produite lors de l'envoi de votre message. Veuillez réessayer."
+    },
+    "info": {
+      "title": "Coordonnées",
+      "email": {
+        "title": "E-mail",
+        "value": "contact@eventra.com"
+      },
+      "phone": {
+        "title": "Téléphone",
+        "value": "+1 (555) 123-4567"
+      },
+      "address": {
+        "title": "Adresse",
+        "value": "123 Rue des Événements, Ville, État 12345"
+      }
+    },
+    "hours": {
+      "title": "Heures d'ouverture",
+      "monday": "Lundi",
+      "tuesday": "Mardi",
+      "wednesday": "Mercredi",
+      "thursday": "Jeudi",
+      "friday": "Vendredi",
+      "weekend": "Week-end",
+      "weekendHours": "Fermé"
+    },
+    "social": {
+      "title": "Suivez-nous"
+    }
   }
 }
