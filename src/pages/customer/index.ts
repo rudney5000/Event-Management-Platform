@@ -1,3 +1,4 @@
 export { EventPage } from './EventPage'
-export { EventDetailsPage } from './EventPageDetails'
-export { EventFavoritesPage } from './EventFavoritesPage.tsx'
+export * from './EventPageDetails'
+export * from './EventFavoritesPage'
+export * from './AboutPage'
