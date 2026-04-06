@@ -1,5 +1,5 @@
 import { Button, Form, Input } from "antd";
-import type { Category } from "../../entities/category/model/types";
+import type { Category } from "../../entities/category";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 

@@ -7,7 +7,6 @@ export function LoginPage() {
   
   return (
     <div className="min-h-screen bg-black">
-      {/* Header */}
       <div className="relative bg-gradient-to-br from-indigo-900 via-purple-900 to-black">
         <div className="absolute inset-0 bg-black/50" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
@@ -27,7 +26,6 @@ export function LoginPage() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Login Form */}
           <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
             <div className="text-center mb-8">
               <div className="inline-flex items-center justify-center w-16 h-16 bg-[#f5c518]/20 rounded-full mb-4">
@@ -43,7 +41,6 @@ export function LoginPage() {
             <LoginForm />
           </div>
 
-          {/* Info Section */}
           <div className="flex flex-col justify-center space-y-8">
             <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
               <h3 className="text-xl font-semibold text-white mb-4">
