@@ -9,8 +9,8 @@ import type {RootState} from "../../app/store/store.ts";
 import {logout, setCredentials} from "../../features/auth/slice";
 
 const baseQuery = fetchBaseQuery({
-    baseUrl: import.meta.env.VITE_API_URL,
-
+    baseUrl: import.meta.env.VITE_API,
+    credentials: 'include',
     prepareHeaders: (headers, { getState }) => {
         const token = (getState() as RootState).auth.accessToken
         if (token) headers.set("Authorization", `Bearer ${token}`)

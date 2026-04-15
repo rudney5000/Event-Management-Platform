@@ -4,6 +4,7 @@ import {type LoginResponse, loginResponseSchema} from "../model/schema/loginSche
 import {handleAuthSuccess} from "./handlers";
 import type {User} from "../slice";
 import {userSchema} from "../model/schema/userSchema.ts";
+import { logout as logoutAction } from '../slice'
 
 export const authApi = createApi({
   reducerPath: 'authApi',
@@ -43,6 +44,20 @@ export const authApi = createApi({
         await handleAuthSuccess(dispatch, queryFulfilled);
       },
     }),
+    logout: builder.mutation<void, void>({
+      query: () => ({
+        url: '/auth/logout',
+        method: "POST"
+      }),
+      async onQueryStarted(_arg, { dispatch, queryFulfilled }) {
+        try{
+          await queryFulfilled;
+          dispatch(logoutAction())
+        }catch(error){
+          console.error('Logout error:', error)
+        }
+      },
+    })
   }),
 });
 
