@@ -12,7 +12,7 @@ export const authApi = createApi({
   endpoints: (builder) => ({
     login: builder.mutation<LoginResponse, { email: string; password: string }>({
       query: (credentials) => ({
-        url: '/auth/login',
+        url: '/api/auth/login',
         method: 'POST',
         body: credentials,
       }),
@@ -24,19 +24,19 @@ export const authApi = createApi({
       },
     }),
     getMe: builder.query<User, void>({
-      query: () => "/auth/me",
+      query: () => "/api/auth/me",
         transformResponse: (raw) => userSchema.parse(raw)
     }),
     changePassword: builder.mutation<void, { oldPassword: string, newPassword: string }>({
       query: (body) => ({
-        url: "/auth/change-password",
+        url: "/api/auth/change-password",
         method: "POST",
         body
       })
     }),
     refreshToken: builder.mutation<LoginResponse, { refreshToken: string }>({
       query: ({ refreshToken }) => ({
-        url: '/auth/refresh',
+        url: '/api/auth/refresh',
         method: 'POST',
         body: { refreshToken },
       }),
@@ -46,7 +46,7 @@ export const authApi = createApi({
     }),
     logout: builder.mutation<void, void>({
       query: () => ({
-        url: '/auth/logout',
+        url: '/api/auth/logout',
         method: "POST"
       }),
       async onQueryStarted(_arg, { dispatch, queryFulfilled }) {

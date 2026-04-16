@@ -27,34 +27,32 @@ export const baseQueryWithRefresh: BaseQueryFn<
         let result = await baseQuery(args, api, extraOptions);
 
         if (result.error && (result.error as FetchBaseQueryError)?.status === 401) {
-            const state = api.getState() as RootState;
-            const refreshToken = state.auth.refreshToken;
-            if (!refreshToken) {
-                api.dispatch(logout());
-                return { error: { type: "HTTP_ERROR", status: 401, message: "Unauthorized" } };
-            }
+            // const state = api.getState() as RootState;
+            // const refreshToken = state.auth.refreshToken;
+            // if (!refreshToken) {
+            //     api.dispatch(logout());
+            //     return { error: { type: "HTTP_ERROR", status: 401, message: "Unauthorized" } };
+            // }
 
             const refreshResult = await baseQuery(
                 {
                     url: "/auth/refresh",
                     method: "POST",
-                    body: { refreshToken },
+                    // body: { refreshToken },
                 },
                 api,
                 extraOptions
             );
 
             if (refreshResult.data) {
-                const { accessToken, refreshToken: newRefreshToken } = refreshResult.data as {
+                const { accessToken } = refreshResult.data as {
                     accessToken: string;
-                    refreshToken: string
                 };
 
                 const state = api.getState() as RootState;
                 api.dispatch(setCredentials({
                     user: state.auth.user!,
-                    accessToken,
-                    refreshToken: newRefreshToken,
+                    accessToken
                 }));
                 result = await baseQuery(args, api, extraOptions);
             } else {
